@@ -1,0 +1,35 @@
+plugins {
+    id 'maven-publish'
+    id 'com.enonic.xp.app' version '3.4.0'
+    id 'com.enonic.defaults' version '2.1.2'
+}
+
+app {
+    group = "com.enonic.app"
+    name = "${appName}"
+    displayName = "${appDisplayName}"
+    vendorName = "${vendorName}"
+    vendorUrl = "${vendorUrl}"
+    systemVersion = "${xpVersion}"
+}
+
+dependencies {
+    include "com.enonic.xp:lib-auth:${xpVersion}"
+    include "com.enonic.xp:lib-project:${xpVersion}"
+    include "com.enonic.xp:lib-portal:${xpVersion}"
+    include "com.enonic.xp:lib-cluster:${xpVersion}"
+    include "com.enonic.xp:lib-context:${xpVersion}"
+    include "com.enonic.xp:lib-content:${xpVersion}"
+    include "com.enonic.xp:lib-export:${xpVersion}"
+    include "com.enonic.xp:lib-task:${xpVersion}"
+    include "com.enonic.lib:lib-thymeleaf:2.1.0"
+}
+
+tasks.register('dev', Exec) {
+    commandLine './gradlew', 'deploy', '-t'
+}
+
+repositories {
+    mavenCentral()
+    xp.enonicRepo()
+}
