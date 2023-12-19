@@ -485,7 +485,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-<strong>Just looking for a demo?</strong> - <a href="https://enonic.com/sign-up" target="_blank" rel="noopener">Sign up for a free Enonic account</a>. Create a new solution based on the <code>Movie DB</code> template to get a live demo using the same setup as this tutorial.
+<strong>Just looking for a demo?</strong> - <a href="https://enonic.com/sign-up" target="_blank" rel="noopener">Sign up for a free Enonic account</a>. Create a new solution based on the <code>Headless Demo</code> template to get a live demo using the same setup as this tutorial.
 </td>
 </tr>
 </table>
@@ -626,7 +626,7 @@ Use the default options when prompted.
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>enonic project create -r app-moviedb</pre>
+<pre>enonic create -r app-intro</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -640,7 +640,7 @@ Use the default options when prompted.
 </td>
 <td class="content">
 <div class="paragraph">
-<p>The command uses the <a href="https://market.enonic.com/vendors/enonic/movie-db" target="_blank" rel="noopener">Movie DB</a> app as a starter (template) for your app.</p>
+<p>The command uses the <a href="https://market.enonic.com/vendors/enonic/intro" target="_blank" rel="noopener">Intro</a> app as a starter (template) for your app.</p>
 </div>
 </td>
 </tr>
@@ -674,7 +674,7 @@ gradle.properties <i class="conum" data-value="6"></i><b>(6)</b></code></pre>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Movie DB content</td>
+<td>Sample content</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
@@ -768,7 +768,7 @@ enonic dev</pre>
 <h2 id="browse_content"><a class="link" href="#browse_content">Browse content</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When your application was installed, it automatically created a Content Studio project called <code>Movie DB</code>, and imported sample content. Let&#8217;s have a look:</p>
+<p>When your application was installed, it automatically created a Content Studio project called <code>Sample Content</code>, and imported sample content. Let&#8217;s have a look:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -778,11 +778,11 @@ enonic dev</pre>
 </ol>
 </div>
 <div class="paragraph">
-<p>Select the <code>Movie DB</code> project when prompted, and you should now see the imported content.</p>
+<p>Select the <code>Sample Content</code> project when prompted, and you should now see the imported content.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="media/content-studio-in-action.gif" alt="Content Studio with Movie DB content" width="1024px">
+<img src="media/content-studio-in-action.gif" alt="Content Studio with Sample content" width="1024px">
 </div>
 </div>
 </div>
@@ -1133,7 +1133,7 @@ If you changed the name of your app when creating it, you must replace <code>com
           "data": {
             "photos": [
               {
-                "imageUrl": "http://localhost:8080/admin/site/preview/moviedb/draft/_/image/7ab1f76a-69a1-490f-b505-6eb6773c7cec:603726cc4fa712aa1b70c7eb64e1349f664494c3/block-400-400/morgan-freeman.jpg"
+                "imageUrl": "http://localhost:8080/admin/site/preview/intro/draft/_/image/7ab1f76a-69a1-490f-b505-6eb6773c7cec:603726cc4fa712aa1b70c7eb64e1349f664494c3/block-400-400/morgan-freeman.jpg"
               }
             ]
           }
@@ -1183,10 +1183,10 @@ The red "autofocus" circle, when set, helps the image service to crop the images
 <div class="ulist">
 <ul>
 <li>
-<p>http://localhost:8080/site/moviedb/draft (draft items)</p>
+<p>http://localhost:8080/site/intro/draft (draft items)</p>
 </li>
 <li>
-<p>http://localhost:8080/site/moviedb/master (published items).</p>
+<p>http://localhost:8080/site/intro/master (published items).</p>
 </li>
 </ul>
 </div>
@@ -1275,12 +1275,12 @@ You must execute the command from your app folder.
 <li>
 <p><strong>Expose your API</strong> by creating a Route: <code>Enonic console &#8594; &lt;My solution&gt; &#8594; Routes &#8594; Create</code>.</p>
 <div class="paragraph">
-<p>Give it a suitable name i.e. <code>Movie DB API</code>, and use the following values:</p>
+<p>Give it a suitable name i.e. <code>Intro API</code>, and use the following values:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Internal path: <code>/site/moviedb/master</code></p>
+<p>Internal path: <code>/site/intro/master</code></p>
 </li>
 <li>
 <p>Public path: <code>/api</code></p>
@@ -1321,7 +1321,7 @@ You must execute the command from your app folder.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-19 15:08:04 UTC
+Last updated 2023-12-19 15:42:50 UTC
 </div>
 </div>
 </body>
