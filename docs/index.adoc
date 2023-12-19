@@ -6,7 +6,7 @@
 
 Hands on intro to our platform, CLI, Content Studio, headless API, and free hosting tier.
 
-TIP: *Just looking for a demo?* - https://enonic.com/sign-up[Sign up for a free Enonic account^]. Create a new solution based on the `Movie DB` template to get a live demo using the same setup as this tutorial.  
+TIP: *Just looking for a demo?* - https://enonic.com/sign-up[Sign up for a free Enonic account^]. Create a new solution based on the `Headless Demo` template to get a live demo using the same setup as this tutorial.
 
 == Introduction
 
@@ -23,13 +23,13 @@ This guide will show you how to:
 
 The Enonic Command Line Interface is an essential tool for developers working with Enonic.
 
-If you have `npm` on your device, run this command: 
+If you have `npm` on your device, run this command:
 
   npm install -g @enonic/cli
 
 If not, here are some https://developer.enonic.com/start[alternative ways to install Enonic CLI^]
 
-To verify that the CLI has been installed, run `enonic -v`. This should output the version of your installed CLI. 
+To verify that the CLI has been installed, run `enonic -v`. This should output the version of your installed CLI.
 
 To see all available options, simply run `enonic`.
 
@@ -63,14 +63,14 @@ From a **new terminal window**, create your first Enonic app.
 
 IMPORTANT: Use the default options when prompted.
 
-  enonic project create -r app-moviedb
+  enonic create -r app-intro
 
 
 Select the `intro` sandbox from the list, and the app will use this from now on.
 
 [TIP]
 ====
-The command uses the https://market.enonic.com/vendors/enonic/movie-db[Movie DB^] app as a starter (template) for your app.
+The command uses the https://market.enonic.com/vendors/enonic/intro[Intro^] app as a starter (template) for your app.
 ====
 
 === Project structure
@@ -93,7 +93,7 @@ gradle.properties <6>
 ----
 
 <1> The documentation you are reading now
-<2> Movie DB content
+<2> Sample content
 <3> Content Types schemas are placed in this directory
 <4> X-data schemas are placed here
 <5> Code samples that will be used in this guide
@@ -101,7 +101,7 @@ gradle.properties <6>
 
 == Deploy the app
 
-Assuming you did not change the default directory name `myproject/` when creating the app, run the following commands: 
+Assuming you did not change the default directory name `myproject/` when creating the app, run the following commands:
 
   cd myproject
   enonic dev
@@ -126,19 +126,19 @@ https://market.enonic.com/vendors/enonic/content-studio[Content Studio^] is the 
 +
 image::xp-menu-applications.png["Go to Applications from the XP menu", width="319px"]
 +
-. **Install Content Studio**: click `Install` button in the menu bar, scroll down to `Content Studio` (or use search) in the list of apps that appears and click `Install` next to it. 
+. **Install Content Studio**: click `Install` button in the menu bar, scroll down to `Content Studio` (or use search) in the list of apps that appears and click `Install` next to it.
 +
 image::install-content-studio.png["Install the Content Studio app", width="760px"]
 
 == Browse content
 
-When your application was installed, it automatically created a Content Studio project called `Movie DB`, and imported sample content. Let's have a look:
+When your application was installed, it automatically created a Content Studio project called `Sample Content`, and imported sample content. Let's have a look:
 
 . Open Content Studio, which is now available in `XP menu -> Content Studio`.
 
-Select the `Movie DB` project when prompted, and you should now see the imported content.
+Select the `Sample Content` project when prompted, and you should now see the imported content.
 
-image::content-studio-in-action.gif["Content Studio with Movie DB content", width="1024px"]
+image::content-studio-in-action.gif["Content Studio with Sample content", width="1024px"]
 
 
 == Content type: Person
@@ -157,7 +157,7 @@ include::{sourcedir}/src/main/resources/site/content-types/person/person.xml[]
 
 === X-Data: Social media
 
-When editing a Person, the form contains an additional set of fields called `Social Media`. This is strictly speaking a separate form, injected into the Person content type - we call it an x-data. 
+When editing a Person, the form contains an additional set of fields called `Social Media`. This is strictly speaking a separate form, injected into the Person content type - we call it an x-data.
 
 image::some.gif["Social Media x-data form", width="1024px"]
 
@@ -370,7 +370,7 @@ The query below show the name of actors containing the term `morgan`, and provid
           "data": {
             "photos": [
               {
-                "imageUrl": "http://localhost:8080/admin/site/preview/moviedb/draft/_/image/7ab1f76a-69a1-490f-b505-6eb6773c7cec:603726cc4fa712aa1b70c7eb64e1349f664494c3/block-400-400/morgan-freeman.jpg"
+                "imageUrl": "http://localhost:8080/admin/site/preview/intro/draft/_/image/7ab1f76a-69a1-490f-b505-6eb6773c7cec:603726cc4fa712aa1b70c7eb64e1349f664494c3/block-400-400/morgan-freeman.jpg"
               }
             ]
           }
@@ -393,10 +393,10 @@ NOTE: The red "autofocus" circle, when set, helps the image service to crop the 
 
 
 == API endpoint
-So far, you've been playing with the API via Content Studio, if you want to access the API's endpoint directly, its available at respectively 
+So far, you've been playing with the API via Content Studio, if you want to access the API's endpoint directly, its available at respectively
 
-* \http://localhost:8080/site/moviedb/draft (draft items)
-* \http://localhost:8080/site/moviedb/master (published items).
+* \http://localhost:8080/site/intro/draft (draft items)
+* \http://localhost:8080/site/intro/master (published items).
 
 The API can be deployed to a custom domain (aka vhost) when you go live. Also, important to notice - the GraphQL API is accessed via HTTP POST method, as such - visiting via a regular browser will render a 404.
 
@@ -404,7 +404,7 @@ TIP: The Chrome extension https://chrome.google.com/webstore/detail/altair-graph
 
 == Deploying to Production
 
-To deploy your application to production, you'll need Enonic XP running on a server. 
+To deploy your application to production, you'll need Enonic XP running on a server.
 
 [TIP]
 ====
@@ -423,18 +423,18 @@ Similar to a sandbox, this will spin up an instance of Enonic XP, but this time 
 After successfully authenticating, install your app using this command:
 +
 NOTE: You must execute the command from your app folder.
-+  
++
   enonic cloud app install
-+ 
++
 Alternatively upload the app manually via `Enonic console -> <My solution> -> Applications -> Install`.
 +
 The app file is in your project folder i.e. `build/libs/<myproject>.jar`.
 +
 . **Expose your API** by creating a Route: `Enonic console -> <My solution> -> Routes -> Create`.
 +
-Give it a suitable name i.e. `Movie DB API`, and use the following values:
+Give it a suitable name i.e. `Intro API`, and use the following values:
 +
-* Internal path: `/site/moviedb/master`
+* Internal path: `/site/intro/master`
 * Public path: `/api`
 * ID provider: leave empty
 +
@@ -442,7 +442,7 @@ Give it a suitable name i.e. `Movie DB API`, and use the following values:
 
 == Dive deeper
 
-🎉 Sweet! You made it to the end. 
+🎉 Sweet! You made it to the end.
 
 In the process, you built and customized your own app, installed apps from Enonic Market, ran queries, got to know the Enonic CLI and our hosted offerings.
 
