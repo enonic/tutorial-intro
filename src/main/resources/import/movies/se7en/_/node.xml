@@ -5,13 +5,13 @@
     <timestamp>2020-09-23T12:34:46.729Z</timestamp>
     <inheritPermissions>true</inheritPermissions>
     <permissions>
-        <principal key="role:cms.project.hmdb.viewer">
+        <principal key="role:cms.project.intro.viewer">
             <allow type="array">
                 <value>READ</value>
             </allow>
             <deny type="array"/>
         </principal>
-        <principal key="role:cms.project.hmdb.owner">
+        <principal key="role:cms.project.intro.owner">
             <allow type="array">
                 <value>READ</value>
                 <value>CREATE</value>
@@ -35,7 +35,7 @@
             </allow>
             <deny type="array"/>
         </principal>
-        <principal key="role:cms.project.hmdb.editor">
+        <principal key="role:cms.project.intro.editor">
             <allow type="array">
                 <value>READ</value>
                 <value>CREATE</value>
@@ -59,13 +59,13 @@
             </allow>
             <deny type="array"/>
         </principal>
-        <principal key="role:cms.project.hmdb.contributor">
+        <principal key="role:cms.project.intro.contributor">
             <allow type="array">
                 <value>READ</value>
             </allow>
             <deny type="array"/>
         </principal>
-        <principal key="role:cms.project.hmdb.author">
+        <principal key="role:cms.project.intro.author">
             <allow type="array">
                 <value>READ</value>
                 <value>CREATE</value>
@@ -84,7 +84,7 @@
     <data>
         <boolean name="valid">true</boolean>
         <string name="displayName">Se7en</string>
-        <string name="type">com.enonic.app.hmdb:movie</string>
+        <string name="type">com.enonic.app.intro:movie</string>
         <string name="owner">user:system:su</string>
         <string name="language">en</string>
         <dateTime name="modifiedTime">2018-07-03T06:50:45.284Z</dateTime>
@@ -114,7 +114,7 @@
             <string isNull="true" name="website"/>
         </property-set>
         <property-set name="x">
-            <property-set name="com-enonic-app-hmdb">
+            <property-set name="com-enonic-app-intro">
                 <property-set name="SoMe">
                     <string name="imdb">https://www.imdb.com/title/tt0114369/</string>
                     <string isNull="true" name="twitter"/>

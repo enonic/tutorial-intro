@@ -5,13 +5,13 @@
     <timestamp>2021-11-23T13:08:09.329Z</timestamp>
     <inheritPermissions>true</inheritPermissions>
     <permissions>
-        <principal key="role:cms.project.hmdb.viewer">
+        <principal key="role:cms.project.intro.viewer">
             <allow type="array">
                 <value>READ</value>
             </allow>
             <deny type="array"/>
         </principal>
-        <principal key="role:cms.project.hmdb.owner">
+        <principal key="role:cms.project.intro.owner">
             <allow type="array">
                 <value>READ</value>
                 <value>CREATE</value>
@@ -35,7 +35,7 @@
             </allow>
             <deny type="array"/>
         </principal>
-        <principal key="role:cms.project.hmdb.editor">
+        <principal key="role:cms.project.intro.editor">
             <allow type="array">
                 <value>READ</value>
                 <value>CREATE</value>
@@ -59,13 +59,13 @@
             </allow>
             <deny type="array"/>
         </principal>
-        <principal key="role:cms.project.hmdb.contributor">
+        <principal key="role:cms.project.intro.contributor">
             <allow type="array">
                 <value>READ</value>
             </allow>
             <deny type="array"/>
         </principal>
-        <principal key="role:cms.project.hmdb.author">
+        <principal key="role:cms.project.intro.author">
             <allow type="array">
                 <value>READ</value>
                 <value>CREATE</value>
@@ -155,7 +155,7 @@
                     <string isNull="true" name="direction"/>
                 </property-set>
             </property-set>
-            <property-set name="com-enonic-app-hmdb">
+            <property-set name="com-enonic-app-intro">
                 <property-set name="spotlight">
                     <reference name="person">569d127d-b6bd-45d6-94b0-949ec6171336</reference>
                     <reference name="person">f29ba9b7-a73a-4767-82db-9da4df952924</reference>
