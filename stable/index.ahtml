@@ -442,7 +442,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel1">
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#install_cli">Install CLI</a></li>
-<li><a href="#create_a_sandbox">Create a Sandbox</a></li>
 <li><a href="#create_an_app">Create an app</a>
 <ul class="sectlevel2">
 <li><a href="#project_structure">Project structure</a></li>
@@ -560,63 +559,24 @@ To upgrade, use <code>enonic latest</code>. If there are new versions you will s
 </div>
 </div>
 <div class="sect1">
-<h2 id="create_a_sandbox"><a class="link" href="#create_a_sandbox">Create a Sandbox</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>A sandbox is a local developer instance of our platform - Enonic XP. Create a sandbox by running this command in your terminal:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>enonic sandbox create</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Give it a name, i.e. <code>intro</code>, and select the most recent version of Enonic XP from the list that appears.</p>
-</div>
-<div class="paragraph">
-<p>Start the sandbox with this command:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>enonic sandbox start --dev</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Select the <code>intro</code> sandbox from the list, and it will boot up in development mode.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Dev mode will automatically load changes in your code when developing.
-</td>
-</tr>
-</table>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="media/sandbox-start.gif" alt="Booting the sandbox in the terminal" width="1024px">
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="create_an_app"><a class="link" href="#create_an_app">Create an app</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Enonic apps are used to ship everything from content models, to code and platform extensions.</p>
 </div>
 <div class="paragraph">
-<p>From a <strong>new terminal window</strong>, create your first Enonic app.</p>
+<p>Create your first Enonic app by running this command in a terminal window:</p>
 </div>
-<div class="admonitionblock important">
+<div class="literalblock">
+<div class="content">
+<pre>enonic create myproject -r app-intro</pre>
+</div>
+</div>
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-important" title="Important"></i>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 Use the default options when prompted.
@@ -624,46 +584,33 @@ Use the default options when prompted.
 </tr>
 </table>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>enonic create -r app-intro</pre>
-</div>
+<div class="paragraph">
+<p>If this is the first time you are creating an Enonic application, you will be prompted to create a new sandbox. A sandbox is a local development instance linked to a specific distribution of Enonic XP. Give your new sandbox a name (for example <code>intro</code>), then agree to using the latest stable version of Enonic XP for the new sandbox.</p>
 </div>
 <div class="paragraph">
-<p>Select the <code>intro</code> sandbox from the list, and the app will use this from now on.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The command uses the <a href="https://market.enonic.com/vendors/enonic/intro" target="_blank" rel="noopener">Intro</a> app as a starter (template) for your app.</p>
-</div>
-</td>
-</tr>
-</table>
+<p>This will create a new app called <code>myproject</code> in the directory <code>myproject</code> using the <a href="https://market.enonic.com/vendors/enonic/intro" target="_blank" rel="noopener">Intro</a> app as a starter (template) for your app.</p>
 </div>
 <div class="sect2">
 <h3 id="project_structure"><a class="link" href="#project_structure">Project structure</a></h3>
 <div class="paragraph">
-<p>The previous step created the folder <code>myproject</code>, you should now have an app structure, looking something like this:</p>
+<p>Inside the <code>myproject</code> directory you should now have an app structure looking something like this:</p>
 </div>
 <div class="listingblock">
 <div class="title">Selected files from the app code:</div>
 <div class="content">
 <pre class="highlight"><code class="language-files" data-lang="files">docs/ <i class="conum" data-value="1"></i><b>(1)</b>
+samples/ <i class="conum" data-value="2"></i><b>(2)</b>
 src/
  main/
   resources/
-   import <i class="conum" data-value="2"></i><b>(2)</b>
+   assets <i class="conum" data-value="3"></i><b>(3)</b>
+   controllers <i class="conum" data-value="4"></i><b>(4)</b>
+   i18n <i class="conum" data-value="5"></i><b>(5)</b>
+   import <i class="conum" data-value="6"></i><b>(6)</b>
    site/
-    content-types/ <i class="conum" data-value="3"></i><b>(3)</b>
-    x-data/ <i class="conum" data-value="4"></i><b>(4)</b>
-samples/ <i class="conum" data-value="5"></i><b>(5)</b>
-gradle.properties <i class="conum" data-value="6"></i><b>(6)</b></code></pre>
+    content-types/ <i class="conum" data-value="7"></i><b>(7)</b>
+    x-data/ <i class="conum" data-value="8"></i><b>(8)</b>
+gradle.properties <i class="conum" data-value="9"></i><b>(9)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -674,22 +621,34 @@ gradle.properties <i class="conum" data-value="6"></i><b>(6)</b></code></pre>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Sample content</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Content Types schemas are placed in this directory</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>X-data schemas are placed here</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="5"></i><b>5</b></td>
 <td>Code samples that will be used in this guide</td>
 </tr>
 <tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Client-side assets</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Server-side controller and template</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Localisation bundles</td>
+</tr>
+<tr>
 <td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Sample content</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>Content Types schemas</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td>X-data schemas</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="9"></i><b>9</b></td>
 <td>App settings and name</td>
 </tr>
 </table>
@@ -710,7 +669,7 @@ enonic dev</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This last command will make sure to build and deploy the app to your <code>intro</code> sandbox, and sequentially keep watching for changes on server side code to automatically redeploy your app as you work on it.</p>
+<p>The last command will make sure to first start the <code>intro</code> sandbox in the development mode, then build and deploy the app to the sandbox, and sequentially keep watching for changes in the server-side code to automatically rebuild and redeploy your app as you work on it.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -720,11 +679,13 @@ enonic dev</pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Look for a line like this in the sandbox log to verify that the app has started:</p>
+<p>Look for the following output in the terminal log to verify that the app has started:</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>2019-04-09 13:40:40,765 INFO ... Application [com.example.myproject] installed successfully</pre>
+<pre>BUILD SUCCESSFUL in 6s
+5 actionable tasks: 5 executed
+Waiting for changes to input files...</pre>
 </div>
 </div>
 </td>
@@ -742,10 +703,10 @@ enonic dev</pre>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>Open the sandbox admin</strong>: <a href="http://localhost:8080/admin" target="_blank" rel="noopener">http://localhost:8080/admin</a> and click <code>Login without a user</code>. This will bring you to the Dashboard.</p>
+<p><strong>Open the sandbox administration console</strong>: <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080/admin</a> and click <code>Log in as guest</code>. This will bring you to the Dashboard.</p>
 </li>
 <li>
-<p><strong>Open the Applications app</strong> from the top right <code>XP menu &#8594; Applications</code>.</p>
+<p><strong>Open the Applications app</strong> from the XP Menu in the top right corner: <code>Applications</code>.</p>
 <div class="imageblock">
 <div class="content">
 <img src="media/xp-menu-applications.png" alt="Go to Applications from the XP menu" width="319px">
@@ -773,12 +734,12 @@ enonic dev</pre>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open Content Studio, which is now available in <code>XP menu &#8594; Content Studio</code>.</p>
+<p>Open Content Studio, which is now available in the XP menu: <code>Content Studio</code>.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>Select the <code>Sample Content</code> project when prompted, and you should now see the imported content.</p>
+<p>Content Studio will open the <code>Sample Content</code> project (current project is shown at the top) where you should now see the imported sample content.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -791,7 +752,7 @@ enonic dev</pre>
 <h2 id="content_type_person"><a class="link" href="#content_type_person">Content type: Person</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To edit an item, simply select it and click <code>Edit</code> in the menu bar, or by using right click. When editing a Person content item, this is what the form looks like in Content Studio. For bigger screens, you will also get a preview on the right hand side.</p>
+<p>To edit an item, simply select it and click <code>Edit</code> in the menu bar, or by using right click. When editing a Person content item, this is what the form looks like in Content Studio. On bigger screens you will also get a preview on the right-hand side.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -799,7 +760,7 @@ enonic dev</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The form definition comes from the content type definition, which is located within the app. Here is what it looks like.</p>
+<p>The form definition comes from the content type definition, which is located inside the app. Here is what it looks like:</p>
 </div>
 <div class="listingblock">
 <div class="title">/src/main/resources/site/content-type/person/person.xml</div>
@@ -829,7 +790,7 @@ enonic dev</pre>
 <div class="sect2">
 <h3 id="x_data_social_media"><a class="link" href="#x_data_social_media">X-Data: Social media</a></h3>
 <div class="paragraph">
-<p>When editing a Person, the form contains an additional set of fields called <code>Social Media</code>. This is strictly speaking a separate form, injected into the Person content type - we call it an x-data.</p>
+<p>When editing a Person, you&#8217;ll notice an additional subset of fields inside the Content form with title <code>Social Media</code>. This is strictly speaking a separate form, injected into the Person content form - we call it "extended data" (or "x-data").</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -837,7 +798,7 @@ enonic dev</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The cool thing about x-data is not the name, but the fact that it can be applied across multiple content types. In this app for instance, the Social Media form is also available on the <code>Movie</code> content. X-data can even be injected from a different application - at runtime.</p>
+<p>The cool thing about x-data is not only the name but the fact that it can be applied across multiple content types. In this app for instance, the Social Media form is also available on the <code>Movie</code> content. X-data can even be injected from a different application - at runtime.</p>
 </div>
 <div class="paragraph">
 <p>This is what the definition looks like:</p>
@@ -881,18 +842,15 @@ enonic dev</pre>
 <h2 id="adding_a_new_content_type"><a class="link" href="#adding_a_new_content_type">Adding a new content type</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Follow the steps below to add a <code>Review</code> content type to your app.</p>
+<p>Now let&#8217;s do a practical exercise. We will add a new content type called <code>Review</code> to the app. This will allow us to create reviews of movies.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>Copy or move the file</strong> <code>samples/review/review.xml</code> to <code>src/main/resources/site/content-types/review/review.xml</code>.</p>
+<p><strong>Copy or move the folder</strong> <code>samples/review</code> (along with all its contents) inside <code>src/main/resources/site/content-types</code>.</p>
 </li>
 <li>
-<p><strong>Add an icon</strong> by copying or moving the file <code>samples/review/review.svg</code> to the new content type folder as well. This will give your reviews a nice dice icon when seen in Content Studio.</p>
-</li>
-<li>
-<p><strong>Write a review</strong>. Content Studio should pickup the changes immediately. Anywhere in the structure, click <code>New &#8594; Review</code> and start writing.</p>
+<p><strong>Write a review</strong>. Content Studio should pick up the changes immediately. From the Content navigation view click <code>New</code>, then select content type <code>Review</code> and start filling out the form fields in the new content item.</p>
 <div class="imageblock">
 <div class="content">
 <img src="media/review.png" alt="Sample Review" width="1024px">
@@ -907,10 +865,10 @@ enonic dev</pre>
 <h2 id="graphql_api"><a class="link" href="#graphql_api">Graphql API</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <a href="https://market.enonic.com/vendors/enonic/guillotine" target="_blank" rel="noopener">headless API aka Guillotine</a> - yes, we take headlessness seriously around here - is not part of the core platform. Like Content Studio, it can be installed from Enonic Market.</p>
+<p>The <a href="https://market.enonic.com/vendors/enonic/guillotine" target="_blank" rel="noopener">headless API aka Guillotine</a> - yes, we take headlessness seriously around here - is not a part of the XP Core platform. Like Content Studio, it can be installed from Enonic Market.</p>
 </div>
 <div class="paragraph">
-<p><strong>Install the Guillotine app</strong> from <code>XP menu &#8594; Applications &#8594; Install</code> and find it in the list of apps that appear.</p>
+<p><strong>Install the Guillotine app</strong> from the XP menu: <code>Applications &#8594; Install</code> and find it in the list of apps that appear, then switch back to Content Studio.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -919,13 +877,13 @@ enonic dev</pre>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-The Guillotine API provides read-only-access to all of the content within the contextual project. Users requesting content will naturally only get access to the content he/she has read-permissions for. The Movie DB project is setup with public read access.
+The Guillotine API provides read-only-access to all the content within the contextual project. Users requesting content will naturally only get access to the content they have read-permissions for. The "Sample content" project is set up with public read access.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>After installing Guillotine, Content Studio&#8217;s left hand menu will reveal a new menu item called <code>Query Playground</code>. Here, you may test and play with the GraphQL API directly.</p>
+<p>After Guillotine is installed, its icon (and the menu item called <code>Query Playground</code>) will appear in the Content Studio&#8217;s left hand menu. Here, you may test and play with the GraphQL API directly.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -933,7 +891,7 @@ The Guillotine API provides read-only-access to all of the content within the co
 </div>
 </div>
 <div class="paragraph">
-<p>The API documentation is available from the top left "file cabinet" icon. Use the dropdown on the top right to query against the draft or master branch, accessing the draft and published items respectively.</p>
+<p>The API documentation is available from the "Query Playground"'s top left "file cabinet" icon. Use the dropdown on the top right to query against the draft or master branch, accessing the draft and published items respectively.</p>
 </div>
 <div class="paragraph">
 <p>Want to know more about GraphQL in general? Visit the <a href="https://graphql.org" target="_blank" rel="noopener">official GraphQL documentation</a>.</p>
@@ -944,7 +902,7 @@ The Guillotine API provides read-only-access to all of the content within the co
 <h2 id="sample_queries"><a class="link" href="#sample_queries">Sample queries</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Below are some example queries you can use for the Movie DB content.</p>
+<p>Below are some example queries you can use for fetching the sample content.</p>
 </div>
 <div class="sect2">
 <h3 id="get_persons"><a class="link" href="#get_persons">Get Persons</a></h3>
@@ -993,7 +951,7 @@ The Guillotine API provides read-only-access to all of the content within the co
 <p>GraphQL also supports the concept of query variables. Similar to parameters in functions, you may pass variables to a query.</p>
 </div>
 <div class="paragraph">
-<p>Query variables are defined with JSON. You can add them from the <code>Variables</code> option below the query editor.</p>
+<p>Query variables are defined with JSON. You can add them using the <code>Variables</code> button below the query editor.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1010,7 +968,7 @@ The Guillotine API provides read-only-access to all of the content within the co
 <div class="content">
 <pre class="highlight"><code class="language-GraphQL" data-lang="GraphQL">query($path:ID!){
  guillotine {
-  getChildren(key:$path first:5){
+  getChildren(key:$path first:3){
     displayName
     _path
     }
@@ -1021,14 +979,14 @@ The Guillotine API provides read-only-access to all of the content within the co
 </div>
 <div class="sect2">
 <h3 id="movies_and_cast"><a class="link" href="#movies_and_cast">Movies and cast</a></h3>
-<div class="admonitionblock note">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-If you changed the name of your app when creating it, you must replace <code>com.example.myproject</code> and <code>com_example_myproject</code> for the query below to work.
+If you used something other than <code>myproject</code> as a name for your app, you must replace <code>myproject:movie</code> and <code>myproject_Movie</code> for the query below to work.
 </td>
 </tr>
 </table>
@@ -1038,9 +996,9 @@ If you changed the name of your app when creating it, you must replace <code>com
 <div class="content">
 <pre class="highlight"><code class="language-GraphQL" data-lang="GraphQL">{
   guillotine {
-    query(query: "type='com.example.myproject:movie'", first: 1) {
+    query(query: "type='myproject:movie'", first: 1) {
       displayName
-      ... on com_example_myproject_Movie {
+      ... on myproject_Movie {
         data {
           cast {
             actor {
@@ -1097,15 +1055,27 @@ If you changed the name of your app when creating it, you must replace <code>com
 <p>In this case, Guillotine plays tag-team with Enonic&#8217;s image service, which is capable of delivering real-time cropped and optimized versions of images. In this case producing a 400 x 400px version of the image.</p>
 </div>
 <div class="paragraph">
-<p>The query below show the name of actors containing the term <code>morgan</code>, and provide a link to a cropped image of the actor.</p>
+<p>The query below shows the name of actors containing the term <code>morgan</code>, and provide a link to a cropped image of the actor.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+If you used something other than <code>myproject</code> as a name for your app, you must replace <code>myproject:movie</code> and <code>myproject_Movie</code> for the query below to work.
+</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="title">Name of persons and a link to 400x400 scaled photo</div>
 <div class="content">
 <pre class="highlight"><code class="language-GraphQL" data-lang="GraphQL">{
   guillotine {
-    query(query: "ngram('_allText', 'morgan') AND type='com.example.myproject:person'", first: 6) {
-      ... on com_example_myproject_Person {
+    query(query: "ngram('_allText', 'morgan') AND type='myproject:person'", first: 6) {
+      ... on myproject_Person {
     	  displayName
         data {
           photos(first:1){
@@ -1167,7 +1137,7 @@ If you changed the name of your app when creating it, you must replace <code>com
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The red "autofocus" circle, when set, helps the image service to crop the images optimally - as you can see from above.
+The red "autofocus" circle, when set, helps the image service to crop the images optimally - as you can see above.
 </td>
 </tr>
 </table>
@@ -1178,7 +1148,7 @@ The red "autofocus" circle, when set, helps the image service to crop the images
 <h2 id="api_endpoint"><a class="link" href="#api_endpoint">API endpoint</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>So far, you&#8217;ve been playing with the API via Content Studio, if you want to access the API&#8217;s endpoint directly, its available at respectively</p>
+<p>So far, you&#8217;ve been playing with the API via Content Studio. If you want to access the API endpoint directly, it&#8217;s available at respectively</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1186,12 +1156,12 @@ The red "autofocus" circle, when set, helps the image service to crop the images
 <p>http://localhost:8080/site/intro/draft (draft items)</p>
 </li>
 <li>
-<p>http://localhost:8080/site/intro/master (published items).</p>
+<p>http://localhost:8080/site/intro/master (published items)</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The API can be deployed to a custom domain (aka vhost) when you go live. Also, important to notice - the GraphQL API is accessed via HTTP POST method, as such - visiting via a regular browser will render a 404.</p>
+<p>The API can be deployed to a custom domain (aka vhost) when you go live. Also, important to notice - the GraphQL API is accessed via HTTP POST method, as such - visiting via a regular browser will render error 404.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1200,7 +1170,7 @@ The red "autofocus" circle, when set, helps the image service to crop the images
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-The Chrome extension <a href="https://chrome.google.com/webstore/detail/altair-graphql-client/flnheeellpciglgpaodhkhmapeljopja" target="_blank" rel="noopener">Altair</a> lets you browse any GraphQL API, simply by pointing it to the URL.
+The Chrome extension <a href="https://chrome.google.com/webstore/detail/altair-graphql-client/flnheeellpciglgpaodhkhmapeljopja" target="_blank" rel="noopener">Altair</a> lets you browse any GraphQL API, simply by pointing it to the API URL.
 </td>
 </tr>
 </table>
@@ -1233,9 +1203,9 @@ The Chrome extension <a href="https://chrome.google.com/webstore/detail/altair-g
 <p>Start by <strong><a href="https://enonic.com/sign-up" target="_blank" rel="noopener">signing up</a></strong> for a free account. You must complete the verification steps before you can move on.</p>
 </li>
 <li>
-<p>Log in to the <a href="https://cloud.enonic.com" target="_blank" rel="noopener">Enonic console</a> , and <strong>Create a new  solution</strong> from the menu <code>Solutions &#8594; CMS essentials template</code>. Complete the solution wizard steps using your preferences.</p>
+<p>Log in to the <a href="https://cloud.enonic.com" target="_blank" rel="noopener">Enonic Cloud console</a> , and <strong>Create a new  solution</strong> from the menu <code>Solutions &#8594; CMS essentials</code>. Complete the solution wizard steps using your preferences.</p>
 <div class="paragraph">
-<p>Similar to a sandbox, this will spin up an instance of Enonic XP, but this time as real server in the cloud.</p>
+<p>Similar to a sandbox, this will spin up an instance of Enonic XP, but this time on a real server in the Cloud.</p>
 </div>
 </li>
 <li>
@@ -1246,13 +1216,13 @@ The Chrome extension <a href="https://chrome.google.com/webstore/detail/altair-g
 </div>
 </div>
 <div class="paragraph">
-<p>After successfully authenticating, install your app using this command:</p>
+<p>After successful authentication install your app using this command:</p>
 </div>
-<div class="admonitionblock note">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
 You must execute the command from your app folder.
@@ -1266,24 +1236,30 @@ You must execute the command from your app folder.
 </div>
 </div>
 <div class="paragraph">
-<p>Alternatively upload the app manually via <code>Enonic console &#8594; &lt;My solution&gt; &#8594; Applications &#8594; Install</code>.</p>
+<p>Alternatively upload the app manually via Enonic console: <code>Solutions &#8594; &lt;Your solution&gt; &#8594; Applications &#8594; Install</code>.</p>
 </div>
 <div class="paragraph">
-<p>The app file is in your project folder i.e. <code>build/libs/&lt;myproject&gt;.jar</code>.</p>
+<p>The app file is in your project folder i.e. <code>build/libs/myproject.jar</code>.</p>
 </div>
 </li>
 <li>
-<p><strong>Expose your API</strong> by creating a Route: <code>Enonic console &#8594; &lt;My solution&gt; &#8594; Routes &#8594; Create</code>.</p>
+<p><strong>Expose your API</strong> by creating a Route in Enonic console: <code>Solutions &#8594; &lt;Your solution&gt; &#8594; Ingresses &#8594; Create</code>.</p>
 <div class="paragraph">
 <p>Give it a suitable name i.e. <code>Intro API</code>, and use the following values:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Internal path: <code>/site/intro/master</code></p>
+<p>Environment: keep the default/selected value</p>
 </li>
 <li>
-<p>Public path: <code>/api</code></p>
+<p>Target: <code>/site/intro/master</code></p>
+</li>
+<li>
+<p>Domain: keep the default/selected value</p>
+</li>
+<li>
+<p>Path: <code>/api</code></p>
 </li>
 <li>
 <p>ID provider: leave empty</p>
@@ -1292,7 +1268,7 @@ You must execute the command from your app folder.
 </div>
 </li>
 <li>
-<p>Tadaa! Your published content can now be queried directly on the URL created by this route.</p>
+<p>Tadaa! Your published content can now be queried directly on the URL created by this route. Remember to use POST, not GET, to fetch the data.</p>
 </li>
 </ol>
 </div>
@@ -1305,13 +1281,13 @@ You must execute the command from your app folder.
 <p>🎉 Sweet! You made it to the end.</p>
 </div>
 <div class="paragraph">
-<p>In the process, you built and customized your own app, installed apps from Enonic Market, ran queries, got to know the Enonic CLI and our hosted offerings.</p>
+<p>In the process, you built and customized your own app, installed apps from Enonic Market, ran GraphQL queries, got to know the Enonic CLI and our Cloud-hosted offerings.</p>
 </div>
 <div class="paragraph">
-<p>As you may imagine, the platform is capable of so much more. Did you for instance know Enonic has a <a href="https://developer.enonic.com/docs/xp/stable/framework">JavaScript framework</a>, will full <a href="https://www.npmjs.com/org/enonic-types^" target="_blank" rel="noopener">TypeScript definitions</a>. You may use it in your apps to extend and customize the platform as you like.</p>
+<p>As you may imagine, the platform is capable of so much more. Did you for instance know that Enonic has a <a href="https://developer.enonic.com/docs/xp/stable/framework">JavaScript framework</a>, with full <a href="https://www.npmjs.com/org/enonic-types^" target="_blank" rel="noopener">TypeScript definitions</a> for Core API libraries? You may use it in your apps to extend and customize the Platform as you like.</p>
 </div>
 <div class="paragraph">
-<p>To continue the journey, we recommend visiting the <a href="https://developer.enonic.com/docs/tutorials">Enonic tutorials</a> section of the developer portal.</p>
+<p>To continue the journey, we recommend visiting the <a href="https://developer.enonic.com/docs/tutorials">Enonic tutorials</a> section of our Developer Portal.</p>
 </div>
 <div class="paragraph">
 <p>Bon voyage!</p>
@@ -1321,7 +1297,7 @@ You must execute the command from your app folder.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-19 15:42:50 UTC
+Last updated 2023-12-21 12:14:57 UTC
 </div>
 </div>
 </body>
