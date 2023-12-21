@@ -35,69 +35,51 @@ To see all available options, simply run `enonic`.
 
 TIP: To upgrade, use `enonic latest`. If there are new versions you will see instructions on how to upgrade.
 
-
-== Create a Sandbox
-
-A sandbox is a local developer instance of our platform - Enonic XP. Create a sandbox by running this command in your terminal:
-
-  enonic sandbox create
-
-Give it a name, i.e. `intro`, and select the most recent version of Enonic XP from the list that appears.
-
-Start the sandbox with this command:
-
-  enonic sandbox start --dev
-
-Select the `intro` sandbox from the list, and it will boot up in development mode.
-
-TIP: Dev mode will automatically load changes in your code when developing.
-
-image::sandbox-start.gif["Booting the sandbox in the terminal", width="1024px"]
-
-
 == Create an app
 
 Enonic apps are used to ship everything from content models, to code and platform extensions.
 
-From a **new terminal window**, create your first Enonic app.
+Create your first Enonic app by running this command in a terminal window:
 
-IMPORTANT: Use the default options when prompted.
+  enonic create myproject -r app-intro
 
-  enonic create -r app-intro
+TIP: Use the default options when prompted.
 
+If this is the first time you are creating an Enonic application, you will be prompted to create a new sandbox. A sandbox is a local development instance linked to a specific distribution of Enonic XP. Give your new sandbox a name (for example `intro`), then agree to using the latest stable version of Enonic XP for the new sandbox.
 
-Select the `intro` sandbox from the list, and the app will use this from now on.
-
-[TIP]
-====
-The command uses the https://market.enonic.com/vendors/enonic/intro[Intro^] app as a starter (template) for your app.
-====
+This will create a new app called `myproject` in the directory `myproject` using the https://market.enonic.com/vendors/enonic/intro[Intro^] app as a starter (template) for your app.
 
 === Project structure
 
-The previous step created the folder `myproject`, you should now have an app structure, looking something like this:
+Inside the `myproject` directory you should now have an app structure looking something like this:
 
 .Selected files from the app code:
 [source,files]
 ----
 docs/ <1>
+samples/ <2>
 src/
  main/
   resources/
-   import <2>
+   assets <3>
+   controllers <4>
+   i18n <5>
+   import <6>
    site/
-    content-types/ <3>
-    x-data/ <4>
-samples/ <5>
-gradle.properties <6>
+    content-types/ <7>
+    x-data/ <8>
+gradle.properties <9>
 ----
 
 <1> The documentation you are reading now
-<2> Sample content
-<3> Content Types schemas are placed in this directory
-<4> X-data schemas are placed here
-<5> Code samples that will be used in this guide
-<6> App settings and name
+<2> Code samples that will be used in this guide
+<3> Client-side assets
+<4> Server-side controller and template
+<5> Localisation bundles
+<6> Sample content
+<7> Content Types schemas
+<8> X-data schemas
+<9> App settings and name
 
 == Deploy the app
 
@@ -106,13 +88,15 @@ Assuming you did not change the default directory name `myproject/` when creatin
   cd myproject
   enonic dev
 
-This last command will make sure to build and deploy the app to your `intro` sandbox, and sequentially keep watching for changes on server side code to automatically redeploy your app as you work on it.
+The last command will make sure to first start the `intro` sandbox in the development mode, then build and deploy the app to the sandbox, and sequentially keep watching for changes in the server-side code to automatically rebuild and redeploy your app as you work on it.
 
 [NOTE]
 ====
-Look for a line like this in the sandbox log to verify that the app has started:
+Look for the following output in the terminal log to verify that the app has started:
 
-  2019-04-09 13:40:40,765 INFO ... Application [com.example.myproject] installed successfully
+    BUILD SUCCESSFUL in 6s
+    5 actionable tasks: 5 executed
+    Waiting for changes to input files...
 ====
 
 
@@ -120,9 +104,9 @@ Look for a line like this in the sandbox log to verify that the app has started:
 
 https://market.enonic.com/vendors/enonic/content-studio[Content Studio^] is the editorial interface used to create and manage content. It is not a part of the core platform, but as you will see soon, it can easily be installed from https://market.enonic.com[Enonic Market^].
 
-. **Open the sandbox admin**: http://localhost:8080/admin[http://localhost:8080/admin^] and click `Login without a user`. This will bring you to the Dashboard.
+. **Open the sandbox administration console**: http://localhost:8080[http://localhost:8080/admin^] and click `Log in as guest`. This will bring you to the Dashboard.
 +
-. **Open the Applications app** from the top right `XP menu -> Applications`.
+. **Open the Applications app** from the XP Menu in the top right corner: `Applications`.
 +
 image::xp-menu-applications.png["Go to Applications from the XP menu", width="319px"]
 +
@@ -134,20 +118,20 @@ image::install-content-studio.png["Install the Content Studio app", width="760px
 
 When your application was installed, it automatically created a Content Studio project called `Sample Content`, and imported sample content. Let's have a look:
 
-. Open Content Studio, which is now available in `XP menu -> Content Studio`.
+. Open Content Studio, which is now available in the XP menu: `Content Studio`.
 
-Select the `Sample Content` project when prompted, and you should now see the imported content.
+Content Studio will open the `Sample Content` project (current project is shown at the top) where you should now see the imported sample content.
 
 image::content-studio-in-action.gif["Content Studio with Sample content", width="1024px"]
 
 
 == Content type: Person
 
-To edit an item, simply select it and click `Edit` in the menu bar, or by using right click. When editing a Person content item, this is what the form looks like in Content Studio. For bigger screens, you will also get a preview on the right hand side.
+To edit an item, simply select it and click `Edit` in the menu bar, or by using right click. When editing a Person content item, this is what the form looks like in Content Studio. On bigger screens you will also get a preview on the right-hand side.
 
 image::person.png["Person Form", width="1024px"]
 
-The form definition comes from the content type definition, which is located within the app. Here is what it looks like.
+The form definition comes from the content type definition, which is located inside the app. Here is what it looks like:
 
 ./src/main/resources/site/content-type/person/person.xml
 [source,XML]
@@ -157,11 +141,11 @@ include::{sourcedir}/src/main/resources/site/content-types/person/person.xml[]
 
 === X-Data: Social media
 
-When editing a Person, the form contains an additional set of fields called `Social Media`. This is strictly speaking a separate form, injected into the Person content type - we call it an x-data.
+When editing a Person, you'll notice an additional subset of fields inside the Content form with title `Social Media`. This is strictly speaking a separate form, injected into the Person content form - we call it "extended data" (or "x-data").
 
 image::some.gif["Social Media x-data form", width="1024px"]
 
-The cool thing about x-data is not the name, but the fact that it can be applied across multiple content types. In this app for instance, the Social Media form is also available on the `Movie` content. X-data can even be injected from a different application - at runtime.
+The cool thing about x-data is not only the name but the fact that it can be applied across multiple content types. In this app for instance, the Social Media form is also available on the `Movie` content. X-data can even be injected from a different application - at runtime.
 
 This is what the definition looks like:
 
@@ -173,34 +157,33 @@ include::{sourcedir}/src/main/resources/site/x-data/SoMe/SoMe.xml[]
 
 == Adding a new content type
 
-Follow the steps below to add a `Review` content type to your app.
+Now let's do a practical exercise. We will add a new content type called `Review` to the app. This will allow us to create reviews of movies.
 
-. *Copy or move the file* `samples/review/review.xml` to `src/main/resources/site/content-types/review/review.xml`.
-. *Add an icon* by copying or moving the file `samples/review/review.svg` to the new content type folder as well. This will give your reviews a nice dice icon when seen in Content Studio.
-. *Write a review*. Content Studio should pickup the changes immediately. Anywhere in the structure, click `New -> Review` and start writing.
+. *Copy or move the folder* `samples/review` (along with all its contents) inside `src/main/resources/site/content-types`.
+. *Write a review*. Content Studio should pick up the changes immediately. From the Content navigation view click `New`, then select content type `Review` and start filling out the form fields in the new content item.
 +
 image::review.png["Sample Review", width="1024px"]
 
 == Graphql API
 
-The https://market.enonic.com/vendors/enonic/guillotine[headless API aka Guillotine^] - yes, we take headlessness seriously around here - is not part of the core platform. Like Content Studio, it can be installed from Enonic Market.
+The https://market.enonic.com/vendors/enonic/guillotine[headless API aka Guillotine^] - yes, we take headlessness seriously around here - is not a part of the XP Core platform. Like Content Studio, it can be installed from Enonic Market.
 
-**Install the Guillotine app** from `XP menu -> Applications -> Install` and find it in the list of apps that appear.
+**Install the Guillotine app** from the XP menu: `Applications -> Install` and find it in the list of apps that appear, then switch back to Content Studio.
 
-TIP: The Guillotine API provides read-only-access to all of the content within the contextual project. Users requesting content will naturally only get access to the content he/she has read-permissions for. The Movie DB project is setup with public read access.
+TIP: The Guillotine API provides read-only-access to all the content within the contextual project. Users requesting content will naturally only get access to the content they have read-permissions for. The "Sample content" project is set up with public read access.
 
-After installing Guillotine, Content Studio's left hand menu will reveal a new menu item called `Query Playground`. Here, you may test and play with the GraphQL API directly.
+After Guillotine is installed, its icon (and the menu item called `Query Playground`) will appear in the Content Studio's left hand menu. Here, you may test and play with the GraphQL API directly.
 
 image::query-playground.png["Query Playground in action", width="1024px"]
 
-The API documentation is available from the top left "file cabinet" icon. Use the dropdown on the top right to query against the draft or master branch, accessing the draft and published items respectively.
+The API documentation is available from the "Query Playground"'s top left "file cabinet" icon. Use the dropdown on the top right to query against the draft or master branch, accessing the draft and published items respectively.
 
 Want to know more about GraphQL in general? Visit the https://graphql.org[official GraphQL documentation^].
 
 
 == Sample queries
 
-Below are some example queries you can use for the Movie DB content.
+Below are some example queries you can use for fetching the sample content.
 
 === Get Persons
 
@@ -246,7 +229,7 @@ Below are some example queries you can use for the Movie DB content.
 
 GraphQL also supports the concept of query variables. Similar to parameters in functions, you may pass variables to a query.
 
-Query variables are defined with JSON. You can add them from the `Variables` option below the query editor.
+Query variables are defined with JSON. You can add them using the `Variables` button below the query editor.
 
 [source,JSON]
 ----
@@ -262,7 +245,7 @@ With the variable set, update your query to use the variable. This query should 
 ----
 query($path:ID!){
  guillotine {
-  getChildren(key:$path first:5){
+  getChildren(key:$path first:3){
     displayName
     _path
     }
@@ -274,16 +257,16 @@ query($path:ID!){
 
 === Movies and cast
 
-NOTE: If you changed the name of your app when creating it, you must replace `com.example.myproject` and `com_example_myproject` for the query below to work.
+IMPORTANT: If you used something other than `myproject` as a name for your app, you must replace `myproject:movie` and `myproject_Movie` for the query below to work.
 
 .Get display name, and the cast of a movie:
 [source,GraphQL]
 ----
 {
   guillotine {
-    query(query: "type='com.example.myproject:movie'", first: 1) {
+    query(query: "type='myproject:movie'", first: 1) {
       displayName
-      ... on com_example_myproject_Movie {
+      ... on myproject_Movie {
         data {
           cast {
             actor {
@@ -334,15 +317,17 @@ NOTE: If you changed the name of your app when creating it, you must replace `co
 
 In this case, Guillotine plays tag-team with Enonic's image service, which is capable of delivering real-time cropped and optimized versions of images. In this case producing a 400 x 400px version of the image.
 
-The query below show the name of actors containing the term `morgan`, and provide a link to a cropped image of the actor.
+The query below shows the name of actors containing the term `morgan`, and provide a link to a cropped image of the actor.
+
+IMPORTANT: If you used something other than `myproject` as a name for your app, you must replace `myproject:movie` and `myproject_Movie` for the query below to work.
 
 .Name of persons and a link to 400x400 scaled photo
 [source,GraphQL]
 ----
 {
   guillotine {
-    query(query: "ngram('_allText', 'morgan') AND type='com.example.myproject:person'", first: 6) {
-      ... on com_example_myproject_Person {
+    query(query: "ngram('_allText', 'morgan') AND type='myproject:person'", first: 6) {
+      ... on myproject_Person {
     	  displayName
         data {
           photos(first:1){
@@ -389,18 +374,18 @@ The original higher resolution image is stored as a content item, just like pers
 
 image::morgan-original.png["The original version of Morgan Freemans photo is widescreen, with a red "autofocus" circle marked around his face", width="1024px"]
 
-NOTE: The red "autofocus" circle, when set, helps the image service to crop the images optimally - as you can see from above.
+NOTE: The red "autofocus" circle, when set, helps the image service to crop the images optimally - as you can see above.
 
 
 == API endpoint
-So far, you've been playing with the API via Content Studio, if you want to access the API's endpoint directly, its available at respectively
+So far, you've been playing with the API via Content Studio. If you want to access the API endpoint directly, it's available at respectively
 
 * \http://localhost:8080/site/intro/draft (draft items)
-* \http://localhost:8080/site/intro/master (published items).
+* \http://localhost:8080/site/intro/master (published items)
 
-The API can be deployed to a custom domain (aka vhost) when you go live. Also, important to notice - the GraphQL API is accessed via HTTP POST method, as such - visiting via a regular browser will render a 404.
+The API can be deployed to a custom domain (aka vhost) when you go live. Also, important to notice - the GraphQL API is accessed via HTTP POST method, as such - visiting via a regular browser will render error 404.
 
-TIP: The Chrome extension https://chrome.google.com/webstore/detail/altair-graphql-client/flnheeellpciglgpaodhkhmapeljopja[Altair^] lets you browse any GraphQL API, simply by pointing it to the URL.
+TIP: The Chrome extension https://chrome.google.com/webstore/detail/altair-graphql-client/flnheeellpciglgpaodhkhmapeljopja[Altair^] lets you browse any GraphQL API, simply by pointing it to the API URL.
 
 == Deploying to Production
 
@@ -412,43 +397,45 @@ If you are looking for other hosting options, Enonic XP is open source, and http
 ====
 
 . Start by **https://enonic.com/sign-up[signing up^]** for a free account. You must complete the verification steps before you can move on.
-. Log in to the https://cloud.enonic.com[Enonic console^] , and **Create a new  solution** from the menu `Solutions -> CMS essentials template`. Complete the solution wizard steps using your preferences.
+. Log in to the https://cloud.enonic.com[Enonic Cloud console^] , and **Create a new  solution** from the menu `Solutions -> CMS essentials`. Complete the solution wizard steps using your preferences.
 +
-Similar to a sandbox, this will spin up an instance of Enonic XP, but this time as real server in the cloud.
+Similar to a sandbox, this will spin up an instance of Enonic XP, but this time on a real server in the Cloud.
 +
 . Once the solution has started, **authenticate the CLI** by running this command:
 +
   enonic cloud login
 +
-After successfully authenticating, install your app using this command:
+After successful authentication install your app using this command:
 +
-NOTE: You must execute the command from your app folder.
+IMPORTANT: You must execute the command from your app folder.
 +
   enonic cloud app install
 +
-Alternatively upload the app manually via `Enonic console -> <My solution> -> Applications -> Install`.
+Alternatively upload the app manually via Enonic console: `Solutions -> <Your solution> -> Applications -> Install`.
 +
-The app file is in your project folder i.e. `build/libs/<myproject>.jar`.
+The app file is in your project folder i.e. `build/libs/myproject.jar`.
 +
-. **Expose your API** by creating a Route: `Enonic console -> <My solution> -> Routes -> Create`.
+. **Expose your API** by creating a Route in Enonic console: `Solutions -> <Your solution> -> Ingresses -> Create`.
 +
 Give it a suitable name i.e. `Intro API`, and use the following values:
 +
-* Internal path: `/site/intro/master`
-* Public path: `/api`
+* Environment: keep the default/selected value
+* Target: `/site/intro/master`
+* Domain: keep the default/selected value
+* Path: `/api`
 * ID provider: leave empty
 +
-. Tadaa! Your published content can now be queried directly on the URL created by this route.
+. Tadaa! Your published content can now be queried directly on the URL created by this route. Remember to use POST, not GET, to fetch the data.
 
 == Dive deeper
 
 🎉 Sweet! You made it to the end.
 
-In the process, you built and customized your own app, installed apps from Enonic Market, ran queries, got to know the Enonic CLI and our hosted offerings.
+In the process, you built and customized your own app, installed apps from Enonic Market, ran GraphQL queries, got to know the Enonic CLI and our Cloud-hosted offerings.
 
-As you may imagine, the platform is capable of so much more. Did you for instance know Enonic has a https://developer.enonic.com/docs/xp/stable/framework[JavaScript framework], will full https://www.npmjs.com/org/enonic-types^[TypeScript definitions^]. You may use it in your apps to extend and customize the platform as you like.
+As you may imagine, the platform is capable of so much more. Did you for instance know that Enonic has a https://developer.enonic.com/docs/xp/stable/framework[JavaScript framework], with full https://www.npmjs.com/org/enonic-types^[TypeScript definitions^] for Core API libraries? You may use it in your apps to extend and customize the Platform as you like.
 
-To continue the journey, we recommend visiting the https://developer.enonic.com/docs/tutorials[Enonic tutorials] section of the developer portal.
+To continue the journey, we recommend visiting the https://developer.enonic.com/docs/tutorials[Enonic tutorials] section of our Developer Portal.
 
 Bon voyage!
 
