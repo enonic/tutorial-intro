@@ -907,7 +907,7 @@ The Guillotine API provides read-only-access to all the content within the conte
 <div class="sect2">
 <h3 id="get_persons"><a class="link" href="#get_persons">Get Persons</a></h3>
 <div class="listingblock">
-<div class="title">Get the display name of five items from <code>persons/</code> folder:</div>
+<div class="title">Get display name and _path of items in the <code>/persons</code> folder:</div>
 <div class="content">
 <pre class="highlight"><code class="language-GraphQL" data-lang="GraphQL">{
  guillotine {
@@ -996,7 +996,14 @@ If you used something other than <code>myproject</code> as a name for your app, 
 <div class="content">
 <pre class="highlight"><code class="language-GraphQL" data-lang="GraphQL">{
   guillotine {
-    query(query: "type='myproject:movie'", first: 1) {
+    queryDsl(query: {
+      term: {
+        field: "type",
+        value: {
+          string: "myproject:movie"
+        }
+      }
+    }, first: 1) {
       displayName
       ... on myproject_Movie {
         data {
@@ -1019,7 +1026,7 @@ If you used something other than <code>myproject</code> as a name for your app, 
 <pre class="highlight"><code class="language-JSON" data-lang="JSON">{
   "data": {
     "guillotine": {
-      "query": [
+      "queryDsl": [
         {
           "displayName": "The Matrix",
           "data": {
@@ -1074,7 +1081,26 @@ If you used something other than <code>myproject</code> as a name for your app, 
 <div class="content">
 <pre class="highlight"><code class="language-GraphQL" data-lang="GraphQL">{
   guillotine {
-    query(query: "ngram('_allText', 'morgan') AND type='myproject:person'", first: 6) {
+    queryDsl(query: {
+      boolean: {
+        must: [
+          {
+            ngram: {
+              fields: ["_allText"],
+              query: "morgan"
+            }
+          },
+          {
+            term: {
+              field: "type",
+              value: {
+                string: "myproject:person"
+              }
+            }
+          }
+        ]
+      }
+    }, first: 1) {
       ... on myproject_Person {
     	  displayName
         data {
@@ -1082,7 +1108,6 @@ If you used something other than <code>myproject</code> as a name for your app, 
             ... on media_Image {
               imageUrl(type:absolute scale:"block(400,400)")
             }
-
           }
         }
       }
@@ -1097,7 +1122,7 @@ If you used something other than <code>myproject</code> as a name for your app, 
 <pre class="highlight"><code class="language-JSON" data-lang="JSON">{
   "data": {
     "guillotine": {
-      "query": [
+      "queryDsl": [
         {
           "displayName": "Morgan Freeman",
           "data": {
@@ -1297,7 +1322,7 @@ You must execute the command from your app folder.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-21 12:14:57 UTC
+Last updated 2024-01-12 10:28:45 UTC
 </div>
 </div>
 </body>
