@@ -187,7 +187,7 @@ Below are some example queries you can use for fetching the sample content.
 
 === Get Persons
 
-.Get the display name of five items from `persons/` folder:
+.Get display name and _path of items in the `/persons` folder:
 [source,GraphQL]
 ----
 {
@@ -264,7 +264,14 @@ IMPORTANT: If you used something other than `myproject` as a name for your app, 
 ----
 {
   guillotine {
-    query(query: "type='myproject:movie'", first: 1) {
+    queryDsl(query: {
+      term: {
+        field: "type",
+        value: {
+          string: "myproject:movie"
+        }
+      }
+    }, first: 1) {
       displayName
       ... on myproject_Movie {
         data {
@@ -287,7 +294,7 @@ IMPORTANT: If you used something other than `myproject` as a name for your app, 
 {
   "data": {
     "guillotine": {
-      "query": [
+      "queryDsl": [
         {
           "displayName": "The Matrix",
           "data": {
@@ -326,7 +333,26 @@ IMPORTANT: If you used something other than `myproject` as a name for your app, 
 ----
 {
   guillotine {
-    query(query: "ngram('_allText', 'morgan') AND type='myproject:person'", first: 6) {
+    queryDsl(query: {
+      boolean: {
+        must: [
+          {
+            ngram: {
+              fields: ["_allText"],
+              query: "morgan"
+            }
+          },
+          {
+            term: {
+              field: "type",
+              value: {
+                string: "myproject:person"
+              }
+            }
+          }
+        ]
+      }
+    }, first: 1) {
       ... on myproject_Person {
     	  displayName
         data {
@@ -334,7 +360,6 @@ IMPORTANT: If you used something other than `myproject` as a name for your app, 
             ... on media_Image {
               imageUrl(type:absolute scale:"block(400,400)")
             }
-
           }
         }
       }
@@ -349,7 +374,7 @@ IMPORTANT: If you used something other than `myproject` as a name for your app, 
 {
   "data": {
     "guillotine": {
-      "query": [
+      "queryDsl": [
         {
           "displayName": "Morgan Freeman",
           "data": {
