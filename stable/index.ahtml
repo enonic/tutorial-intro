@@ -1289,8 +1289,17 @@ You must execute the command from your app folder.
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>Alternatively upload the app manually via Enonic console: <code>Solutions &#8594; &lt;Your solution&gt; &#8594; Applications &#8594; Install</code>.</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Alternatively upload the app manually via Enonic console: <code>Solutions &#8594; &lt;Your solution&gt; &#8594; Applications &#8594; Install</code>.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>The app file is in your project folder i.e. <code>build/libs/myproject.jar</code>.</p>
@@ -1322,6 +1331,9 @@ You must execute the command from your app folder.
 </div>
 </li>
 <li>
+<p>Click the created ingress to reveal the complete API URL on the right.</p>
+</li>
+<li>
 <p>Tadaa! Your published content can now be queried directly on the URL created under this ingress. Remember to use POST, not GET, to fetch the data.</p>
 </li>
 </ol>
@@ -1351,7 +1363,7 @@ You must execute the command from your app folder.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-01-15 15:04:43 UTC
+Last updated 2024-01-15 15:11:54 UTC
 </div>
 </div>
 </body>
