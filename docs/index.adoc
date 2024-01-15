@@ -35,19 +35,31 @@ To see all available options, simply run `enonic`.
 
 TIP: To upgrade, use `enonic latest`. If there are new versions you will see instructions on how to upgrade.
 
+== Create a sandbox
+
+. A sandbox is a local development instance running on a specific version of Enonic XP. Create a sandbox called `intro` by running this command in your terminal:
+
+  enonic sandbox create intro -t essentials
+
+Accept using the most recent release of Enonic XP when prompted.
+
+Start the sandbox with this command:
+
+  enonic sandbox start intro --dev
+
+TIP: Dev mode will automatically load changes in your code while you are developing.
+
+image::sandbox-start.gif["Booting the sandbox in the terminal", width="1024px"]
+
 == Create an app
 
 Enonic apps are used to ship everything from content models, to code and platform extensions.
 
-Create your first Enonic app by running this command in a terminal window:
+*Open a new terminal window* and create your first Enonic app by running this command:
 
-  enonic create myproject -r app-intro
+  enonic project create --sb intro -r app-intro -d myproject -v 1.0.0 -n com.example.myproject
 
-TIP: Use the default options when prompted.
-
-If this is the first time you are creating an Enonic application, you will be prompted to create a new sandbox. A sandbox is a local development instance linked to a specific distribution of Enonic XP. Give your new sandbox a name (for example `intro`), then agree to using the latest stable version of Enonic XP for the new sandbox.
-
-This will create a new app called `myproject` in the directory `myproject` using the https://market.enonic.com/vendors/enonic/intro[Intro^] app as a starter (template) for your app.
+This command will create a new app called `myproject` in the directory `myproject` using the https://market.enonic.com/vendors/enonic/intro[Intro^] as a starter for your new app. The new application will be linked to the `intro` sandbox you created earlier.
 
 === Project structure
 
@@ -83,44 +95,49 @@ gradle.properties <9>
 
 == Deploy the app
 
-Assuming you did not change the default directory name `myproject/` when creating the app, run the following commands:
+Assuming your `intro` sandbox is still running in the first Terminal window and you did not change the default directory name `myproject/` when creating the app, run the following commands:
 
   cd myproject
   enonic dev
 
-The last command will make sure to first start the `intro` sandbox in the development mode, then build and deploy the app to the sandbox, and sequentially keep watching for changes in the server-side code to automatically rebuild and redeploy your app as you work on it.
+This last command will build the app and deploy to your `intro` sandbox, and sequentially keep watching for changes in the code to automatically rebuild and redeploy your app as you work on it.
 
 [NOTE]
 ====
 Look for the following output in the terminal log to verify that the app has started:
 
     BUILD SUCCESSFUL in 6s
-    5 actionable tasks: 5 executed
+    3 actionable tasks: 3 executed
     Waiting for changes to input files...
 ====
 
 
-== Install Content Studio
+== Admin dashboard
 
-https://market.enonic.com/vendors/enonic/content-studio[Content Studio^] is the editorial interface used to create and manage content. It is not a part of the core platform, but as you will see soon, it can easily be installed from https://market.enonic.com[Enonic Market^].
+Let's have a look at XP's web interface. Make sure your sandbox is still running and open http://localhost:8080[http://localhost:8080^] in your browser (or just click the link).
 
-. **Open the sandbox administration console**: http://localhost:8080[http://localhost:8080/admin^] and click `Log in as guest`. This will bring you to the Dashboard.
-+
-. **Open the Applications app** from the XP Menu in the top right corner: `Applications`.
-+
-image::xp-menu-applications.png["Go to Applications from the XP menu", width="319px"]
-+
-. **Install Content Studio**: click `Install` button in the menu bar, scroll down to `Content Studio` (or use search) in the list of apps that appears and click `Install` next to it.
-+
-image::install-content-studio.png["Install the Content Studio app", width="760px"]
+You should see the XP boot page:
+
+.XP Boot page
+image::xp-boot.png[The XP boot page, {image-xl}]
+The boot page provides an overview of endpoints (and any other services) running in this instance and displays the list of installed applications and configuration files.
+
+Click on _"Log In as Guest"_ to open the XP admin dashboard. You should now see the following:
+
+.The XP admin dashboard
+image::xp-dashboard.png[The XP admin dashboard, {image-xl}]
+
+You are now on the admin dashboard. The right menu (aka _"XP menu"_) enables navigation between extensions of the admin interface.
+
+NOTE: If things don't look exactly the same, don't worry... in every new version of XP the background picture gets updated. Also, admin dashboard automatically translates text based on your browsers preferred language.
 
 == Browse content
 
-When your application was installed, it automatically created a Content Studio project called `Sample Content`, and imported sample content. Let's have a look:
+https://market.enonic.com/vendors/enonic/content-studio[Content Studio^] is the editorial interface used to create and manage content. It was pre-installed from https://market.enonic.com[Enonic Market^] as a part of the "Essentials" template when you started the sandbox, and can now be accessed from the XP menu.
 
-. Open Content Studio, which is now available in the XP menu: `Content Studio`.
+. Click `Content Studio` in the XP menu.
 
-Content Studio will open the `Sample Content` project (current project is shown at the top) where you should now see the imported sample content.
+This will open the `"Sample Content"` project inside Content Studio (current project is shown at the top) where you should now see the imported sample content.
 
 image::content-studio-in-action.gif["Content Studio with Sample content", width="1024px"]
 
@@ -166,17 +183,13 @@ image::review.png["Sample Review", width="1024px"]
 
 == Graphql API
 
-The https://market.enonic.com/vendors/enonic/guillotine[headless API aka Guillotine^] - yes, we take headlessness seriously around here - is not a part of the XP Core platform. Like Content Studio, it can be installed from Enonic Market.
+The Headless API aka https://market.enonic.com/vendors/enonic/guillotine[Guillotine^] - yes, we take headlessness seriously around here - provides read-only-access to all the content within the contextual project. Users requesting content will naturally only get access to the content they have read-permissions for. The `"Sample content"` project is set up with public read access.
 
-**Install the Guillotine app** from the XP menu: `Applications -> Install` and find it in the list of apps that appear, then switch back to Content Studio.
-
-TIP: The Guillotine API provides read-only-access to all the content within the contextual project. Users requesting content will naturally only get access to the content they have read-permissions for. The "Sample content" project is set up with public read access.
-
-After Guillotine is installed, its icon (and the menu item called `Query Playground`) will appear in the Content Studio's left hand menu. Here, you may test and play with the GraphQL API directly.
+Click the GraphQL icon in the Content Studio's left hand menu to open the Query Playground where you may test and play with the GraphQL API directly.
 
 image::query-playground.png["Query Playground in action", width="1024px"]
 
-The API documentation is available from the "Query Playground"'s top left "file cabinet" icon. Use the dropdown on the top right to query against the draft or master branch, accessing the draft and published items respectively.
+The API documentation is available from the "Query Playground"'s top left "file cabinet" icon. Use the tabs on the top right to query against the Draft or Master branch, accessing the draft and published items respectively.
 
 Want to know more about GraphQL in general? Visit the https://graphql.org[official GraphQL documentation^].
 
@@ -187,7 +200,7 @@ Below are some example queries you can use for fetching the sample content.
 
 === Get Persons
 
-.Get display name and _path of items in the `/persons` folder:
+.Get display name and _path of the first 3 items in the `/persons` folder:
 [source,GraphQL]
 ----
 {
@@ -257,9 +270,9 @@ query($path:ID!){
 
 === Movies and cast
 
-IMPORTANT: If you used something other than `myproject` as a name for your app, you must replace `myproject:movie` and `myproject_Movie` for the query below to work.
+IMPORTANT: If you used something other than `com.example.myproject` as application name, you must replace `com.example.myproject:movie` and `com_example_myproject_Movie` for the query below to work.
 
-.Get display name, and the cast of a movie:
+.Get display name and the cast of the first movie:
 [source,GraphQL]
 ----
 {
@@ -268,12 +281,12 @@ IMPORTANT: If you used something other than `myproject` as a name for your app, 
       term: {
         field: "type",
         value: {
-          string: "myproject:movie"
+          string: "com.example.myproject:movie"
         }
       }
     }, first: 1) {
       displayName
-      ... on myproject_Movie {
+      ... on com_example_myproject_Movie {
         data {
           cast {
             actor {
@@ -326,7 +339,7 @@ In this case, Guillotine plays tag-team with Enonic's image service, which is ca
 
 The query below shows the name of actors containing the term `morgan`, and provide a link to a cropped image of the actor.
 
-IMPORTANT: If you used something other than `myproject` as a name for your app, you must replace `myproject:movie` and `myproject_Movie` for the query below to work.
+IMPORTANT: If you used something other than `com.example.myproject` as application name, you must replace `com.example.myproject:person` and `com_example_myproject_Person` for the query below to work.
 
 .Name of persons and a link to 400x400 scaled photo
 [source,GraphQL]
@@ -346,14 +359,14 @@ IMPORTANT: If you used something other than `myproject` as a name for your app, 
             term: {
               field: "type",
               value: {
-                string: "myproject:person"
+                string: "com.example.myproject:person"
               }
             }
           }
         ]
       }
     }, first: 1) {
-      ... on myproject_Person {
+      ... on com_example_myproject_Person {
     	  displayName
         data {
           photos(first:1){
@@ -421,26 +434,26 @@ To deploy your application to production, you'll need Enonic XP running on a ser
 If you are looking for other hosting options, Enonic XP is open source, and https://developer.enonic.com/docs/hosting[can be deployed pretty much anywhere^].
 ====
 
-. Start by **https://enonic.com/sign-up[signing up^]** for a free account. You must complete the verification steps before you can move on.
-. Log in to the https://cloud.enonic.com[Enonic Cloud console^] , and **Create a new  solution** from the menu `Solutions -> CMS essentials`. Complete the solution wizard steps using your preferences.
+. Start by **https://enonic.com/sign-up[signing up^]** for a forever-free account. You must complete the verification steps before you can move on.
+. Log in to the https://console.enonic.com[Enonic Cloud console^] , and create a new solution from the menu: `Solutions -> Essentials -> Create`. Complete the solution wizard steps using your preferences.
 +
-Similar to a sandbox, this will spin up an instance of Enonic XP, but this time on a real server in the Cloud.
+This will spin up an instance of Enonic XP, similar to your local sandbox but this time on a real server in the Cloud.
 +
-. Once the solution has started, **authenticate the CLI** by running this command:
+. Once the solution has started, authenticate the CLI by running this command *from your project folder*:
 +
   enonic cloud login
 +
-After successful authentication install your app using this command:
-+
-IMPORTANT: You must execute the command from your app folder.
+. After successful authentication install your app using this command:
 +
   enonic cloud app install
 +
-Alternatively upload the app manually via Enonic console: `Solutions -> <Your solution> -> Applications -> Install`.
+IMPORTANT: You must execute the command from your app folder.
++
+TIP: Alternatively upload the app manually via Enonic console: `Solutions -> <Your solution> -> Applications -> Install`.
 +
 The app file is in your project folder i.e. `build/libs/myproject.jar`.
 +
-. **Expose your API** by creating a Route in Enonic console: `Solutions -> <Your solution> -> Ingresses -> Create`.
+. Expose your API by creating an ingress in the Enonic Cloud console: `Solutions -> <Your solution> -> Ingresses -> Create`.
 +
 Give it a suitable name i.e. `Intro API`, and use the following values:
 +
@@ -450,15 +463,16 @@ Give it a suitable name i.e. `Intro API`, and use the following values:
 * Path: `/api`
 * ID provider: leave empty
 +
-. Tadaa! Your published content can now be queried directly on the URL created by this route. Remember to use POST, not GET, to fetch the data.
+. Click the created ingress to reveal the complete API URL on the right.
+. Tadaa! Your published content can now be queried directly on the URL created under this ingress. Remember to use POST, not GET, to fetch the data.
 
 == Dive deeper
 
 🎉 Sweet! You made it to the end.
 
-In the process, you built and customized your own app, installed apps from Enonic Market, ran GraphQL queries, got to know the Enonic CLI and our Cloud-hosted offerings.
+In the process, you created an Enonic XP sandbox, built and customized your own app, ran GraphQL queries, got to know the Enonic CLI and our Cloud-hosted offerings.
 
-As you may imagine, the platform is capable of so much more. Did you for instance know that Enonic has a https://developer.enonic.com/docs/xp/stable/framework[JavaScript framework], with full https://www.npmjs.com/org/enonic-types^[TypeScript definitions^] for Core API libraries? You may use it in your apps to extend and customize the Platform as you like.
+As you may imagine, the Platform is capable of so much more. Did you for instance know that Enonic has a https://developer.enonic.com/docs/xp/stable/framework[JavaScript framework], with full https://www.npmjs.com/org/enonic-types^[TypeScript definitions^] for Core API libraries? You may use it in your apps to extend and customize the Platform as you like.
 
 To continue the journey, we recommend visiting the https://developer.enonic.com/docs/tutorials[Enonic tutorials] section of our Developer Portal.
 
