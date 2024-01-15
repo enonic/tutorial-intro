@@ -4,7 +4,7 @@
 :imagesdir: media/
 :sourcedir: ../
 
-Hands on intro to our platform, CLI, Content Studio, headless API, and free hosting tier.
+Hands-on intro to our platform, CLI, Content Studio, headless API, and free hosting tier.
 
 TIP: *Just looking for a demo?* - https://enonic.com/sign-up[Sign up for a free Enonic account^]. Create a new solution based on the `Headless Demo` template to get a live demo using the same setup as this tutorial.
 
@@ -14,10 +14,10 @@ This guide will show you how to:
 
 * set up a local Enonic developer environment
 * create an Enonic app
-* install and use Content Studio
+* browse content in Content Studio
 * customize the app by adding a new content type
 * access and use the GraphQL API
-* optionally - deploy your app to a live server
+* optionally - deploy your app to a live server in the Cloud
 
 == Install CLI
 
@@ -37,15 +37,15 @@ TIP: To upgrade, use `enonic latest`. If there are new versions you will see ins
 
 == Create a sandbox
 
-. A sandbox is a local development instance running on a specific version of Enonic XP. Create a sandbox called `intro` by running this command in your terminal:
+. A sandbox is a local development instance running on a specific version of Enonic XP. Create a sandbox called `mysandbox` by running this command in your terminal:
 
-  enonic sandbox create intro -t essentials
+  enonic sandbox create mysandbox -t essentials
 
 Accept using the most recent release of Enonic XP when prompted.
 
 Start the sandbox with this command:
 
-  enonic sandbox start intro --dev
+  enonic sandbox start mysandbox --dev
 
 TIP: Dev mode will automatically load changes in your code while you are developing.
 
@@ -57,13 +57,13 @@ Enonic apps are used to ship everything from content models, to code and platfor
 
 *Open a new terminal window* and create your first Enonic app by running this command:
 
-  enonic project create --sb intro -r app-intro -d myproject -v 1.0.0 -n com.example.myproject
+  enonic project create --sb mysandbox -r tutorial-intro -d myapp -v 1.0.0 -n com.example.myapp
 
-This command will create a new app called `myproject` in the directory `myproject` using the https://market.enonic.com/vendors/enonic/intro[Intro^] as a starter for your new app. The new application will be linked to the `intro` sandbox you created earlier.
+This command will create a new app called `myapp` in the directory `myapp` using the https://market.enonic.com/vendors/enonic/intro[Intro^] as a starter for your new app. The new application will be linked to the `mysandbox` sandbox you created earlier.
 
 === Project structure
 
-Inside the `myproject` directory you should now have an app structure looking something like this:
+Inside the `myapp` directory you should now have an app structure looking something like this:
 
 .Selected files from the app code:
 [source,files]
@@ -95,9 +95,9 @@ gradle.properties <9>
 
 == Deploy the app
 
-Assuming your `intro` sandbox is still running in the first Terminal window and you did not change the default directory name `myproject/` when creating the app, run the following commands:
+Assuming your `mysandbox` sandbox is still running in the first Terminal window and you did not change the default directory name `myapp/` when creating the app, run the following commands:
 
-  cd myproject
+  cd myapp
   enonic dev
 
 This last command will build the app and deploy to your `intro` sandbox, and sequentially keep watching for changes in the code to automatically rebuild and redeploy your app as you work on it.
@@ -270,7 +270,7 @@ query($path:ID!){
 
 === Movies and cast
 
-IMPORTANT: If you used something other than `com.example.myproject` as application name, you must replace `com.example.myproject:movie` and `com_example_myproject_Movie` for the query below to work.
+IMPORTANT: If you used something other than `com.example.myapp` as application name, you must replace `com.example.myapp:movie` and `com_example_myapp_Movie` for the query below to work.
 
 .Get display name and the cast of the first movie:
 [source,GraphQL]
@@ -281,12 +281,12 @@ IMPORTANT: If you used something other than `com.example.myproject` as applicati
       term: {
         field: "type",
         value: {
-          string: "com.example.myproject:movie"
+          string: "com.example.myapp:movie"
         }
       }
     }, first: 1) {
       displayName
-      ... on com_example_myproject_Movie {
+      ... on com_example_myapp_Movie {
         data {
           cast {
             actor {
@@ -339,7 +339,7 @@ In this case, Guillotine plays tag-team with Enonic's image service, which is ca
 
 The query below shows the name of actors containing the term `morgan`, and provide a link to a cropped image of the actor.
 
-IMPORTANT: If you used something other than `com.example.myproject` as application name, you must replace `com.example.myproject:person` and `com_example_myproject_Person` for the query below to work.
+IMPORTANT: If you used something other than `com.example.myapp` as application name, you must replace `com.example.myapp:person` and `com_example_myapp_Person` for the query below to work.
 
 .Name of persons and a link to 400x400 scaled photo
 [source,GraphQL]
@@ -359,14 +359,14 @@ IMPORTANT: If you used something other than `com.example.myproject` as applicati
             term: {
               field: "type",
               value: {
-                string: "com.example.myproject:person"
+                string: "com.example.myapp:person"
               }
             }
           }
         ]
       }
     }, first: 1) {
-      ... on com_example_myproject_Person {
+      ... on com_example_myapp_Person {
     	  displayName
         data {
           photos(first:1){
@@ -451,7 +451,7 @@ IMPORTANT: You must execute the command from your app folder.
 +
 TIP: Alternatively upload the app manually via Enonic console: `Solutions -> <Your solution> -> Applications -> Install`.
 +
-The app file is in your project folder i.e. `build/libs/myproject.jar`.
+The app file is in your project folder i.e. `build/libs/myapp.jar`.
 +
 . Expose your API by creating an ingress in the Enonic Cloud console: `Solutions -> <Your solution> -> Ingresses -> Create`.
 +
