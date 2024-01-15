@@ -476,7 +476,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Hands on intro to our platform, CLI, Content Studio, headless API, and free hosting tier.</p>
+<p>Hands-on intro to our platform, CLI, Content Studio, headless API, and free hosting tier.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -507,7 +507,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>create an Enonic app</p>
 </li>
 <li>
-<p>install and use Content Studio</p>
+<p>browse content in Content Studio</p>
 </li>
 <li>
 <p>customize the app by adding a new content type</p>
@@ -516,7 +516,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>access and use the GraphQL API</p>
 </li>
 <li>
-<p>optionally - deploy your app to a live server</p>
+<p>optionally - deploy your app to a live server in the Cloud</p>
 </li>
 </ul>
 </div>
@@ -565,10 +565,10 @@ To upgrade, use <code>enonic latest</code>. If there are new versions you will s
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>A sandbox is a local development instance running on a specific version of Enonic XP. Create a sandbox called <code>intro</code> by running this command in your terminal:</p>
+<p>A sandbox is a local development instance running on a specific version of Enonic XP. Create a sandbox called <code>mysandbox</code> by running this command in your terminal:</p>
 <div class="literalblock">
 <div class="content">
-<pre>enonic sandbox create intro -t essentials</pre>
+<pre>enonic sandbox create mysandbox -t essentials</pre>
 </div>
 </div>
 </li>
@@ -582,7 +582,7 @@ To upgrade, use <code>enonic latest</code>. If there are new versions you will s
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>enonic sandbox start intro --dev</pre>
+<pre>enonic sandbox start mysandbox --dev</pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -615,16 +615,16 @@ Dev mode will automatically load changes in your code while you are developing.
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>enonic project create --sb intro -r app-intro -d myproject -v 1.0.0 -n com.example.myproject</pre>
+<pre>enonic project create --sb mysandbox -r tutorial-intro -d myapp -v 1.0.0 -n com.example.myapp</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This command will create a new app called <code>myproject</code> in the directory <code>myproject</code> using the <a href="https://market.enonic.com/vendors/enonic/intro" target="_blank" rel="noopener">Intro</a> as a starter for your new app. The new application will be linked to the <code>intro</code> sandbox you created earlier.</p>
+<p>This command will create a new app called <code>myapp</code> in the directory <code>myapp</code> using the <a href="https://market.enonic.com/vendors/enonic/intro" target="_blank" rel="noopener">Intro</a> as a starter for your new app. The new application will be linked to the <code>mysandbox</code> sandbox you created earlier.</p>
 </div>
 <div class="sect2">
 <h3 id="project_structure"><a class="link" href="#project_structure">Project structure</a></h3>
 <div class="paragraph">
-<p>Inside the <code>myproject</code> directory you should now have an app structure looking something like this:</p>
+<p>Inside the <code>myapp</code> directory you should now have an app structure looking something like this:</p>
 </div>
 <div class="listingblock">
 <div class="title">Selected files from the app code:</div>
@@ -691,11 +691,11 @@ gradle.properties <i class="conum" data-value="9"></i><b>(9)</b></code></pre>
 <h2 id="deploy_the_app"><a class="link" href="#deploy_the_app">Deploy the app</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Assuming your <code>intro</code> sandbox is still running in the first Terminal window and you did not change the default directory name <code>myproject/</code> when creating the app, run the following commands:</p>
+<p>Assuming your <code>mysandbox</code> sandbox is still running in the first Terminal window and you did not change the default directory name <code>myapp/</code> when creating the app, run the following commands:</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>cd myproject
+<pre>cd myapp
 enonic dev</pre>
 </div>
 </div>
@@ -1015,7 +1015,7 @@ If things don&#8217;t look exactly the same, don&#8217;t worry&#8230;&#8203; in 
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-If you used something other than <code>com.example.myproject</code> as application name, you must replace <code>com.example.myproject:movie</code> and <code>com_example_myproject_Movie</code> for the query below to work.
+If you used something other than <code>com.example.myapp</code> as application name, you must replace <code>com.example.myapp:movie</code> and <code>com_example_myapp_Movie</code> for the query below to work.
 </td>
 </tr>
 </table>
@@ -1029,12 +1029,12 @@ If you used something other than <code>com.example.myproject</code> as applicati
       term: {
         field: "type",
         value: {
-          string: "com.example.myproject:movie"
+          string: "com.example.myapp:movie"
         }
       }
     }, first: 1) {
       displayName
-      ... on com_example_myproject_Movie {
+      ... on com_example_myapp_Movie {
         data {
           cast {
             actor {
@@ -1100,7 +1100,7 @@ If you used something other than <code>com.example.myproject</code> as applicati
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-If you used something other than <code>com.example.myproject</code> as application name, you must replace <code>com.example.myproject:person</code> and <code>com_example_myproject_Person</code> for the query below to work.
+If you used something other than <code>com.example.myapp</code> as application name, you must replace <code>com.example.myapp:person</code> and <code>com_example_myapp_Person</code> for the query below to work.
 </td>
 </tr>
 </table>
@@ -1123,14 +1123,14 @@ If you used something other than <code>com.example.myproject</code> as applicati
             term: {
               field: "type",
               value: {
-                string: "com.example.myproject:person"
+                string: "com.example.myapp:person"
               }
             }
           }
         ]
       }
     }, first: 1) {
-      ... on com_example_myproject_Person {
+      ... on com_example_myapp_Person {
     	  displayName
         data {
           photos(first:1){
@@ -1302,7 +1302,7 @@ Alternatively upload the app manually via Enonic console: <code>Solutions &#8594
 </table>
 </div>
 <div class="paragraph">
-<p>The app file is in your project folder i.e. <code>build/libs/myproject.jar</code>.</p>
+<p>The app file is in your project folder i.e. <code>build/libs/myapp.jar</code>.</p>
 </div>
 </li>
 <li>
@@ -1363,7 +1363,7 @@ Alternatively upload the app manually via Enonic console: <code>Solutions &#8594
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-01-15 15:19:10 UTC
+Last updated 2024-01-15 16:01:04 UTC
 </div>
 </div>
 </body>
