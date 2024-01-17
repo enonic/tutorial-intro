@@ -568,14 +568,23 @@ To upgrade, use <code>enonic latest</code>. If there are new versions you will s
 <p>A sandbox is a local development instance running on a specific version of Enonic XP. Create a sandbox called <code>mysandbox</code> by running this command in your terminal:</p>
 <div class="literalblock">
 <div class="content">
-<pre>enonic sandbox create mysandbox -t essentials</pre>
+<pre>enonic sandbox create mysandbox -t essentials -f</pre>
 </div>
 </div>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p>Accept using the most recent release of Enonic XP when prompted.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>-f</code> flag will force using the most recent release of Enonic XP.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Start the sandbox with this command:</p>
@@ -585,11 +594,11 @@ To upgrade, use <code>enonic latest</code>. If there are new versions you will s
 <pre>enonic sandbox start mysandbox --dev</pre>
 </div>
 </div>
-<div class="admonitionblock tip">
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
 Dev mode will automatically load changes in your code while you are developing.
@@ -1363,7 +1372,7 @@ Alternatively upload the app manually via Enonic console: <code>Solutions &#8594
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-01-15 16:08:25 UTC
+Last updated 2024-01-17 15:14:38 UTC
 </div>
 </div>
 </body>
