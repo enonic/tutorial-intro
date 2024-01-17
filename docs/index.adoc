@@ -39,15 +39,15 @@ TIP: To upgrade, use `enonic latest`. If there are new versions you will see ins
 
 . A sandbox is a local development instance running on a specific version of Enonic XP. Create a sandbox called `mysandbox` by running this command in your terminal:
 
-  enonic sandbox create mysandbox -t essentials
+  enonic sandbox create mysandbox -t essentials -f
 
-Accept using the most recent release of Enonic XP when prompted.
+NOTE: `-f` flag will force using the most recent release of Enonic XP.
 
 Start the sandbox with this command:
 
   enonic sandbox start mysandbox --dev
 
-TIP: Dev mode will automatically load changes in your code while you are developing.
+NOTE: Dev mode will automatically load changes in your code while you are developing.
 
 image::sandbox-start.gif["Booting the sandbox in the terminal", width="1024px"]
 
