@@ -507,7 +507,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>create an Enonic app</p>
 </li>
 <li>
-<p>use Content Studio</p>
+<p>Use Content Studio</p>
 </li>
 <li>
 <p>customize the app by adding a new content type</p>
@@ -1410,7 +1410,7 @@ Alternatively upload the app from the Console directly: <code>Solutions &#8594; 
 <p>Environment: keep the default/selected value</p>
 </li>
 <li>
-<p>Target: <code>/site/intro/master</code></p>
+<p>Target: <code>/site/intro</code></p>
 </li>
 <li>
 <p>Domain: keep the default/selected value</p>
@@ -1425,7 +1425,10 @@ Alternatively upload the app from the Console directly: <code>Solutions &#8594; 
 </div>
 </li>
 <li>
-<p>Click the created ingress to reveal the complete API URL on the right.</p>
+<p><strong>Select the ingress</strong> to reveal the link to your API on the right.</p>
+</li>
+<li>
+<p>Visiting the URL you should see the Query playground. Add <code>/master</code> to the URL to access the API endpoint for published content directly</p>
 </li>
 <li>
 <p>Tadaa! Your published content can now be queried directly on the URL created under this ingress. Remember to use POST, not GET, to fetch the data.</p>
@@ -1457,7 +1460,7 @@ Alternatively upload the app from the Console directly: <code>Solutions &#8594; 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-01-18 15:32:51 UTC
+Last updated 2024-01-18 17:31:44 UTC
 </div>
 </div>
 </body>
