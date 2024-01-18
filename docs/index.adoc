@@ -146,7 +146,7 @@ https://market.enonic.com/vendors/enonic/content-studio[Content Studio^] is the 
 
 *Click btn:[Content Studio]* in the XP menu to lauch it.
 
-When your application was installed, it automatically created a content project called `Sample Project` and populated it with content.Since this is the only available project at the moment, Content Studio will automatically open it, revealing the list of sample content.
+When your application was installed, it automatically created a content project called `Intro Project` and populated it with content.Since this is the only available project at the moment, Content Studio will automatically open it, revealing the list of sample content.
 
 TIP: The current project is shown at the top of Content Studio.
 
@@ -230,7 +230,7 @@ image::review.png["Sample Review", width="1024px"]
 
 == Graphql API
 
-The Headless API aka https://market.enonic.com/vendors/enonic/guillotine[Guillotine^] - yes, we take headlessness seriously around here - provides access to all of the content within your project. Clients requesting content will naturally only get access to the content they have read-permissions for. The `Sample project` is configured with public read access for everything.
+The Headless API aka https://market.enonic.com/vendors/enonic/guillotine[Guillotine^] - yes, we take headlessness seriously around here - provides access to all of the content within your project. Clients requesting content will naturally only get access to the content they have read-permissions for. The `Intro project` is configured with public read access for everything.
 
 Click the GraphQL icon in the Content Studio's left hand menu to open `Query Playground`. Here you may test and play with the GraphQL API directly.
 
