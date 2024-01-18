@@ -509,14 +509,20 @@ Give it a suitable name i.e. `Intro API`, and use the following values:
 * ID provider: leave empty
 +
 . *Select the ingress* to reveal the link to your API on the right.
-. Visiting the URL you should see the Query playground. Add `/master` to the URL to access the API endpoint for published content directly
-. Tadaa! Your published content can now be queried directly on the URL created under this ingress. Remember to use POST, not GET, to fetch the data.
+. *Visit the URL* to see the `Query Playground` API browser. 
++
+NOTE: The API browser can be disabled by changing the configuration of the `Guillotine app`.
++
+.To access the GraphQL endpoint for your published content, append `/master` to the API URL.
++
+NOTE: Remember, the GraphQL API only accepts `POST` requests, so the browser will only show a 404 at this point.
+
 
 == Dive deeper
 
-🎉 Sweet! You made it to the end.
+🎉 Awesome! You made it to the end.
 
-In the process, you created an Enonic XP sandbox, built and customized your own app, ran GraphQL queries, got to know the Enonic CLI and our Cloud-hosted offerings.
+In the process, you created an Enonic XP sandbox, built and customized your own app, ran GraphQL queries, got to know the Enonic CLI and our SaaS service.
 
 As you may already imagine, the Platform is capable of so much more. Did you for instance know that Enonic has a https://developer.enonic.com/docs/xp/stable/framework[JavaScript framework], complete with https://www.npmjs.com/org/enonic-types^[TypeScript definitions^] the entire platform API? You may use it in your apps to extend and customize the Platform as you like.
 
