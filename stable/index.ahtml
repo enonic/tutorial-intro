@@ -824,7 +824,7 @@ If things don&#8217;t look exactly the same, don&#8217;t worry. In every new ver
 <p><strong>Click <b class="button">Content Studio</b></strong> in the XP menu to lauch it.</p>
 </div>
 <div class="paragraph">
-<p>When your application was installed, it automatically created a content project called <code>Sample Project</code> and populated it with content.Since this is the only available project at the moment, Content Studio will automatically open it, revealing the list of sample content.</p>
+<p>When your application was installed, it automatically created a content project called <code>Intro Project</code> and populated it with content.Since this is the only available project at the moment, Content Studio will automatically open it, revealing the list of sample content.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1000,7 +1000,7 @@ The current project is shown at the top of Content Studio.
 <h2 id="graphql_api"><a class="link" href="#graphql_api">Graphql API</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Headless API aka <a href="https://market.enonic.com/vendors/enonic/guillotine" target="_blank" rel="noopener">Guillotine</a> - yes, we take headlessness seriously around here - provides access to all of the content within your project. Clients requesting content will naturally only get access to the content they have read-permissions for. The <code>Sample project</code> is configured with public read access for everything.</p>
+<p>The Headless API aka <a href="https://market.enonic.com/vendors/enonic/guillotine" target="_blank" rel="noopener">Guillotine</a> - yes, we take headlessness seriously around here - provides access to all of the content within your project. Clients requesting content will naturally only get access to the content they have read-permissions for. The <code>Intro project</code> is configured with public read access for everything.</p>
 </div>
 <div class="paragraph">
 <p>Click the GraphQL icon in the Content Studio&#8217;s left hand menu to open <code>Query Playground</code>. Here you may test and play with the GraphQL API directly.</p>
@@ -1457,7 +1457,7 @@ Alternatively upload the app from the Console directly: <code>Solutions &#8594; 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-01-18 14:19:39 UTC
+Last updated 2024-01-18 14:24:59 UTC
 </div>
 </div>
 </body>
