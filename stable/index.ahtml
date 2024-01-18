@@ -1428,10 +1428,32 @@ Alternatively upload the app from the Console directly: <code>Solutions &#8594; 
 <p><strong>Select the ingress</strong> to reveal the link to your API on the right.</p>
 </li>
 <li>
-<p>Visiting the URL you should see the Query playground. Add <code>/master</code> to the URL to access the API endpoint for published content directly</p>
-</li>
-<li>
-<p>Tadaa! Your published content can now be queried directly on the URL created under this ingress. Remember to use POST, not GET, to fetch the data.</p>
+<p><strong>Visit the URL</strong> to see the <code>Query Playground</code> API browser.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The API browser can be disabled by changing the configuration of the <code>Guillotine app</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">To access the GraphQL endpoint for your published content, append <code>/master</code> to the API URL.</div>
+Remember, the GraphQL API only accepts <code>POST</code> requests, so the browser will only show a 404 at this point.
+</td>
+</tr>
+</table>
+</div>
 </li>
 </ol>
 </div>
@@ -1441,10 +1463,10 @@ Alternatively upload the app from the Console directly: <code>Solutions &#8594; 
 <h2 id="dive_deeper"><a class="link" href="#dive_deeper">Dive deeper</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>🎉 Sweet! You made it to the end.</p>
+<p>🎉 Awesome! You made it to the end.</p>
 </div>
 <div class="paragraph">
-<p>In the process, you created an Enonic XP sandbox, built and customized your own app, ran GraphQL queries, got to know the Enonic CLI and our Cloud-hosted offerings.</p>
+<p>In the process, you created an Enonic XP sandbox, built and customized your own app, ran GraphQL queries, got to know the Enonic CLI and our SaaS service.</p>
 </div>
 <div class="paragraph">
 <p>As you may already imagine, the Platform is capable of so much more. Did you for instance know that Enonic has a <a href="https://developer.enonic.com/docs/xp/stable/framework">JavaScript framework</a>, complete with <a href="https://www.npmjs.com/org/enonic-types^" target="_blank" rel="noopener">TypeScript definitions</a> the entire platform API? You may use it in your apps to extend and customize the Platform as you like.</p>
@@ -1460,7 +1482,7 @@ Alternatively upload the app from the Console directly: <code>Solutions &#8594; 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-01-18 17:31:44 UTC
+Last updated 2024-01-18 17:39:28 UTC
 </div>
 </div>
 </body>
