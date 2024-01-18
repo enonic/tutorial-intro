@@ -1,10 +1,10 @@
 plugins {
     id 'maven-publish'
+    id 'com.enonic.defaults' version '2.1.2'
     id 'com.enonic.xp.app' version '3.4.0'
 }
 
 app {
-    group = "com.enonic.app"
     name = "${appName}"
     displayName = "${appDisplayName}"
     vendorName = "${vendorName}"
