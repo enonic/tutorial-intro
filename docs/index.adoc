@@ -14,7 +14,7 @@ This guide will show you how to:
 
 * set up a local developer environment
 * create an Enonic app
-* use Content Studio
+* Use Content Studio
 * customize the app by adding a new content type
 * access and use the GraphQL API
 * optionally - deploy your app to a live server in the Cloud
@@ -61,9 +61,9 @@ https://developer.enonic.com/docs/xp/stable/apps[Enonic apps^] are used to ship 
 
 This command will:
 
-* use the github repo `github.com/enonic/tutorial-intro` as a starter
-* to create an app called `com.example.myapp`
-* in the directory `myapp` setting version number to `1.0.0`
+* use the github repo `github.com/enonic/tutorial-intro` as a starter 
+* to create an app called `com.example.myapp` 
+* in the directory `myapp` setting version number to `1.0.0` 
 * and link it to `mysandbox` which you created earlier
 
 TIP: A pre-compiled standard version of this app is also available on https://market.enonic.com/vendors/enonic/intro[Enonic Market^].
@@ -503,12 +503,13 @@ The app file is located in your project folder i.e. `build/libs/myapp.jar`.
 Give it a suitable name i.e. `Intro API`, and use the following values:
 +
 * Environment: keep the default/selected value
-* Target: `/site/intro/master`
+* Target: `/site/intro`
 * Domain: keep the default/selected value
 * Path: `/api`
 * ID provider: leave empty
 +
-. Click the created ingress to reveal the complete API URL on the right.
+. *Select the ingress* to reveal the link to your API on the right.
+. Visiting the URL you should see the Query playground. Add `/master` to the URL to access the API endpoint for published content directly
 . Tadaa! Your published content can now be queried directly on the URL created under this ingress. Remember to use POST, not GET, to fetch the data.
 
 == Dive deeper
