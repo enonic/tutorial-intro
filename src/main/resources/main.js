@@ -7,7 +7,7 @@ const taskLib = require('/lib/xp/task');
 
 const projectData = {
     id: 'intro',
-    displayName: 'Sample Content',
+    displayName: 'Intro Project',
     description: 'Sample content from the cinematic industry',
     language: 'en',
     siteConfig: [{
