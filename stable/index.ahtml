@@ -507,7 +507,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>create an Enonic app</p>
 </li>
 <li>
-<p>Use Content Studio</p>
+<p>use Content Studio</p>
 </li>
 <li>
 <p>customize the app by adding a new content type</p>
@@ -1457,7 +1457,7 @@ Alternatively upload the app from the Console directly: <code>Solutions &#8594; 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-01-18 14:24:59 UTC
+Last updated 2024-01-18 15:32:51 UTC
 </div>
 </div>
 </body>
