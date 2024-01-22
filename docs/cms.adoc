@@ -1,4 +1,4 @@
-= Content Studio and schemas
+= Content Studio and content forms
 :toc: right
 :experimental:
 :imagesdir: media/
@@ -42,7 +42,7 @@ When used to create content, it is stored like this:
 {
   "valid": true,
   "displayName": "Uma Thurman",
-  "type": "com.enonic.app.hmdb:person",
+  "type": "com.example.myapp:person",
   "owner": "user:system:su",
   "language": "en",
   "modifiedTime": "2018-07-03T05:58:55.025Z",
@@ -57,18 +57,11 @@ When used to create content, it is stored like this:
     "photos": "8d47792f-0ae6-4d74-a6e4-bab0e8d2374b",
     "bio": "Uma Karuna Thurman was born in Boston, Massachusetts, into a highly unorthodox and Eurocentric family",
     "dateofbirth": "1970-04-29"
-  },
-  "x": {
-    "com-enonic-app-hmdb": {
-      "SoMe": {
-        "imdb": "https://www.imdb.com/name/nm0000235/"
-      }
-    }
   }
 }
 ----
 
-=== X-Data: Social media
+== X-Data: Social media
 
 When editing a Person, you'll notice an additional subset of fields inside the Content form with title `Social Media`. This is strictly speaking a separate form, injected into the Person content type - we call it "eXtended data" (or just "x-data").
 
@@ -84,7 +77,29 @@ This is what the definition looks like:
 include::{sourcedir}/src/main/resources/site/x-data/SoMe/SoMe.xml[]
 ----
 
-You can also see what the persisted version looks like in the JSON document above.
+You can also see what the persisted version looks like in the JSON.
+
+.Snippet of Uma Thurman including x-data.
+[source,JSON]
+----
+{
+  "data": {
+    "photos": "8d47792f-0ae6-4d74-a6e4-bab0e8d2374b",
+    "bio": "Uma Karuna Thurman was born in Boston, Massachusetts, into a highly unorthodox and Eurocentric family",
+    "dateofbirth": "1970-04-29"
+  },
+  "x": {
+    "com-example-myapp": {
+      "SoMe": {
+        "imdb": "https://www.imdb.com/name/nm0000235/"
+      }
+    }
+  }
+}
+----
+
+
+
 
 == Adding a new content type
 
