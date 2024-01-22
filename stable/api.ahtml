@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
-<title>Introduction to Enonic</title>
+<title>GraphQL API for headless content</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -436,11 +436,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
-<h1>Introduction to Enonic</h1>
+<h1>GraphQL API for headless content</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#introduction">Introduction</a></li>
+<li><a href="#guillotine">Guillotine</a></li>
+<li><a href="#sample_queries">Sample queries</a>
+<ul class="sectlevel2">
+<li><a href="#get_persons">Get Persons</a></li>
+<li><a href="#query_variables">Query variables</a></li>
+<li><a href="#movies_and_cast">Movies and cast</a></li>
+</ul>
+</li>
+<li><a href="#image_handling">Image handling</a></li>
+<li><a href="#final_step">Final step</a></li>
 </ul>
 </div>
 </div>
@@ -448,16 +457,297 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Hands-on developer intro to our platform, CLI, Content Studio, GraphQL API, and the free hosting tier.</p>
+<p>Get familiar with the Guillotine API - our cutting edge headless GraphQL content API</p>
 </div>
-<div class="admonitionblock tip">
+</div>
+</div>
+<div class="sect1">
+<h2 id="guillotine"><a class="link" href="#guillotine">Guillotine</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Headless API aka <a href="https://market.enonic.com/vendors/enonic/guillotine" target="_blank" rel="noopener">Guillotine</a> - yes, we take headlessness seriously around here - provides access to all the content within your project. Clients requesting content will naturally only get access to the content they have read-permissions for. The <code>Intro project</code> is configured with public read access for everything.</p>
+</div>
+<div class="paragraph">
+<p>Click the GraphQL icon in the Content Studio&#8217;s left hand menu to open <code>Query Playground</code>. Here you may test and play with the GraphQL API directly.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/query-playground.png" alt="Query Playground in action" width="1024px">
+</div>
+</div>
+<div class="paragraph">
+<p>The API documentation is available from the Top left <code>file cabinet icon</code>. Use the tabs on the top right to query against the Draft or Master branch, accessing the draft and published items respectively.</p>
+</div>
+<div class="paragraph">
+<p>Want to know more about GraphQL in general? Visit the <a href="https://graphql.org" target="_blank" rel="noopener">official GraphQL documentation</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="sample_queries"><a class="link" href="#sample_queries">Sample queries</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Below are some example queries you can use for fetching the sample content.</p>
+</div>
+<div class="sect2">
+<h3 id="get_persons"><a class="link" href="#get_persons">Get Persons</a></h3>
+<div class="listingblock">
+<div class="title">Get display name and _path of the first 3 items in the <code>/persons</code> folder:</div>
+<div class="content">
+<pre class="highlight"><code class="language-GraphQL" data-lang="GraphQL">{
+ guillotine {
+  getChildren(key:"/persons" first:3){
+    displayName
+    _path
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Sample response:</div>
+<div class="content">
+<pre class="highlight"><code class="language-JSON" data-lang="JSON">{
+  "data": {
+    "guillotine": {
+      "getChildren": [
+        {
+          "displayName": "Léa Seydoux",
+          "_path": "/persons/lea-seydoux"
+        },
+        {
+          "displayName": "Jeffrey Wright",
+          "_path": "/persons/jeffrey-wright"
+        },
+        {
+          "displayName": "Daniel Craig",
+          "_path": "/persons/daniel-craig"
+        }
+      ]
+    }
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="query_variables"><a class="link" href="#query_variables">Query variables</a></h3>
+<div class="paragraph">
+<p>GraphQL also supports the concept of query variables. Similar to parameters in functions, you may pass variables to a query.</p>
+</div>
+<div class="paragraph">
+<p>Query variables are defined with JSON. You can add them using the <code>Variables</code> button below the query editor.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-JSON" data-lang="JSON">{
+  "path": "/persons"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With the variable set, update your query to use the variable. This query should provide the exact same response as it did before.</p>
+</div>
+<div class="listingblock">
+<div class="title">The Person query, this time using path as a variable:</div>
+<div class="content">
+<pre class="highlight"><code class="language-GraphQL" data-lang="GraphQL">query($path:ID!){
+ guillotine {
+  getChildren(key:$path first:3){
+    displayName
+    _path
+    }
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="movies_and_cast"><a class="link" href="#movies_and_cast">Movies and cast</a></h3>
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-<strong>Just looking for a demo?</strong> - <a href="https://enonic.com/sign-up" target="_blank" rel="noopener">Sign up for a free Enonic account</a>. Create a new solution based on the <code>Headless Demo</code> template to get a live demo for a similar setup as this tutorial.
+The GraphQL schema is automatically generated from your application and schemas. If you used a different name than <code>com.example.myapp</code> when the app was created, you would have to replace both <code>com.example.myapp:movie</code> and the GraphQL type <code>com_example_myapp_Movie</code> for the query below to work.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Get display name and the cast of the first movie:</div>
+<div class="content">
+<pre class="highlight"><code class="language-GraphQL" data-lang="GraphQL">{
+  guillotine {
+    queryDsl(query: {
+      term: {
+        field: "type",
+        value: {
+          string: "com.example.myapp:movie"
+        }
+      }
+    }, first: 1) {
+      displayName
+      ... on com_example_myapp_Movie {
+        data {
+          cast {
+            actor {
+              displayName
+            }
+            character
+          }
+        }
+      }
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Sample response</div>
+<div class="content">
+<pre class="highlight"><code class="language-JSON" data-lang="JSON">{
+  "data": {
+    "guillotine": {
+      "queryDsl": [
+        {
+          "displayName": "The Matrix",
+          "data": {
+            "cast": [
+              {
+                "actor": {
+                  "displayName": "Keanu Reeves"
+                },
+                "character": "Neo"
+              },
+              {
+                "actor": {
+                  "displayName": "Carrie-Anne Moss"
+                },
+                "character": "Trinity"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="image_handling"><a class="link" href="#image_handling">Image handling</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this case, Guillotine plays tag-team with XP&#8217;s image service, which is capable of delivering real-time cropped and optimized versions of images. In this case we are requesting a 400 x 400px version of the image.</p>
+</div>
+<div class="paragraph">
+<p>The query below shows the name of actors containing the term <code>morgan</code>, and provide a link to a cropped image of the actor.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Again, if your app was called something else than <code>com.example.myapp</code>, replace <code>com.example.myapp:person</code> and <code>com_example_myapp_Person</code> for the query below to work.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Name of persons and a link to 400x400 scaled photo</div>
+<div class="content">
+<pre class="highlight"><code class="language-GraphQL" data-lang="GraphQL">{
+  guillotine {
+    queryDsl(query: {
+      boolean: {
+        must: [
+          {
+            ngram: {
+              fields: ["_allText"],
+              query: "morgan"
+            }
+          },
+          {
+            term: {
+              field: "type",
+              value: {
+                string: "com.example.myapp:person"
+              }
+            }
+          }
+        ]
+      }
+    }, first: 1) {
+      ... on com_example_myapp_Person {
+    	  displayName
+        data {
+          photos(first:1){
+            ... on media_Image {
+              imageUrl(type:absolute scale:"block(400,400)")
+            }
+          }
+        }
+      }
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Sample response</div>
+<div class="content">
+<pre class="highlight"><code class="language-JSON" data-lang="JSON">{
+  "data": {
+    "guillotine": {
+      "queryDsl": [
+        {
+          "displayName": "Morgan Freeman",
+          "data": {
+            "photos": [
+              {
+                "imageUrl": "http://localhost:8080/admin/site/preview/intro/draft/_/image/7ab1f76a-69a1-490f-b505-6eb6773c7cec:603726cc4fa712aa1b70c7eb64e1349f664494c3/block-400-400/morgan-freeman.jpg"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When looking at the result in Query Playground, you can see the actual image by hovering over the link:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/morgan-photo.png" alt="Cropped version of Morgan Freemans image" width="1024px">
+</div>
+</div>
+<div class="paragraph">
+<p>The original higher resolution image is stored as a content item, just like persons and reviews. This is what it looks like from Content Studio:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/morgan-original.png" alt="The original version of Morgan Freemans photo is widescreen, with a red " width="1024px">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The red "autofocus" circle, when set, helps the image service to crop the images optimally - as you can see above.
 </td>
 </tr>
 </table>
@@ -465,35 +755,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="introduction"><a class="link" href="#introduction">Introduction</a></h2>
+<h2 id="final_step"><a class="link" href="#final_step">Final step</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This guide will show you how to:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>set up a local developer environment</p>
-</li>
-<li>
-<p>create an Enonic app</p>
-</li>
-<li>
-<p>use Content Studio</p>
-</li>
-<li>
-<p>customize the app by adding a new content type</p>
-</li>
-<li>
-<p>access and use the GraphQL API</p>
-</li>
-<li>
-<p>optionally - deploy your app to a live server in the Cloud</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Lets get going with <a href="sdk.ahtml">Step 1 - Setting up the development environment</a>.</p>
+<p>Knowing how headless a CMS can get with an API calle Guillotine, and GraphQL queries flowing from your fingertips, it&#8217;s time for the big finale where you deploy your app to Enonic&#8217;s <a href="cloud.ahtml">Free hosting service</a>.</p>
 </div>
 </div>
 </div>

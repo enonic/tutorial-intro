@@ -1,0 +1,22 @@
+{
+    "menuItems": [
+      {
+        "title": "1 - SDK Setup",
+        "document": "setup"
+      },
+      {
+        "title": "2 - Content Management",
+        "document": "cms"
+      },
+      {
+        "title": "3 - GraphQL API",
+        "document": "api"
+      },
+      {
+        "title": "4 - Deploy to cloud",
+        "document": "cloud"
+      }
+}
+    ]
+  }
+  

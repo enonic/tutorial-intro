@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
-<title>Introduction to Enonic</title>
+<title>Setting up the development environment</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -436,11 +436,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
-<h1>Introduction to Enonic</h1>
+<h1>Setting up the development environment</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#introduction">Introduction</a></li>
+<li><a href="#install_cli">Install CLI</a></li>
+<li><a href="#create_a_sandbox">Create a sandbox</a></li>
+<li><a href="#create_an_app">Create an app</a>
+<ul class="sectlevel2">
+<li><a href="#project_structure">Project structure</a></li>
+</ul>
+</li>
+<li><a href="#build_the_app">Build the app</a></li>
+<li><a href="#coming_up">Coming up</a></li>
 </ul>
 </div>
 </div>
@@ -448,7 +456,32 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Hands-on developer intro to our platform, CLI, Content Studio, GraphQL API, and the free hosting tier.</p>
+<p>Installing the CLI and creating a development sandbox.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="install_cli"><a class="link" href="#install_cli">Install CLI</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <a href="https://developer.enonic.com/docs/enonic-cli" target="_blank" rel="noopener">Enonic Command Line Interface</a> is an essential tool for developers working with Enonic.</p>
+</div>
+<div class="paragraph">
+<p>If you have <code>npm</code> on your device, run this command:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>npm install -g @enonic/cli</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If not, here are some <a href="https://developer.enonic.com/start" target="_blank" rel="noopener">alternative ways to install Enonic CLI</a></p>
+</div>
+<div class="paragraph">
+<p>To verify that the CLI has been installed, run <code>enonic -v</code>. This should output the version of your installed CLI.</p>
+</div>
+<div class="paragraph">
+<p>To see all available options, simply run <code>enonic</code>.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -457,7 +490,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-<strong>Just looking for a demo?</strong> - <a href="https://enonic.com/sign-up" target="_blank" rel="noopener">Sign up for a free Enonic account</a>. Create a new solution based on the <code>Headless Demo</code> template to get a live demo for a similar setup as this tutorial.
+To upgrade, use <code>enonic latest</code>. If there are new versions you will see instructions on how to upgrade.
 </td>
 </tr>
 </table>
@@ -465,35 +498,209 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="introduction"><a class="link" href="#introduction">Introduction</a></h2>
+<h2 id="create_a_sandbox"><a class="link" href="#create_a_sandbox">Create a sandbox</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This guide will show you how to:</p>
+<p>A <a href="https://developer.enonic.com/docs/xp/stable/development/sandboxes" target="_blank" rel="noopener">sandbox</a> is a local development instance of the platform - Enonic XP. Create a sandbox called <code>mysandbox</code> by running this command in your terminal:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>enonic sandbox create mysandbox -t essentials -f</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>-f</code> flag will force using the most recent release of Enonic XP.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Start the sandbox with this command:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>enonic sandbox start mysandbox --dev</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Dev mode optimizes the development process.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/sandbox-start.gif" alt="Booting the sandbox in the terminal" width="1024px">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="create_an_app"><a class="link" href="#create_an_app">Create an app</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://developer.enonic.com/docs/xp/stable/apps" target="_blank" rel="noopener">Enonic apps</a> are used to ship everything from content models, to code and platform extensions.</p>
+</div>
+<div class="paragraph">
+<p><strong>Open a new terminal window</strong> and create your first Enonic app by running this command:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>enonic project create -r tutorial-intro -n com.example.myapp -d myapp -v 1.0.0 --sb mysandbox</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This command will:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>set up a local developer environment</p>
+<p>use the GitHub repo <code>github.com/enonic/tutorial-intro</code> as a starter</p>
 </li>
 <li>
-<p>create an Enonic app</p>
+<p>to create an app called <code>com.example.myapp</code></p>
 </li>
 <li>
-<p>use Content Studio</p>
+<p>in the directory <code>myapp</code> setting version number to <code>1.0.0</code></p>
 </li>
 <li>
-<p>customize the app by adding a new content type</p>
-</li>
-<li>
-<p>access and use the GraphQL API</p>
-</li>
-<li>
-<p>optionally - deploy your app to a live server in the Cloud</p>
+<p>and link it to <code>mysandbox</code> which you created earlier</p>
 </li>
 </ul>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+A pre-compiled standard version of this app is also available on <a href="https://market.enonic.com/vendors/enonic/intro" target="_blank" rel="noopener">Enonic Market</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="project_structure"><a class="link" href="#project_structure">Project structure</a></h3>
 <div class="paragraph">
-<p>Lets get going with <a href="sdk.ahtml">Step 1 - Setting up the development environment</a>.</p>
+<p>Inside the <code>myapp</code> directory you should now have a file structure looking something like this:</p>
+</div>
+<div class="listingblock">
+<div class="title">Selected files from the app code:</div>
+<div class="content">
+<pre class="highlight"><code class="language-files" data-lang="files">docs/ <i class="conum" data-value="1"></i><b>(1)</b>
+samples/ <i class="conum" data-value="2"></i><b>(2)</b>
+src/
+ main/
+  resources/
+   assets <i class="conum" data-value="3"></i><b>(3)</b>
+   controllers <i class="conum" data-value="4"></i><b>(4)</b>
+   i18n <i class="conum" data-value="5"></i><b>(5)</b>
+   import <i class="conum" data-value="6"></i><b>(6)</b>
+   site/
+    content-types/ <i class="conum" data-value="7"></i><b>(7)</b>
+    x-data/ <i class="conum" data-value="8"></i><b>(8)</b>
+gradle.properties <i class="conum" data-value="9"></i><b>(9)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The documentation you are reading now</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Code samples that will be used in this guide</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Client-side assets</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td><a href="https://developer.enonic.com/docs/xp/stable/framework/controllers" target="_blank" rel="noopener">Server-side controllers and templates</a></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td><a href="https://developer.enonic.com/docs/xp/stable/framework/i18n" target="_blank" rel="noopener">Localisation bundles</a></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Sample content</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td><a href="https://developer.enonic.com/docs/xp/stable/cms/content-types" target="_blank" rel="noopener">Content Type schemas</a></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td><a href="https://developer.enonic.com/docs/xp/stable/cms/x-data" target="_blank" rel="noopener">X-data schemas</a></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="9"></i><b>9</b></td>
+<td>App name and other settings</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="build_the_app"><a class="link" href="#build_the_app">Build the app</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Assuming <code>mysandbox</code> is still running in another Terminal window, run these commands:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>cd myapp
+enonic dev</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The last command will build and deploy the app to <code>mysandbox</code> - then keep watching for changes in the code to automatically rebuild as you work on it.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Look for the following output to verify that the app has been built:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>BUILD SUCCESSFUL in 6s
+3 actionable tasks: 3 executed
+Waiting for changes to input files...</pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="coming_up"><a class="link" href="#coming_up">Coming up</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You&#8217;re now familiar with the CLI, sandboxes, and even created and built your own app. In the next chapter you&#8217;ll get familiar with <a href="cms.ahtml">Content Studio and how to manage schemas</a>.</p>
 </div>
 </div>
 </div>
