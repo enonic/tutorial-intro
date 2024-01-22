@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
-<title>Content Studio and schemas</title>
+<title>Content Studio and content forms</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -436,16 +436,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
-<h1>Content Studio and schemas</h1>
+<h1>Content Studio and content forms</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#content_studio">Content Studio</a></li>
-<li><a href="#content_type_person">Content type: Person</a>
-<ul class="sectlevel2">
+<li><a href="#content_type_person">Content type: Person</a></li>
 <li><a href="#x_data_social_media">X-Data: Social media</a></li>
-</ul>
-</li>
 <li><a href="#adding_a_new_content_type">Adding a new content type</a></li>
 <li><a href="#next_up">Next up</a></li>
 </ul>
@@ -538,7 +535,7 @@ The current project is shown at the top of Content Studio.
 <pre class="highlight"><code class="language-JSON" data-lang="JSON">{
   "valid": true,
   "displayName": "Uma Thurman",
-  "type": "com.enonic.app.hmdb:person",
+  "type": "com.example.myapp:person",
   "owner": "user:system:su",
   "language": "en",
   "modifiedTime": "2018-07-03T05:58:55.025Z",
@@ -553,19 +550,15 @@ The current project is shown at the top of Content Studio.
     "photos": "8d47792f-0ae6-4d74-a6e4-bab0e8d2374b",
     "bio": "Uma Karuna Thurman was born in Boston, Massachusetts, into a highly unorthodox and Eurocentric family",
     "dateofbirth": "1970-04-29"
-  },
-  "x": {
-    "com-enonic-app-hmdb": {
-      "SoMe": {
-        "imdb": "https://www.imdb.com/name/nm0000235/"
-      }
-    }
   }
 }</code></pre>
 </div>
 </div>
-<div class="sect2">
-<h3 id="x_data_social_media"><a class="link" href="#x_data_social_media">X-Data: Social media</a></h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="x_data_social_media"><a class="link" href="#x_data_social_media">X-Data: Social media</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>When editing a Person, you&#8217;ll notice an additional subset of fields inside the Content form with title <code>Social Media</code>. This is strictly speaking a separate form, injected into the Person content type - we call it "eXtended data" (or just "x-data").</p>
 </div>
@@ -613,7 +606,25 @@ The current project is shown at the top of Content Studio.
 </div>
 </div>
 <div class="paragraph">
-<p>You can also see what the persisted version looks like in the JSON document above.</p>
+<p>You can also see what the persisted version looks like in the JSON.</p>
+</div>
+<div class="listingblock">
+<div class="title">Snippet of Uma Thurman including x-data.</div>
+<div class="content">
+<pre class="highlight"><code class="language-JSON" data-lang="JSON">{
+  "data": {
+    "photos": "8d47792f-0ae6-4d74-a6e4-bab0e8d2374b",
+    "bio": "Uma Karuna Thurman was born in Boston, Massachusetts, into a highly unorthodox and Eurocentric family",
+    "dateofbirth": "1970-04-29"
+  },
+  "x": {
+    "com-example-myapp": {
+      "SoMe": {
+        "imdb": "https://www.imdb.com/name/nm0000235/"
+      }
+    }
+  }
+}</code></pre>
 </div>
 </div>
 </div>
@@ -652,7 +663,7 @@ The current project is shown at the top of Content Studio.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-01-22 15:06:02 UTC
+Last updated 2024-01-22 15:19:58 UTC
 </div>
 </div>
 </body>
