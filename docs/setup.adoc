@@ -105,6 +105,28 @@ Look for the following output to verify that the app has been built:
     Waiting for changes to input files...
 ====
 
+== XP Admin
+
+Let's have a look at the Sandbox' web interface. Open http://localhost:8080[http://localhost:8080^] in your browser (or just click the link).
+
+You should now see the XP boot page:
+
+.XP Boot page
+image::xp-boot.png[The XP boot page, 1085w]
+
+The boot page provides an overview of the sandbox, including installed application, as well as the https://developer.enonic.com/docs/xp/stable/deployment/config[standard configuration files^].
+
+NOTE: `My App` should be in the list, together with other applications that were automatically installed when you created the sandbox.
+
+Click btn:[Log In as Guest] to open the XP admin dashboard. You should now see the following:
+
+.The XP admin dashboard
+image::xp-dashboard.png[The XP admin dashboard, 1727w]
+
+You are now on the admin dashboard. The right hand menu (aka `XP menu`) enables navigation between admin tools. Admin tools may be injected as extensions via applications.
+
+NOTE: If things don't look exactly the same, don't worry. In every new version of XP the background picture gets updated. Also, admin dashboard is automatically localized - based on your browsers preferred language.
+
 
 == Coming up
 
