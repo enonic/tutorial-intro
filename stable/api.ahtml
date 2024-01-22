@@ -758,14 +758,14 @@ The red "autofocus" circle, when set, helps the image service to crop the images
 <h2 id="final_step"><a class="link" href="#final_step">Final step</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Knowing how headless a CMS can get with an API calle Guillotine, and GraphQL queries flowing from your fingertips, it&#8217;s time for the big finale where you deploy your app to Enonic&#8217;s <a href="cloud.ahtml">Free hosting service</a>.</p>
+<p>Knowing how headless a CMS can get with an API calle Guillotine, and GraphQL queries flowing from your fingertips, it&#8217;s time for the big finale where you deploy your app to Enonic&#8217;s <a href="deploy.ahtml">Free hosting service</a>.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-01-22 15:19:58 UTC
+Last updated 2024-01-22 15:24:15 UTC
 </div>
 </div>
 </body>
