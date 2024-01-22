@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
-<title>Deploy your app to the cloud</title>
+<title>Setting up the development environment</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -436,13 +436,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
-<h1>Deploy your app to the cloud</h1>
+<h1>Setting up the development environment</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#api_endpoint">API endpoint</a></li>
-<li><a href="#deploying_to_production">Deploying to Production</a></li>
-<li><a href="#dive_deeper">Dive deeper</a></li>
+<li><a href="#install_cli">Install CLI</a></li>
+<li><a href="#create_a_sandbox">Create a sandbox</a></li>
+<li><a href="#create_an_app">Create an app</a>
+<ul class="sectlevel2">
+<li><a href="#project_structure">Project structure</a></li>
+</ul>
+</li>
+<li><a href="#build_the_app">Build the app</a></li>
+<li><a href="#coming_up">Coming up</a></li>
 </ul>
 </div>
 </div>
@@ -450,28 +456,32 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>It&#8217;s time for the final act - sign up for a free account and deploy your app on a live server.</p>
+<p>Installing the CLI and creating a development sandbox.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="api_endpoint"><a class="link" href="#api_endpoint">API endpoint</a></h2>
+<h2 id="install_cli"><a class="link" href="#install_cli">Install CLI</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>So far, you&#8217;ve been playing with the API via Content Studio. If you want to access the API endpoint directly, it&#8217;s available at respectively</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>http://localhost:8080/site/intro/draft (draft items)</p>
-</li>
-<li>
-<p>http://localhost:8080/site/intro/master (published items)</p>
-</li>
-</ul>
+<p>The <a href="https://developer.enonic.com/docs/enonic-cli" target="_blank" rel="noopener">Enonic Command Line Interface</a> is an essential tool for developers working with Enonic.</p>
 </div>
 <div class="paragraph">
-<p>The API will be served from a real domain when you go live. Also, important to notice - the GraphQL API is accessed via <code>HTTP POST</code> method, as such - visiting via a regular browser will give you a 404 error.</p>
+<p>If you have <code>npm</code> on your device, run this command:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>npm install -g @enonic/cli</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If not, here are some <a href="https://developer.enonic.com/start" target="_blank" rel="noopener">alternative ways to install Enonic CLI</a></p>
+</div>
+<div class="paragraph">
+<p>To verify that the CLI has been installed, run <code>enonic -v</code>. This should output the version of your installed CLI.</p>
+</div>
+<div class="paragraph">
+<p>To see all available options, simply run <code>enonic</code>.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -480,7 +490,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-The Chrome extension <a href="https://chrome.google.com/webstore/detail/altair-graphql-client/flnheeellpciglgpaodhkhmapeljopja" target="_blank" rel="noopener">Altair</a> lets you browse any GraphQL API, simply by pointing it to the API URL.
+To upgrade, use <code>enonic latest</code>. If there are new versions you will see instructions on how to upgrade.
 </td>
 </tr>
 </table>
@@ -488,123 +498,15 @@ The Chrome extension <a href="https://chrome.google.com/webstore/detail/altair-g
 </div>
 </div>
 <div class="sect1">
-<h2 id="deploying_to_production"><a class="link" href="#deploying_to_production">Deploying to Production</a></h2>
+<h2 id="create_a_sandbox"><a class="link" href="#create_a_sandbox">Create a sandbox</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To deploy your application to production, you&#8217;ll need Enonic XP running on a server. Here we&#8217;ll use Enonic&#8217;s free tier.</p>
+<p>A <a href="https://developer.enonic.com/docs/xp/stable/development/sandboxes" target="_blank" rel="noopener">sandbox</a> is a local development instance of the platform - Enonic XP. Create a sandbox called <code>mysandbox</code> by running this command in your terminal:</p>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>If you are looking for other hosting options, Enonic XP is open source, and <a href="https://developer.enonic.com/docs/hosting" target="_blank" rel="noopener">can be deployed pretty much anywhere</a>.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Start by <strong><a href="https://enonic.com/sign-up" target="_blank" rel="noopener">signing up</a></strong> for a forever-free account. You must complete the verification steps before you can move on.</p>
-</li>
-<li>
-<p>then <strong>Log in to the <a href="https://console.enonic.com" target="_blank" rel="noopener">Enonic Console</a></strong></p>
-</li>
-<li>
-<p>and <strong>create a new solution</strong> from the menu: <code>Solutions &#8594; Essentials &#8594; Create</code>. Complete the solution wizard steps using your preferences.</p>
-<div class="paragraph">
-<p>This will spin up an instance of Enonic XP, similar to your local sandbox but this time on a real server in the Cloud.</p>
-</div>
-</li>
-<li>
-<p>Once the solution has started, <strong>authenticate the CLI</strong> by running this command from your project folder:</p>
 <div class="literalblock">
 <div class="content">
-<pre>enonic cloud login</pre>
+<pre>enonic sandbox create mysandbox -t essentials -f</pre>
 </div>
-</div>
-</li>
-<li>
-<p>After successful authentication <strong>install your app</strong> using this command:</p>
-<div class="literalblock">
-<div class="content">
-<pre>enonic cloud app install</pre>
-</div>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-You must execute the command from your app folder.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Alternatively upload the app from the Console directly: <code>Solutions &#8594; &lt;Your solution&gt; &#8594; Applications &#8594; Install</code>.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The app file is located in your project folder i.e. <code>build/libs/myapp.jar</code>.</p>
-</div>
-</li>
-<li>
-<p><strong>Expose your API</strong> by creating an ingress in the Enonic Cloud console: <code>Solutions &#8594; &lt;Your solution&gt; &#8594; Ingresses &#8594; Create</code>.</p>
-<div class="paragraph">
-<p>Give it a suitable name i.e. <code>Intro API</code>, and use the following values:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Environment: keep the default/selected value</p>
-</li>
-<li>
-<p>Target: <code>/site/intro</code></p>
-</li>
-<li>
-<p>Domain: keep the default/selected value</p>
-</li>
-<li>
-<p>Path: <code>/api</code></p>
-</li>
-<li>
-<p>ID provider: leave empty</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Select the ingress</strong> to reveal the link to your API on the right.</p>
-</li>
-<li>
-<p><strong>Visit the URL</strong> to see the <code>Query Playground</code> API browser.</p>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The API browser can be disabled by changing the configuration of the <code>Guillotine app</code>.
-</td>
-</tr>
-</table>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -613,41 +515,199 @@ The API browser can be disabled by changing the configuration of the <code>Guill
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<div class="title">To access the GraphQL endpoint for your published content, append <code>/master</code> to the API URL.</div>
-Remember, the GraphQL API only accepts <code>POST</code> requests, so the browser will only show a 404 at this point.
+<code>-f</code> flag will force using the most recent release of Enonic XP.
 </td>
 </tr>
 </table>
 </div>
-</li>
-</ol>
+<div class="paragraph">
+<p>Start the sandbox with this command:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>enonic sandbox start mysandbox --dev</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Dev mode optimizes the development process.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/sandbox-start.gif" alt="Booting the sandbox in the terminal" width="1024px">
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="dive_deeper"><a class="link" href="#dive_deeper">Dive deeper</a></h2>
+<h2 id="create_an_app"><a class="link" href="#create_an_app">Create an app</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>🎉 Awesome! You made it to the end.</p>
+<p><a href="https://developer.enonic.com/docs/xp/stable/apps" target="_blank" rel="noopener">Enonic apps</a> are used to ship everything from content models, to code and platform extensions.</p>
 </div>
 <div class="paragraph">
-<p>In the process, you created an Enonic XP sandbox, built and customized your own app, ran GraphQL queries, got to know the Enonic CLI and our SaaS service.</p>
+<p><strong>Open a new terminal window</strong> and create your first Enonic app by running this command:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>enonic project create -r tutorial-intro -n com.example.myapp -d myapp -v 1.0.0 --sb mysandbox</pre>
+</div>
 </div>
 <div class="paragraph">
-<p>As you may already imagine, the Platform is capable of so much more. Did you for instance know that Enonic has a <a href="https://developer.enonic.com/docs/xp/stable/framework" target="_blank" rel="noopener">JavaScript framework</a>, complete with <a href="https://www.npmjs.com/org/enonic-types" target="_blank" rel="noopener">TypeScript definitions</a> the entire platform API? You may use it in your apps to extend and customize the Platform as you like.</p>
+<p>This command will:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>use the GitHub repo <code>github.com/enonic/tutorial-intro</code> as a starter</p>
+</li>
+<li>
+<p>to create an app called <code>com.example.myapp</code></p>
+</li>
+<li>
+<p>in the directory <code>myapp</code> setting version number to <code>1.0.0</code></p>
+</li>
+<li>
+<p>and link it to <code>mysandbox</code> which you created earlier</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+A pre-compiled standard version of this app is also available on <a href="https://market.enonic.com/vendors/enonic/intro" target="_blank" rel="noopener">Enonic Market</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="project_structure"><a class="link" href="#project_structure">Project structure</a></h3>
+<div class="paragraph">
+<p>Inside the <code>myapp</code> directory you should now have a file structure looking something like this:</p>
+</div>
+<div class="listingblock">
+<div class="title">Selected files from the app code:</div>
+<div class="content">
+<pre class="highlight"><code class="language-files" data-lang="files">docs/ <i class="conum" data-value="1"></i><b>(1)</b>
+samples/ <i class="conum" data-value="2"></i><b>(2)</b>
+src/
+ main/
+  resources/
+   assets <i class="conum" data-value="3"></i><b>(3)</b>
+   controllers <i class="conum" data-value="4"></i><b>(4)</b>
+   i18n <i class="conum" data-value="5"></i><b>(5)</b>
+   import <i class="conum" data-value="6"></i><b>(6)</b>
+   site/
+    content-types/ <i class="conum" data-value="7"></i><b>(7)</b>
+    x-data/ <i class="conum" data-value="8"></i><b>(8)</b>
+gradle.properties <i class="conum" data-value="9"></i><b>(9)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The documentation you are reading now</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Code samples that will be used in this guide</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Client-side assets</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td><a href="https://developer.enonic.com/docs/xp/stable/framework/controllers" target="_blank" rel="noopener">Server-side controllers and templates</a></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td><a href="https://developer.enonic.com/docs/xp/stable/framework/i18n" target="_blank" rel="noopener">Localisation bundles</a></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Sample content</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td><a href="https://developer.enonic.com/docs/xp/stable/cms/content-types" target="_blank" rel="noopener">Content Type schemas</a></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td><a href="https://developer.enonic.com/docs/xp/stable/cms/x-data" target="_blank" rel="noopener">X-data schemas</a></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="9"></i><b>9</b></td>
+<td>App name and other settings</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="build_the_app"><a class="link" href="#build_the_app">Build the app</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Assuming <code>mysandbox</code> is still running in another Terminal window, run these commands:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>cd myapp
+enonic dev</pre>
+</div>
 </div>
 <div class="paragraph">
-<p>To continue the journey, we recommend visiting the <a href="https://developer.enonic.com/docs/tutorials">Enonic tutorials</a> section of the Developer Portal.</p>
+<p>The last command will build and deploy the app to <code>mysandbox</code> - then keep watching for changes in the code to automatically rebuild as you work on it.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>Bon voyage!</p>
+<p>Look for the following output to verify that the app has been built:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>BUILD SUCCESSFUL in 6s
+3 actionable tasks: 3 executed
+Waiting for changes to input files...</pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="coming_up"><a class="link" href="#coming_up">Coming up</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You&#8217;re now familiar with the CLI, sandboxes, and even created and built your own app. In the next chapter you&#8217;ll get familiar with <a href="cms.ahtml">Content Studio and how to manage schemas</a>.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-01-22 14:36:42 UTC
+Last updated 2024-01-22 14:41:35 UTC
 </div>
 </div>
 </body>
