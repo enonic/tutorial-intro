@@ -440,7 +440,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#xp_admin">XP Admin</a></li>
 <li><a href="#content_studio">Content Studio</a></li>
 <li><a href="#content_type_person">Content type: Person</a>
 <ul class="sectlevel2">
@@ -457,62 +456,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sectionbody">
 <div class="paragraph">
 <p>Introduction to the XP admin, Content Studio, content types and x-data.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="xp_admin"><a class="link" href="#xp_admin">XP Admin</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Let&#8217;s have a look at the Sandbox' web interface. Open <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a> in your browser (or just click the link).</p>
-</div>
-<div class="paragraph">
-<p>You should now see the XP boot page:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="media/xp-boot.png" alt="The XP boot page" width="1085w">
-</div>
-<div class="title">Figure 1. XP Boot page</div>
-</div>
-<div class="paragraph">
-<p>The boot page provides an overview of the sandbox, including installed application, as well as the <a href="https://developer.enonic.com/docs/xp/stable/deployment/config" target="_blank" rel="noopener">standard configuration files</a>.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>My App</code> should be in the list, together with other applications that were automatically installed when you created the sandbox.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Click <b class="button">Log In as Guest</b> to open the XP admin dashboard. You should now see the following:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="media/xp-dashboard.png" alt="The XP admin dashboard" width="1727w">
-</div>
-<div class="title">Figure 2. The XP admin dashboard</div>
-</div>
-<div class="paragraph">
-<p>You are now on the admin dashboard. The right hand menu (aka <code>XP menu</code>) enables navigation between admin tools. Admin tools may be injected as extensions via applications.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If things don&#8217;t look exactly the same, don&#8217;t worry. In every new version of XP the background picture gets updated. Also, admin dashboard is automatically localized - based on your browsers preferred language.
-</td>
-</tr>
-</table>
 </div>
 </div>
 </div>
@@ -709,7 +652,7 @@ The current project is shown at the top of Content Studio.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-01-22 14:45:16 UTC
+Last updated 2024-01-22 15:06:02 UTC
 </div>
 </div>
 </body>
