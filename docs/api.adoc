@@ -238,4 +238,4 @@ NOTE: The red "autofocus" circle, when set, helps the image service to crop the 
 
 == One final step
 
-Knowing how headless a CMS can get with an API calle Guillotine, and GraphQL queries flowing from your fingertips. It's time for the big finale where you <<deploy# deploy your app to Enonic's free hosting service>>.
+Knowing how headless a CMS can get with an API calle Guillotine, and GraphQL queries flowing from your fingertips. It's time for the big finale where you <<deploy# deploy your app to the Enonic cloud>>.
