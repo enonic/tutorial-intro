@@ -34,7 +34,7 @@ If you are looking for other hosting options, Enonic XP is open source, and http
 . and *create a new solution* from the menu: `Solutions -> Essentials -> Create`. Complete the solution wizard steps using your preferences.
 +
 This will spin up an instance of Enonic XP, similar to your local sandbox but this time on a real server in the Cloud.
-+
+
 
 === 2. Upload your app
 
