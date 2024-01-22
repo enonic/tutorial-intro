@@ -1,0 +1,550 @@
+= Content Studio and schemas
+:toc: right
+:experimental:
+:imagesdir: media/
+:sourcedir: ../
+
+Introduction to the XP admin, Content Studio, content types and x-data.
+
+
+== XP Admin
+
+Let's have a look at the Sandbox' web interface. Open http://localhost:8080[http://localhost:8080^] in your browser (or just click the link).
+
+You should now see the XP boot page:
+
+.XP Boot page
+image::xp-boot.png[The XP boot page, 1085w]
+
+The boot page provides an overview of the sandbox, including installed application, as well as the https://developer.enonic.com/docs/xp/stable/deployment/config[standard configuration files^].
+
+NOTE: `My App` should be in the list, together with other applications that were automatically installed when you created the sandbox.
+
+Click btn:[Log In as Guest] to open the XP admin dashboard. You should now see the following:
+
+.The XP admin dashboard
+image::xp-dashboard.png[The XP admin dashboard, 1727w]
+
+You are now on the admin dashboard. The right hand menu (aka `XP menu`) enables navigation between admin tools. Admin tools may be injected as extensions via applications.
+
+NOTE: If things don't look exactly the same, don't worry. In every new version of XP the background picture gets updated. Also, admin dashboard is automatically localized - based on your browsers preferred language.
+
+== Content Studio
+
+https://market.enonic.com/vendors/enonic/content-studio[Content Studio^] is the editorial interface used to create and manage content. It was pre-installed from https://market.enonic.com[Enonic Market^] as a part of the `Essentials` template when you started the sandbox, and can now be accessed from the XP menu.
+
+*Click btn:[Content Studio]* in the XP menu to launch it.
+
+When your application was installed, it automatically created a content project called `Intro Project` and populated it with content.Since this is the only available project at the moment, Content Studio will automatically open it, revealing the list of sample content.
+
+TIP: The current project is shown at the top of Content Studio.
+
+image::content-studio-in-action.gif["Content Studio with Sample content", width="1024px"]
+
+
+== Content type: Person
+
+To edit an item, simply select it and click `Edit` in the menu bar, or by using right click. When editing a Person content item, this is what the form looks like in Content Studio. On bigger screens you will also get a preview on the right-hand side.
+
+image::person.png["Person Form", width="1024px"]
+
+The form comes from the content type definition, which is located inside the app. Here is what it looks like:
+
+./src/main/resources/site/content-type/person/person.xml
+[source,XML]
+----
+include::{sourcedir}/src/main/resources/site/content-types/person/person.xml[]
+----
+
+When used to create content, it is stored like this:
+
+.Persisted content for Uma Thurman
+[source,JSON]
+----
+{
+  "valid": true,
+  "displayName": "Uma Thurman",
+  "type": "com.enonic.app.hmdb:person",
+  "owner": "user:system:su",
+  "language": "en",
+  "modifiedTime": "2018-07-03T05:58:55.025Z",
+  "modifier": "user:system:su",
+  "creator": "user:system:su",
+  "createdTime": "2018-07-03T05:57:35.292Z",
+  "publish": {
+    "first": "2024-01-18T12:08:23.167Z",
+    "from": "2024-01-18T12:08:23.167Z"
+  },
+  "data": {
+    "photos": "8d47792f-0ae6-4d74-a6e4-bab0e8d2374b",
+    "bio": "Uma Karuna Thurman was born in Boston, Massachusetts, into a highly unorthodox and Eurocentric family",
+    "dateofbirth": "1970-04-29"
+  },
+  "x": {
+    "com-enonic-app-hmdb": {
+      "SoMe": {
+        "imdb": "https://www.imdb.com/name/nm0000235/"
+      }
+    }
+  }
+}
+----
+
+=== X-Data: Social media
+
+When editing a Person, you'll notice an additional subset of fields inside the Content form with title `Social Media`. This is strictly speaking a separate form, injected into the Person content type - we call it "eXtended data" (or just "x-data").
+
+image::some.gif["Social Media x-data form", width="1024px"]
+
+X-data can be applied across multiple content types. In this app for instance, the `Social Media` form is also available on the `Movie` content type. More interestingly, X-data can even be injected from a different application - at runtime.
+
+This is what the definition looks like:
+
+./src/main/resources/site/x-data/some/some.xml
+[source,XML]
+----
+include::{sourcedir}/src/main/resources/site/x-data/SoMe/SoMe.xml[]
+----
+
+You can also see what the persisted version looks like in the JSON document above.
+
+== Adding a new content type
+
+Let's do a practical exercise by adding a new content type called `Review` to your app. This will allow you to create reviews of movies.
+
+. From inside the `samples/` folder of your app, *copy or move* the `review/` folder to `src/main/resources/site/content-types/`.
+. *Write a review*. Content Studio should pick up the changes immediately. From the Content navigation view click btn:[New], then select content type `Review` and start filling out the form fields in the new content item.
++
+image::review.png["Sample Review", width="1024px"]
+
+
+
+
+
+== Graphql API
+
+The Headless API aka https://market.enonic.com/vendors/enonic/guillotine[Guillotine^] - yes, we take headlessness seriously around here - provides access to all the content within your project. Clients requesting content will naturally only get access to the content they have read-permissions for. The `Intro project` is configured with public read access for everything.
+
+Click the GraphQL icon in the Content Studio's left hand menu to open `Query Playground`. Here you may test and play with the GraphQL API directly.
+
+image::query-playground.png["Query Playground in action", width="1024px"]
+
+The API documentation is available from the Top left `file cabinet icon`. Use the tabs on the top right to query against the Draft or Master branch, accessing the draft and published items respectively.
+
+Want to know more about GraphQL in general? Visit the https://graphql.org[official GraphQL documentation^].
+
+== Sample queries
+
+Below are some example queries you can use for fetching the sample content.
+
+=== Get Persons
+
+.Get display name and _path of the first 3 items in the `/persons` folder:
+[source,GraphQL]
+----
+{
+ guillotine {
+  getChildren(key:"/persons" first:3){
+    displayName
+    _path
+    }
+  }
+}
+----
+
+.Sample response:
+[source,JSON]
+----
+{
+  "data": {
+    "guillotine": {
+      "getChildren": [
+        {
+          "displayName": "Léa Seydoux",
+          "_path": "/persons/lea-seydoux"
+        },
+        {
+          "displayName": "Jeffrey Wright",
+          "_path": "/persons/jeffrey-wright"
+        },
+        {
+          "displayName": "Daniel Craig",
+          "_path": "/persons/daniel-craig"
+        }
+      ]
+    }
+  }
+}
+----
+
+=== Query variables
+
+GraphQL also supports the concept of query variables. Similar to parameters in functions, you may pass variables to a query.
+
+Query variables are defined with JSON. You can add them using the `Variables` button below the query editor.
+
+[source,JSON]
+----
+{
+  "path": "/persons"
+}
+----
+
+With the variable set, update your query to use the variable. This query should provide the exact same response as it did before.
+
+.The Person query, this time using path as a variable:
+[source,GraphQL]
+----
+query($path:ID!){
+ guillotine {
+  getChildren(key:$path first:3){
+    displayName
+    _path
+    }
+  }
+}
+----
+
+
+== Graphql API
+
+The Headless API aka https://market.enonic.com/vendors/enonic/guillotine[Guillotine^] - yes, we take headlessness seriously around here - provides access to all the content within your project. Clients requesting content will naturally only get access to the content they have read-permissions for. The `Intro project` is configured with public read access for everything.
+
+Click the GraphQL icon in the Content Studio's left hand menu to open `Query Playground`. Here you may test and play with the GraphQL API directly.
+
+image::query-playground.png["Query Playground in action", width="1024px"]
+
+The API documentation is available from the Top left `file cabinet icon`. Use the tabs on the top right to query against the Draft or Master branch, accessing the draft and published items respectively.
+
+Want to know more about GraphQL in general? Visit the https://graphql.org[official GraphQL documentation^].
+
+== Sample queries
+
+Below are some example queries you can use for fetching the sample content.
+
+=== Get Persons
+
+.Get display name and _path of the first 3 items in the `/persons` folder:
+[source,GraphQL]
+----
+{
+ guillotine {
+  getChildren(key:"/persons" first:3){
+    displayName
+    _path
+    }
+  }
+}
+----
+
+.Sample response:
+[source,JSON]
+----
+{
+  "data": {
+    "guillotine": {
+      "getChildren": [
+        {
+          "displayName": "Léa Seydoux",
+          "_path": "/persons/lea-seydoux"
+        },
+        {
+          "displayName": "Jeffrey Wright",
+          "_path": "/persons/jeffrey-wright"
+        },
+        {
+          "displayName": "Daniel Craig",
+          "_path": "/persons/daniel-craig"
+        }
+      ]
+    }
+  }
+}
+----
+
+=== Query variables
+
+GraphQL also supports the concept of query variables. Similar to parameters in functions, you may pass variables to a query.
+
+Query variables are defined with JSON. You can add them using the `Variables` button below the query editor.
+
+[source,JSON]
+----
+{
+  "path": "/persons"
+}
+----
+
+With the variable set, update your query to use the variable. This query should provide the exact same response as it did before.
+
+.The Person query, this time using path as a variable:
+[source,GraphQL]
+----
+query($path:ID!){
+ guillotine {
+  getChildren(key:$path first:3){
+    displayName
+    _path
+    }
+  }
+}
+----
+
+
+== Graphql API
+
+The Headless API aka https://market.enonic.com/vendors/enonic/guillotine[Guillotine^] - yes, we take headlessness seriously around here - provides access to all the content within your project. Clients requesting content will naturally only get access to the content they have read-permissions for. The `Intro project` is configured with public read access for everything.
+
+Click the GraphQL icon in the Content Studio's left hand menu to open `Query Playground`. Here you may test and play with the GraphQL API directly.
+
+image::query-playground.png["Query Playground in action", width="1024px"]
+
+The API documentation is available from the Top left `file cabinet icon`. Use the tabs on the top right to query against the Draft or Master branch, accessing the draft and published items respectively.
+
+Want to know more about GraphQL in general? Visit the https://graphql.org[official GraphQL documentation^].
+
+== Sample queries
+
+Below are some example queries you can use for fetching the sample content.
+
+=== Get Persons
+
+.Get display name and _path of the first 3 items in the `/persons` folder:
+[source,GraphQL]
+----
+{
+ guillotine {
+  getChildren(key:"/persons" first:3){
+    displayName
+    _path
+    }
+  }
+}
+----
+
+.Sample response:
+[source,JSON]
+----
+{
+  "data": {
+    "guillotine": {
+      "getChildren": [
+        {
+          "displayName": "Léa Seydoux",
+          "_path": "/persons/lea-seydoux"
+        },
+        {
+          "displayName": "Jeffrey Wright",
+          "_path": "/persons/jeffrey-wright"
+        },
+        {
+          "displayName": "Daniel Craig",
+          "_path": "/persons/daniel-craig"
+        }
+      ]
+    }
+  }
+}
+----
+
+=== Query variables
+
+GraphQL also supports the concept of query variables. Similar to parameters in functions, you may pass variables to a query.
+
+Query variables are defined with JSON. You can add them using the `Variables` button below the query editor.
+
+[source,JSON]
+----
+{
+  "path": "/persons"
+}
+----
+
+With the variable set, update your query to use the variable. This query should provide the exact same response as it did before.
+
+.The Person query, this time using path as a variable:
+[source,GraphQL]
+----
+query($path:ID!){
+ guillotine {
+  getChildren(key:$path first:3){
+    displayName
+    _path
+    }
+  }
+}
+----
+
+
+== Graphql API
+
+The Headless API aka https://market.enonic.com/vendors/enonic/guillotine[Guillotine^] - yes, we take headlessness seriously around here - provides access to all the content within your project. Clients requesting content will naturally only get access to the content they have read-permissions for. The `Intro project` is configured with public read access for everything.
+
+Click the GraphQL icon in the Content Studio's left hand menu to open `Query Playground`. Here you may test and play with the GraphQL API directly.
+
+image::query-playground.png["Query Playground in action", width="1024px"]
+
+The API documentation is available from the Top left `file cabinet icon`. Use the tabs on the top right to query against the Draft or Master branch, accessing the draft and published items respectively.
+
+Want to know more about GraphQL in general? Visit the https://graphql.org[official GraphQL documentation^].
+
+== Sample queries
+
+Below are some example queries you can use for fetching the sample content.
+
+=== Get Persons
+
+.Get display name and _path of the first 3 items in the `/persons` folder:
+[source,GraphQL]
+----
+{
+ guillotine {
+  getChildren(key:"/persons" first:3){
+    displayName
+    _path
+    }
+  }
+}
+----
+
+.Sample response:
+[source,JSON]
+----
+{
+  "data": {
+    "guillotine": {
+      "getChildren": [
+        {
+          "displayName": "Léa Seydoux",
+          "_path": "/persons/lea-seydoux"
+        },
+        {
+          "displayName": "Jeffrey Wright",
+          "_path": "/persons/jeffrey-wright"
+        },
+        {
+          "displayName": "Daniel Craig",
+          "_path": "/persons/daniel-craig"
+        }
+      ]
+    }
+  }
+}
+----
+
+=== Query variables
+
+GraphQL also supports the concept of query variables. Similar to parameters in functions, you may pass variables to a query.
+
+Query variables are defined with JSON. You can add them using the `Variables` button below the query editor.
+
+[source,JSON]
+----
+{
+  "path": "/persons"
+}
+----
+
+With the variable set, update your query to use the variable. This query should provide the exact same response as it did before.
+
+.The Person query, this time using path as a variable:
+[source,GraphQL]
+----
+query($path:ID!){
+ guillotine {
+  getChildren(key:$path first:3){
+    displayName
+    _path
+    }
+  }
+}
+----
+
+
+== Graphql API
+
+The Headless API aka https://market.enonic.com/vendors/enonic/guillotine[Guillotine^] - yes, we take headlessness seriously around here - provides access to all the content within your project. Clients requesting content will naturally only get access to the content they have read-permissions for. The `Intro project` is configured with public read access for everything.
+
+Click the GraphQL icon in the Content Studio's left hand menu to open `Query Playground`. Here you may test and play with the GraphQL API directly.
+
+image::query-playground.png["Query Playground in action", width="1024px"]
+
+The API documentation is available from the Top left `file cabinet icon`. Use the tabs on the top right to query against the Draft or Master branch, accessing the draft and published items respectively.
+
+Want to know more about GraphQL in general? Visit the https://graphql.org[official GraphQL documentation^].
+
+== Sample queries
+
+Below are some example queries you can use for fetching the sample content.
+
+=== Get Persons
+
+.Get display name and _path of the first 3 items in the `/persons` folder:
+[source,GraphQL]
+----
+{
+ guillotine {
+  getChildren(key:"/persons" first:3){
+    displayName
+    _path
+    }
+  }
+}
+----
+
+.Sample response:
+[source,JSON]
+----
+{
+  "data": {
+    "guillotine": {
+      "getChildren": [
+        {
+          "displayName": "Léa Seydoux",
+          "_path": "/persons/lea-seydoux"
+        },
+        {
+          "displayName": "Jeffrey Wright",
+          "_path": "/persons/jeffrey-wright"
+        },
+        {
+          "displayName": "Daniel Craig",
+          "_path": "/persons/daniel-craig"
+        }
+      ]
+    }
+  }
+}
+----
+
+=== Query variables
+
+GraphQL also supports the concept of query variables. Similar to parameters in functions, you may pass variables to a query.
+
+Query variables are defined with JSON. You can add them using the `Variables` button below the query editor.
+
+[source,JSON]
+----
+{
+  "path": "/persons"
+}
+----
+
+With the variable set, update your query to use the variable. This query should provide the exact same response as it did before.
+
+.The Person query, this time using path as a variable:
+[source,GraphQL]
+----
+query($path:ID!){
+ guillotine {
+  getChildren(key:$path first:3){
+    displayName
+    _path
+    }
+  }
+}
+----
+
+== Next up
+
+You're now familiar with the XP Admin, Content Studio, Content type, and x-data schemas. In the following chapter you'll get to play with <<api#, Query Playground and the Headless Content API aka Guillotine>>.

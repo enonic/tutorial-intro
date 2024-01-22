@@ -1,0 +1,83 @@
+= Deploy your app to the cloud
+:toc: right
+:experimental:
+:imagesdir: media/
+:sourcedir: ../
+
+It's time for the final act - sign up for a free account and deploy your app on a live server.
+
+
+== API endpoint
+
+So far, you've been playing with the API via Content Studio. If you want to access the API endpoint directly, it's available at respectively
+
+* \http://localhost:8080/site/intro/draft (draft items)
+* \http://localhost:8080/site/intro/master (published items)
+
+The API will be served from a real domain when you go live. Also, important to notice - the GraphQL API is accessed via `HTTP POST` method, as such - visiting via a regular browser will give you a 404 error.
+
+TIP: The Chrome extension https://chrome.google.com/webstore/detail/altair-graphql-client/flnheeellpciglgpaodhkhmapeljopja[Altair^] lets you browse any GraphQL API, simply by pointing it to the API URL.
+
+== Deploying to Production
+
+To deploy your application to production, you'll need Enonic XP running on a server. Here we'll use Enonic's free tier.
+
+[TIP]
+====
+If you are looking for other hosting options, Enonic XP is open source, and https://developer.enonic.com/docs/hosting[can be deployed pretty much anywhere^].
+====
+
+. Start by *https://enonic.com/sign-up[signing up^]* for a forever-free account. You must complete the verification steps before you can move on.
+. then *Log in to the https://console.enonic.com[Enonic Console^]*
+. and *create a new solution* from the menu: `Solutions -> Essentials -> Create`. Complete the solution wizard steps using your preferences.
++
+This will spin up an instance of Enonic XP, similar to your local sandbox but this time on a real server in the Cloud.
++
+. Once the solution has started, *authenticate the CLI* by running this command from your project folder:
++
+  enonic cloud login
++
+. After successful authentication *install your app* using this command:
++
+  enonic cloud app install
++
+IMPORTANT: You must execute the command from your app folder.
++
+TIP: Alternatively upload the app from the Console directly: `Solutions -> <Your solution> -> Applications -> Install`.
++
+The app file is located in your project folder i.e. `build/libs/myapp.jar`.
++
+. *Expose your API* by creating an ingress in the Enonic Cloud console: `Solutions -> <Your solution> -> Ingresses -> Create`.
++
+Give it a suitable name i.e. `Intro API`, and use the following values:
++
+* Environment: keep the default/selected value
+* Target: `/site/intro`
+* Domain: keep the default/selected value
+* Path: `/api`
+* ID provider: leave empty
++
+. *Select the ingress* to reveal the link to your API on the right.
+. *Visit the URL* to see the `Query Playground` API browser.
++
+NOTE: The API browser can be disabled by changing the configuration of the `Guillotine app`.
++
+.To access the GraphQL endpoint for your published content, append `/master` to the API URL.
++
+NOTE: Remember, the GraphQL API only accepts `POST` requests, so the browser will only show a 404 at this point.
+
+
+== Dive deeper
+
+🎉 Awesome! You made it to the end.
+
+In the process, you created an Enonic XP sandbox, built and customized your own app, ran GraphQL queries, got to know the Enonic CLI and our SaaS service.
+
+As you may already imagine, the Platform is capable of so much more. Did you for instance know that Enonic has a https://developer.enonic.com/docs/xp/stable/framework[JavaScript framework^], complete with https://www.npmjs.com/org/enonic-types[TypeScript definitions^] the entire platform API? You may use it in your apps to extend and customize the Platform as you like.
+
+To continue the journey, we recommend visiting the https://developer.enonic.com/docs/tutorials[Enonic tutorials] section of the Developer Portal.
+
+Bon voyage!
+
+
+

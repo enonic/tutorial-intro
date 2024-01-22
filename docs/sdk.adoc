@@ -1,0 +1,111 @@
+= Setting up the development environment
+:toc: right
+:experimental:
+:imagesdir: media/
+:sourcedir: ../
+
+Installing the CLI and creating a development sandbox.
+
+== Install CLI
+
+The https://developer.enonic.com/docs/enonic-cli[Enonic Command Line Interface^] is an essential tool for developers working with Enonic.
+
+If you have `npm` on your device, run this command:
+
+  npm install -g @enonic/cli
+
+If not, here are some https://developer.enonic.com/start[alternative ways to install Enonic CLI^]
+
+To verify that the CLI has been installed, run `enonic -v`. This should output the version of your installed CLI.
+
+To see all available options, simply run `enonic`.
+
+TIP: To upgrade, use `enonic latest`. If there are new versions you will see instructions on how to upgrade.
+
+== Create a sandbox
+
+A https://developer.enonic.com/docs/xp/stable/development/sandboxes[sandbox^] is a local development instance of the platform - Enonic XP. Create a sandbox called `mysandbox` by running this command in your terminal:
+
+  enonic sandbox create mysandbox -t essentials -f
+
+NOTE: `-f` flag will force using the most recent release of Enonic XP.
+
+Start the sandbox with this command:
+
+  enonic sandbox start mysandbox --dev
+
+NOTE: Dev mode optimizes the development process.
+
+image::sandbox-start.gif["Booting the sandbox in the terminal", width="1024px"]
+
+== Create an app
+
+https://developer.enonic.com/docs/xp/stable/apps[Enonic apps^] are used to ship everything from content models, to code and platform extensions.
+
+*Open a new terminal window* and create your first Enonic app by running this command:
+
+  enonic project create -r tutorial-intro -n com.example.myapp -d myapp -v 1.0.0 --sb mysandbox
+
+This command will:
+
+* use the GitHub repo `github.com/enonic/tutorial-intro` as a starter
+* to create an app called `com.example.myapp`
+* in the directory `myapp` setting version number to `1.0.0`
+* and link it to `mysandbox` which you created earlier
+
+TIP: A pre-compiled standard version of this app is also available on https://market.enonic.com/vendors/enonic/intro[Enonic Market^].
+
+=== Project structure
+
+Inside the `myapp` directory you should now have a file structure looking something like this:
+
+.Selected files from the app code:
+[source,files]
+----
+docs/ <1>
+samples/ <2>
+src/
+ main/
+  resources/
+   assets <3>
+   controllers <4>
+   i18n <5>
+   import <6>
+   site/
+    content-types/ <7>
+    x-data/ <8>
+gradle.properties <9>
+----
+
+<1> The documentation you are reading now
+<2> Code samples that will be used in this guide
+<3> Client-side assets
+<4> https://developer.enonic.com/docs/xp/stable/framework/controllers[Server-side controllers and templates^]
+<5> https://developer.enonic.com/docs/xp/stable/framework/i18n[Localisation bundles^]
+<6> Sample content
+<7> https://developer.enonic.com/docs/xp/stable/cms/content-types[Content Type schemas^]
+<8> https://developer.enonic.com/docs/xp/stable/cms/x-data[X-data schemas^]
+<9> App name and other settings
+
+== Build the app
+
+Assuming `mysandbox` is still running in another Terminal window, run these commands:
+
+  cd myapp
+  enonic dev
+
+The last command will build and deploy the app to `mysandbox` - then keep watching for changes in the code to automatically rebuild as you work on it.
+
+[NOTE]
+====
+Look for the following output to verify that the app has been built:
+
+    BUILD SUCCESSFUL in 6s
+    3 actionable tasks: 3 executed
+    Waiting for changes to input files...
+====
+
+
+== Coming up
+
+You're now familiar with the CLI, sandboxes, and even created and built your own app. In the next chapter you'll get familiar with <<cms#, Content Studio and how to manage schemas>>.
