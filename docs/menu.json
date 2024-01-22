@@ -1,11 +1,11 @@
 {
     "menuItems": [
       {
-        "title": "1 - SDK Setup",
+        "title": "1 - Developer setup",
         "document": "setup"
       },
       {
-        "title": "2 - Content Management",
+        "title": "2 - Content basics",
         "document": "cms"
       },
       {
@@ -13,8 +13,8 @@
         "document": "api"
       },
       {
-        "title": "4 - Deploy to cloud",
-        "document": "cloud"
+        "title": "4 - Go live",
+        "document": "deploy"
       }
     ]
 }

@@ -20,4 +20,4 @@ This guide will show you how to:
 * optionally - deploy your app to a live server in the Cloud
 
 
-Lets get going with <<sdk#, Step 1 - Setting up the development environment>>.
+Lets get going with <<setup#, Step 1 - Setting up the development environment>>.
