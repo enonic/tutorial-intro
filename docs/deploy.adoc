@@ -18,9 +18,11 @@ The API will be served from a real domain when you go live. Also, important to n
 
 TIP: The Chrome extension https://chrome.google.com/webstore/detail/altair-graphql-client/flnheeellpciglgpaodhkhmapeljopja[Altair^] lets you browse any GraphQL API, simply by pointing it to the API URL.
 
-== Deploying to Production
+== Deploy to server
 
-To deploy your application to production, you'll need Enonic XP running on a server. Here we'll use Enonic's free tier.
+To deploy your application to production, you'll need Enonic XP running on a server. Here we'll use Enonic's free tier, follow these steps:
+
+=== 1. Sign up
 
 [TIP]
 ====
@@ -33,6 +35,9 @@ If you are looking for other hosting options, Enonic XP is open source, and http
 +
 This will spin up an instance of Enonic XP, similar to your local sandbox but this time on a real server in the Cloud.
 +
+
+=== 2. Upload your app
+
 . Once the solution has started, *authenticate the CLI* by running this command from your project folder:
 +
   enonic cloud login
@@ -46,8 +51,11 @@ IMPORTANT: You must execute the command from your app folder.
 TIP: Alternatively upload the app from the Console directly: `Solutions -> <Your solution> -> Applications -> Install`.
 +
 The app file is located in your project folder i.e. `build/libs/myapp.jar`.
-+
-. *Expose your API* by creating an ingress in the Enonic Cloud console: `Solutions -> <Your solution> -> Ingresses -> Create`.
+
+
+=== 3. Explose the API
+
+. Expose your API by *creating an ingress* in the Enonic Cloud console: `Solutions -> <Your solution> -> Ingresses -> Create`.
 +
 Give it a suitable name i.e. `Intro API`, and use the following values:
 +
