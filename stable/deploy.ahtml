@@ -441,7 +441,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#api_endpoint">API endpoint</a></li>
-<li><a href="#deploying_to_production">Deploying to Production</a></li>
+<li><a href="#deploy_to_server">Deploy to server</a>
+<ul class="sectlevel2">
+<li><a href="#1_sign_up">1. Sign up</a></li>
+<li><a href="#3_explose_the_api">3. Explose the API</a></li>
+</ul>
+</li>
 <li><a href="#dive_deeper">Dive deeper</a></li>
 </ul>
 </div>
@@ -488,11 +493,13 @@ The Chrome extension <a href="https://chrome.google.com/webstore/detail/altair-g
 </div>
 </div>
 <div class="sect1">
-<h2 id="deploying_to_production"><a class="link" href="#deploying_to_production">Deploying to Production</a></h2>
+<h2 id="deploy_to_server"><a class="link" href="#deploy_to_server">Deploy to server</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To deploy your application to production, you&#8217;ll need Enonic XP running on a server. Here we&#8217;ll use Enonic&#8217;s free tier.</p>
+<p>To deploy your application to production, you&#8217;ll need Enonic XP running on a server. Here we&#8217;ll use Enonic&#8217;s free tier, follow these steps:</p>
 </div>
+<div class="sect2">
+<h3 id="1_sign_up"><a class="link" href="#1_sign_up">1. Sign up</a></h3>
 <div class="admonitionblock tip">
 <table>
 <tr>
@@ -519,6 +526,9 @@ The Chrome extension <a href="https://chrome.google.com/webstore/detail/altair-g
 <p>and <strong>create a new solution</strong> from the menu: <code>Solutions &#8594; Essentials &#8594; Create</code>. Complete the solution wizard steps using your preferences.</p>
 <div class="paragraph">
 <p>This will spin up an instance of Enonic XP, similar to your local sandbox but this time on a real server in the Cloud.</p>
+</div>
+<div class="paragraph">
+<p>=== 2. Upload your app</p>
 </div>
 </li>
 <li>
@@ -564,8 +574,15 @@ Alternatively upload the app from the Console directly: <code>Solutions &#8594; 
 <p>The app file is located in your project folder i.e. <code>build/libs/myapp.jar</code>.</p>
 </div>
 </li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="3_explose_the_api"><a class="link" href="#3_explose_the_api">3. Explose the API</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p><strong>Expose your API</strong> by creating an ingress in the Enonic Cloud console: <code>Solutions &#8594; &lt;Your solution&gt; &#8594; Ingresses &#8594; Create</code>.</p>
+<p>Expose your API by <strong>creating an ingress</strong> in the Enonic Cloud console: <code>Solutions &#8594; &lt;Your solution&gt; &#8594; Ingresses &#8594; Create</code>.</p>
 <div class="paragraph">
 <p>Give it a suitable name i.e. <code>Intro API</code>, and use the following values:</p>
 </div>
@@ -624,6 +641,7 @@ Remember, the GraphQL API only accepts <code>POST</code> requests, so the browse
 </div>
 </div>
 </div>
+</div>
 <div class="sect1">
 <h2 id="dive_deeper"><a class="link" href="#dive_deeper">Dive deeper</a></h2>
 <div class="sectionbody">
@@ -647,7 +665,7 @@ Remember, the GraphQL API only accepts <code>POST</code> requests, so the browse
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-01-22 15:32:08 UTC
+Last updated 2024-01-22 15:37:21 UTC
 </div>
 </div>
 </body>
