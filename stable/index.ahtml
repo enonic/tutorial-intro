@@ -507,7 +507,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>create an Enonic app</p>
 </li>
 <li>
-<p>Use Content Studio</p>
+<p>use Content Studio</p>
 </li>
 <li>
 <p>customize the app by adding a new content type</p>
@@ -629,7 +629,7 @@ Dev mode optimizes the development process.
 <div class="ulist">
 <ul>
 <li>
-<p>use the github repo <code>github.com/enonic/tutorial-intro</code> as a starter</p>
+<p>use the GitHub repo <code>github.com/enonic/tutorial-intro</code> as a starter</p>
 </li>
 <li>
 <p>to create an app called <code>com.example.myapp</code></p>
@@ -774,7 +774,7 @@ Waiting for changes to input files...</pre>
 <div class="title">Figure 1. XP Boot page</div>
 </div>
 <div class="paragraph">
-<p>The boot page provides an overview of of the sandbox, including installed application, as well as the <a href="https://developer.enonic.com/docs/xp/stable/deployment/config" target="_blank" rel="noopener">standard configuration files</a>.</p>
+<p>The boot page provides an overview of the sandbox, including installed application, as well as the <a href="https://developer.enonic.com/docs/xp/stable/deployment/config" target="_blank" rel="noopener">standard configuration files</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -821,7 +821,7 @@ If things don&#8217;t look exactly the same, don&#8217;t worry. In every new ver
 <p><a href="https://market.enonic.com/vendors/enonic/content-studio" target="_blank" rel="noopener">Content Studio</a> is the editorial interface used to create and manage content. It was pre-installed from <a href="https://market.enonic.com" target="_blank" rel="noopener">Enonic Market</a> as a part of the <code>Essentials</code> template when you started the sandbox, and can now be accessed from the XP menu.</p>
 </div>
 <div class="paragraph">
-<p><strong>Click <b class="button">Content Studio</b></strong> in the XP menu to lauch it.</p>
+<p><strong>Click <b class="button">Content Studio</b></strong> in the XP menu to launch it.</p>
 </div>
 <div class="paragraph">
 <p>When your application was installed, it automatically created a content project called <code>Intro Project</code> and populated it with content.Since this is the only available project at the moment, Content Studio will automatically open it, revealing the list of sample content.</p>
@@ -968,7 +968,7 @@ The current project is shown at the top of Content Studio.
 </div>
 </div>
 <div class="paragraph">
-<p>You can also see what the persisted versjon looks like in the JSON document above.</p>
+<p>You can also see what the persisted version looks like in the JSON document above.</p>
 </div>
 </div>
 </div>
@@ -982,7 +982,7 @@ The current project is shown at the top of Content Studio.
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>From witin the <code>samples/</code> folder of your app, <strong>copy or move</strong> the <code>review/</code> folder to <code>src/main/resources/site/content-types/</code>.</p>
+<p>From inside the <code>samples/</code> folder of your app, <strong>copy or move</strong> the <code>review/</code> folder to <code>src/main/resources/site/content-types/</code>.</p>
 </li>
 <li>
 <p><strong>Write a review</strong>. Content Studio should pick up the changes immediately. From the Content navigation view click <b class="button">New</b>, then select content type <code>Review</code> and start filling out the form fields in the new content item.</p>
@@ -1000,7 +1000,7 @@ The current project is shown at the top of Content Studio.
 <h2 id="graphql_api"><a class="link" href="#graphql_api">Graphql API</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Headless API aka <a href="https://market.enonic.com/vendors/enonic/guillotine" target="_blank" rel="noopener">Guillotine</a> - yes, we take headlessness seriously around here - provides access to all of the content within your project. Clients requesting content will naturally only get access to the content they have read-permissions for. The <code>Intro project</code> is configured with public read access for everything.</p>
+<p>The Headless API aka <a href="https://market.enonic.com/vendors/enonic/guillotine" target="_blank" rel="noopener">Guillotine</a> - yes, we take headlessness seriously around here - provides access to all the content within your project. Clients requesting content will naturally only get access to the content they have read-permissions for. The <code>Intro project</code> is configured with public read access for everything.</p>
 </div>
 <div class="paragraph">
 <p>Click the GraphQL icon in the Content Studio&#8217;s left hand menu to open <code>Query Playground</code>. Here you may test and play with the GraphQL API directly.</p>
@@ -1482,7 +1482,7 @@ Remember, the GraphQL API only accepts <code>POST</code> requests, so the browse
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-01-18 17:39:28 UTC
+Last updated 2024-01-22 09:08:51 UTC
 </div>
 </div>
 </body>
