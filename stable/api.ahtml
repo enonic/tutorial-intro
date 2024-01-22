@@ -449,7 +449,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="#image_handling">Image handling</a></li>
-<li><a href="#final_step">Final step</a></li>
+<li><a href="#one_final_step">One final step</a></li>
 </ul>
 </div>
 </div>
@@ -755,17 +755,17 @@ The red "autofocus" circle, when set, helps the image service to crop the images
 </div>
 </div>
 <div class="sect1">
-<h2 id="final_step"><a class="link" href="#final_step">Final step</a></h2>
+<h2 id="one_final_step"><a class="link" href="#one_final_step">One final step</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Knowing how headless a CMS can get with an API calle Guillotine, and GraphQL queries flowing from your fingertips, it&#8217;s time for the big finale where you deploy your app to Enonic&#8217;s <a href="deploy.ahtml">Free hosting service</a>.</p>
+<p>Knowing how headless a CMS can get with an API calle Guillotine, and GraphQL queries flowing from your fingertips, it&#8217;s time for the big finale where you <a href="deploy.ahtml# deploy your app to Enonic&#8217;s Free hosting service">deploy.ahtml</a>.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-01-22 15:24:15 UTC
+Last updated 2024-01-22 15:25:20 UTC
 </div>
 </div>
 </body>
