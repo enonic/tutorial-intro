@@ -236,6 +236,6 @@ image::morgan-original.png["The original version of Morgan Freemans photo is wid
 
 NOTE: The red "autofocus" circle, when set, helps the image service to crop the images optimally - as you can see above.
 
-== Final step
+== One final step
 
-Knowing how headless a CMS can get with an API calle Guillotine, and GraphQL queries flowing from your fingertips, it's time for the big finale where you deploy your app to Enonic's <<deploy#, Free hosting service>>.
+Knowing how headless a CMS can get with an API calle Guillotine, and GraphQL queries flowing from your fingertips, it's time for the big finale where you <<deploy# deploy your app to Enonic's Free hosting service>>.
