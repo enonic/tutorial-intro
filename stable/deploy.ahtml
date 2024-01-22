@@ -444,6 +444,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#deploy_to_server">Deploy to server</a>
 <ul class="sectlevel2">
 <li><a href="#1_sign_up">1. Sign up</a></li>
+<li><a href="#2_upload_your_app">2. Upload your app</a></li>
 <li><a href="#3_explose_the_api">3. Explose the API</a></li>
 </ul>
 </li>
@@ -527,10 +528,14 @@ The Chrome extension <a href="https://chrome.google.com/webstore/detail/altair-g
 <div class="paragraph">
 <p>This will spin up an instance of Enonic XP, similar to your local sandbox but this time on a real server in the Cloud.</p>
 </div>
-<div class="paragraph">
-<p>=== 2. Upload your app</p>
-</div>
 </li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="2_upload_your_app"><a class="link" href="#2_upload_your_app">2. Upload your app</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
 <p>Once the solution has started, <strong>authenticate the CLI</strong> by running this command from your project folder:</p>
 <div class="literalblock">
@@ -665,7 +670,7 @@ Remember, the GraphQL API only accepts <code>POST</code> requests, so the browse
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-01-22 15:37:21 UTC
+Last updated 2024-01-22 15:38:51 UTC
 </div>
 </div>
 </body>
