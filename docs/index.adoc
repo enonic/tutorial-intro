@@ -6,7 +6,7 @@
 
 Hands-on developer intro to our platform, CLI, Content Studio, GraphQL API, and the free hosting tier.
 
-TIP: *Just looking for a demo?* - https://enonic.com/sign-up[Sign up for a free Enonic account^]. Create a new solution based on the `Headless Demo` template to get a live demo for a similar setup as this tutorial.
+TIP: *Just looking for a demo?* - https://enonic.com/sign-up[Sign up for a free Enonic account^].
 
 == Introduction
 
@@ -19,5 +19,7 @@ This guide will show you how to:
 * access and use the GraphQL API
 * optionally - deploy your app to a live server in the Cloud
 
+image::ready-set-code.svg["Ready...Set...Code!", width=720px]
 
-Lets get going with <<setup#, Step 1 - Setting up the development environment>>.
+The first step is to <<setup#, crank up the developer environment>>.
+
