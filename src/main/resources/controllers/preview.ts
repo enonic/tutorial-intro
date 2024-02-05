@@ -1,22 +1,23 @@
-const portal = require('/lib/xp/portal');
-const thymeleaf = require('/lib/thymeleaf');
+import type { Response } from '/index.d';
+import { render } from '/lib/thymeleaf';
+import { getContent, imageUrl, assetUrl } from '/lib/xp/portal';
 
-exports.get = function (req) {
-    const content = portal.getContent();
+export function get(): Response {
+    const content = getContent();
     const photoId = (Array.isArray(content.data.photos)) ? content.data.photos[0] : content.data.photos;
     const view = resolve('preview.html');
     const model = {
-      cssUrl: portal.assetUrl({path: 'styles.css'}),
+      cssUrl: assetUrl({path: 'styles.css'}),
       displayName: (content.displayName) ? content.displayName : null,
       imageUrl: (photoId) ?
-        portal.imageUrl({
+        imageUrl({
           id: photoId,
           scale: "width(500)"
         }) :
         null
     };
-    
+
    return {
-    body: thymeleaf.render(view, model), 
+    body: render(view, model),
    }
 };
