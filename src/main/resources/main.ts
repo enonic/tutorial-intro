@@ -1,9 +1,9 @@
-const contextLib = require('/lib/xp/context');
-const contentLib = require('/lib/xp/content');
-const clusterLib = require('/lib/xp/cluster');
-const exportLib = require('/lib/xp/export');
-const projectLib = require('/lib/xp/project');
-const taskLib = require('/lib/xp/task');
+import { create as createProject, get as getProject } from '/lib/xp/project';
+import { publish } from '/lib/xp/content';
+import { run } from '/lib/xp/context';
+import { isMaster } from '/lib/xp/cluster';
+import { executeFunction } from '/lib/xp/task';
+import { importNodes } from '/lib/xp/export';
 
 const projectData = {
     id: 'intro',
@@ -18,10 +18,10 @@ const projectData = {
     }
 }
 
-const runInContext = function (callback) {
+const runInContext = (callback) => {
     let result;
     try {
-        result = contextLib.run({
+        result = run({
             principals: ["role:system.admin"],
             repository: 'com.enonic.cms.' + projectData.id
         }, callback);
@@ -32,23 +32,18 @@ const runInContext = function (callback) {
     return result;
 }
 
-const createProject = function () {
-    return projectLib.create(projectData);
-}
+const doCreateProject = () => createProject(projectData);
 
-const getProject = function () {
-    return projectLib.get({
-        id: projectData.id
-    });
-}
+const doGetProject = () => getProject({ id: projectData.id });
 
-const initialize = function () {
+const initializeProject = () => {
     runInContext(() => {
-        const project = getProject();
+        const project = doGetProject();
         if (!project) {
-            taskLib.executeFunction({
+            log.info(`Project ${projectData.id} not found. Creating...`);
+            executeFunction({
                 description: 'Importing Intro DB content',
-                func: initProject
+                func: doInitProject
             });
         }
         else {
@@ -57,9 +52,8 @@ const initialize = function () {
     });
 };
 
-const initProject = function () {
-    // log.info('Project "' + projectData.id + '" not found. Creating...');
-    const project = createProject();
+const doInitProject = () => {
+    const project = doCreateProject();
 
     if (project) {
         log.info('Project "' + projectData.id + '" successfully created');
@@ -70,8 +64,8 @@ const initProject = function () {
     }
 };
 
-function createContent() {
-    let importNodes = exportLib.importNodes({
+const createContent = () => {
+    let nodes = importNodes({
         source: resolve('/import'),
         targetNodePath: '/content',
         xslt: resolve('/import/replace_app.xsl'),
@@ -81,15 +75,15 @@ function createContent() {
         includeNodeIds: true
     });
     log.info('Importing Intro DB content');
-    if (importNodes.importErrors.length > 0) {
+    if (nodes.importErrors.length > 0) {
         log.warning('Errors:');
-        importNodes.importErrors.forEach(element => log.warning(element.message));
+        nodes.importErrors.forEach(element => log.warning(element.message));
         log.info('-------------------');
     }
 }
 
-function publishRoot() {
-    const result = contentLib.publish({
+const publishRoot = () => {
+    const result = publish({
         keys: ['/movies', '/persons','/articles', '/playlists' ],
         sourceBranch: 'draft',
         targetBranch: 'master',
@@ -99,6 +93,6 @@ function publishRoot() {
     }
 }
 
-if (clusterLib.isMaster()) {
-    initialize();
+if (isMaster()) {
+    initializeProject();
 }
