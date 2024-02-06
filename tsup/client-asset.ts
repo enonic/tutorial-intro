@@ -6,6 +6,7 @@ export default function buildAssetConfig(): Options {
 	const GLOB_EXTENSIONS_ASSETS = '{tsx,ts,jsx,js}';
 	const FILES_ASSETS = globSync(`${DIR_SRC_ASSETS}/**/*.${GLOB_EXTENSIONS_ASSETS}`).map(s => s.replaceAll('\\', '/'));
 	const prodMode = process.env.NODE_ENV !== 'development';
+
 	return {
 		bundle: true, // Needed to bundle @enonic/js-utils and dayjs
 		dts: false, // d.ts files are use useless at runtime
@@ -17,10 +18,10 @@ export default function buildAssetConfig(): Options {
 			'esm',
 		],
 		minify: prodMode,
+		sourcemap: !prodMode,
 		platform: 'browser',
 		silent: ['QUIET', 'WARN'].includes(process.env.LOG_LEVEL_FROM_GRADLE||''),
 		splitting: true,
-		sourcemap: prodMode,
 		tsconfig:`${DIR_SRC_ASSETS}/tsconfig.json`,
 	};
 }

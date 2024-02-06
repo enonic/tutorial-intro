@@ -1,17 +1,14 @@
 import type { Options } from '.';
 
-//import TsupPluginManifest from '@enonic/tsup-plugin-manifest';
 import { sassPlugin } from 'esbuild-sass-plugin';
 
 import { globSync } from 'glob';
 import {
-	DIR_DST,
 	DIR_SRC_STATIC
 } from './constants';
 
 
 export default function buildStaticConfig(): Options {
-	const DIR_DST_STATIC = `${DIR_DST}/static`;
 	const GLOB_EXTENSIONS_STATIC = '{tsx,ts,jsx,js}';
 	const FILES_STATIC = globSync(`${DIR_SRC_STATIC}/**/*.${GLOB_EXTENSIONS_STATIC}`);
 	const prodMode = process.env.NODE_ENV !== 'development';
@@ -53,11 +50,10 @@ export default function buildStaticConfig(): Options {
 			'esm', // cjs needed because css files are not reported in manifest.esm.json
 		],
 		minify: prodMode,
-
+		sourcemap: !prodMode,
 		platform: 'browser',
 		silent: ['QUIET', 'WARN'].includes(process.env.LOG_LEVEL_FROM_GRADLE||''),
 		splitting: true,
-		sourcemap: prodMode,
 		tsconfig: `${DIR_SRC_STATIC}/tsconfig.json`,
 	};
 }
