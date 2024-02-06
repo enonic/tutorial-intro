@@ -53,6 +53,17 @@ tasks.register('dev', NpmTask) {
     ]
 }
 
+tasks.register('npmCheck', NpmTask) {
+    dependsOn npmInstall
+    args = [
+            'run',
+            'check'
+    ]
+    environment = [
+            'FORCE_COLOR': 'true',
+    ]
+}
+
 tasks.register('npmBuild', NpmTask) {
     args = [
             'run',
@@ -69,6 +80,7 @@ tasks.register('npmBuild', NpmTask) {
     outputs.dir 'build/resources/main'
 }
 
+check.dependsOn npmCheck
 jar.dependsOn npmBuild
 
 processResources {

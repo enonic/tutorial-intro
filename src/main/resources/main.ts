@@ -65,14 +65,16 @@ const doInitProject = () => {
 };
 
 const createContent = () => {
-    let nodes = importNodes({
+    const nodes = importNodes({
         source: resolve('/import'),
         targetNodePath: '/content',
         xslt: resolve('/import/replace_app.xsl'),
         xsltParams: {
             applicationId: app.name
         },
-        includeNodeIds: true
+        includeNodeIds: true,
+        nodeImported: () => {},
+        nodeResolved: () => {}
     });
     log.info('Importing Intro DB content');
     if (nodes.importErrors.length > 0) {
@@ -84,9 +86,7 @@ const createContent = () => {
 
 const publishRoot = () => {
     const result = publish({
-        keys: ['/movies', '/persons','/articles', '/playlists' ],
-        sourceBranch: 'draft',
-        targetBranch: 'master',
+        keys: ['/movies', '/persons','/articles', '/playlists' ]
     });
     if (!result) {
         log.warning('Could not publish imported content.');
