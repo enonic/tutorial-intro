@@ -1,6 +1,7 @@
 import type { Response } from '/index.d';
-import { render } from '/lib/thymeleaf';
 import { getContent, imageUrl, assetUrl } from '/lib/xp/portal';
+// @ts-expect-error no-types
+import { render } from '/lib/thymeleaf';
 
 export function get(): Response {
     const content = getContent();
