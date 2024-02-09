@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
-<title>Content Studio and content forms</title>
+<title>Create your first Enonic application</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -436,15 +436,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
-<h1>Content Studio and content forms</h1>
+<h1>Create your first Enonic application</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#content_studio">Content Studio</a></li>
-<li><a href="#content_type_person">Content type: Person</a></li>
-<li><a href="#x_data_social_media">X-Data: Social media</a></li>
-<li><a href="#adding_a_new_content_type">Adding a new content type</a></li>
-<li><a href="#next_up">Next up</a></li>
+<li><a href="#intro">Intro</a></li>
+<li><a href="#create_an_app">Create an app</a>
+<ul class="sectlevel2">
+<li><a href="#project_structure">Project structure</a></li>
+</ul>
+</li>
+<li><a href="#build_and_deploy">Build and deploy</a></li>
+<li><a href="#moving_forward">Moving forward</a></li>
 </ul>
 </div>
 </div>
@@ -452,21 +455,50 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Introduction to Content Studio, content types and x-data.</p>
+<p>Create, build and deploy an application based on a starter</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="content_studio"><a class="link" href="#content_studio">Content Studio</a></h2>
+<h2 id="intro"><a class="link" href="#intro">Intro</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="https://market.enonic.com/vendors/enonic/content-studio" target="_blank" rel="noopener">Content Studio</a> is the editorial interface used to create and manage content. It was pre-installed from <a href="https://market.enonic.com" target="_blank" rel="noopener">Enonic Market</a> as a part of the <code>Essentials</code> template when you started the sandbox, and can now be accessed from the XP menu.</p>
+<p>The expression "There&#8217;s an app for that" fits well with Enonic. When you created the sandbox, several applications were automatically installed (based on the <code>Essentials`</code> template), and extended the platforms capabilities.</p>
 </div>
 <div class="paragraph">
-<p><strong>Click <b class="button">Content Studio</b></strong> in the XP menu to launch it.</p>
+<p><a href="https://developer.enonic.com/docs/xp/stable/apps" target="_blank" rel="noopener">Enonic apps</a> are used to ship everything from content models, to code and platform extensions, which you will soon discover.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="create_an_app"><a class="link" href="#create_an_app">Create an app</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Open a new terminal window</strong> and create your first Enonic app by running this command:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>enonic project create -r tutorial-intro -n com.example.myapp -d myapp -v 1.0.0 --sb mysandbox</pre>
+</div>
 </div>
 <div class="paragraph">
-<p>When your own application was started, it automatically created a content project called <code>Intro Project</code> and populated it with content. Since this is the only available project at the moment, Content Studio will automatically open it, revealing the list of sample content.</p>
+<p>This command will:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>use the GitHub repo <code>github.com/enonic/tutorial-intro</code> as a starter</p>
+</li>
+<li>
+<p>to create an app called <code>com.example.myapp</code></p>
+</li>
+<li>
+<p>in the directory <code>myapp</code> setting version number to <code>1.0.0</code></p>
+</li>
+<li>
+<p>and link it to <code>mysandbox</code> which you created earlier</p>
+</li>
+</ul>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -475,188 +507,120 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-The current project is shown at the top of Content Studio.
+A pre-compiled standard version of this app is also available on <a href="https://market.enonic.com/vendors/enonic/intro" target="_blank" rel="noopener">Enonic Market</a>.
 </td>
 </tr>
 </table>
 </div>
-<div class="imageblock">
+<div class="sect2">
+<h3 id="project_structure"><a class="link" href="#project_structure">Project structure</a></h3>
+<div class="paragraph">
+<p>Inside the <code>myapp</code> directory you should now have a file structure looking something like this:</p>
+</div>
+<div class="listingblock">
+<div class="title">Selected files from the app code:</div>
 <div class="content">
-<img src="media/content-studio-in-action.gif" alt="Content Studio with Sample content" width="1024px">
+<pre class="highlight"><code class="language-files" data-lang="files">docs/ <i class="conum" data-value="1"></i><b>(1)</b>
+samples/ <i class="conum" data-value="2"></i><b>(2)</b>
+src/
+ main/
+  resources/
+   assets <i class="conum" data-value="3"></i><b>(3)</b>
+   controllers <i class="conum" data-value="4"></i><b>(4)</b>
+   i18n <i class="conum" data-value="5"></i><b>(5)</b>
+   import <i class="conum" data-value="6"></i><b>(6)</b>
+   site/
+    content-types/ <i class="conum" data-value="7"></i><b>(7)</b>
+    x-data/ <i class="conum" data-value="8"></i><b>(8)</b>
+gradle.properties <i class="conum" data-value="9"></i><b>(9)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The documentation you are reading now</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Code samples that will be used in this guide</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Client-side assets</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td><a href="https://developer.enonic.com/docs/xp/stable/framework/controllers" target="_blank" rel="noopener">Server-side controllers and templates</a></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td><a href="https://developer.enonic.com/docs/xp/stable/framework/i18n" target="_blank" rel="noopener">Localisation bundles</a></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Sample content</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td><a href="https://developer.enonic.com/docs/xp/stable/cms/content-types" target="_blank" rel="noopener">Content Type schemas</a></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td><a href="https://developer.enonic.com/docs/xp/stable/cms/x-data" target="_blank" rel="noopener">X-data schemas</a></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="9"></i><b>9</b></td>
+<td>App name and other settings</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="content_type_person"><a class="link" href="#content_type_person">Content type: Person</a></h2>
+<h2 id="build_and_deploy"><a class="link" href="#build_and_deploy">Build and deploy</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To edit an item, simply select it and click <code>Edit</code> in the menu bar, or by using right click. When editing a Person content item, this is what the form looks like in Content Studio. On bigger screens you will also get a preview on the right-hand side.</p>
+<p>Assuming <code>mysandbox</code> is still running in another Terminal window, run these commands:</p>
 </div>
-<div class="imageblock">
+<div class="literalblock">
 <div class="content">
-<img src="media/person.png" alt="Person Form" width="1024px">
+<pre>cd myapp
+enonic dev</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The form comes from the content type definition, which is located inside the app. Here is what it looks like:</p>
+<p>The last command will build and deploy the app to <code>mysandbox</code> - then keep watching for changes in the code to automatically rebuild as you work on it.</p>
 </div>
-<div class="listingblock">
-<div class="title">/src/main/resources/site/content-type/person/person.xml</div>
-<div class="content">
-<pre class="highlight"><code class="language-XML" data-lang="XML">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;content-type xmlns="urn:enonic:xp:model:1.0"&gt;
-  &lt;display-name&gt;Person&lt;/display-name&gt;
-  &lt;description&gt;Historical or living human&lt;/description&gt;
-  &lt;super-type&gt;base:structured&lt;/super-type&gt;
-  &lt;form&gt;
-    &lt;input type="ImageSelector" name="photos"&gt;
-      &lt;label&gt;Photos&lt;/label&gt;
-      &lt;occurrences minimum="0" maximum="0"/&gt;
-    &lt;/input&gt;
-    &lt;input type="TextArea" name="bio"&gt;
-      &lt;label&gt;Bio&lt;/label&gt;
-       &lt;occurrences minimum="1" maximum="1"/&gt;
-    &lt;/input&gt;
-    &lt;input type="Date" name="dateofbirth"&gt;
-      &lt;label&gt;Birth Date&lt;/label&gt;
-       &lt;occurrences minimum="0" maximum="1"/&gt;
-    &lt;/input&gt;
-  &lt;/form&gt;
-&lt;/content-type&gt;</code></pre>
-</div>
-</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>When used to create content, it is stored like this:</p>
+<p>Look for the following output to verify that the app has been built:</p>
 </div>
-<div class="listingblock">
-<div class="title">Persisted content for Uma Thurman</div>
+<div class="literalblock">
 <div class="content">
-<pre class="highlight"><code class="language-JSON" data-lang="JSON">{
-  "valid": true,
-  "displayName": "Uma Thurman",
-  "type": "com.example.myapp:person",
-  "owner": "user:system:su",
-  "language": "en",
-  "modifiedTime": "2018-07-03T05:58:55.025Z",
-  "modifier": "user:system:su",
-  "creator": "user:system:su",
-  "createdTime": "2018-07-03T05:57:35.292Z",
-  "publish": {
-    "first": "2024-01-18T12:08:23.167Z",
-    "from": "2024-01-18T12:08:23.167Z"
-  },
-  "data": {
-    "photos": "8d47792f-0ae6-4d74-a6e4-bab0e8d2374b",
-    "bio": "Uma Karuna Thurman was born in Boston, Massachusetts, into a highly unorthodox and Eurocentric family",
-    "dateofbirth": "1970-04-29"
-  }
-}</code></pre>
+<pre>BUILD SUCCESSFUL in 6s
+3 actionable tasks: 3 executed
+Waiting for changes to input files...</pre>
 </div>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="x_data_social_media"><a class="link" href="#x_data_social_media">X-Data: Social media</a></h2>
+<h2 id="moving_forward"><a class="link" href="#moving_forward">Moving forward</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When editing a Person, you&#8217;ll notice an additional subset of fields inside the Content form with title <code>Social Media</code>. This is strictly speaking a separate form, injected into the Person content type - we call it "eXtended data" (or just "x-data").</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="media/some.gif" alt="Social Media x-data form" width="1024px">
-</div>
-</div>
-<div class="paragraph">
-<p>X-data can be applied across multiple content types. In this app for instance, the <code>Social Media</code> form is also available on the <code>Movie</code> content type. More interestingly, X-data can even be injected from a different application - at runtime.</p>
-</div>
-<div class="paragraph">
-<p>This is what the definition looks like:</p>
-</div>
-<div class="listingblock">
-<div class="title">/src/main/resources/site/x-data/some/some.xml</div>
-<div class="content">
-<pre class="highlight"><code class="language-XML" data-lang="XML">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;x-data&gt;
-  &lt;display-name&gt;Social Media&lt;/display-name&gt;
-  &lt;form&gt;
-    &lt;input type="TextLine" name="imdb"&gt;
-      &lt;help-text&gt;URL to IMDB&lt;/help-text&gt;
-      &lt;label&gt;Internet Movie Database Url&lt;/label&gt;
-      &lt;occurrences minimum="0" maximum="1"/&gt;
-    &lt;/input&gt;
-    &lt;input type="TextLine" name="twitter"&gt;
-      &lt;help-text&gt;Twitter Handle - i.e. @enonicHQ&lt;/help-text&gt;
-      &lt;label&gt;Twitter&lt;/label&gt;
-      &lt;occurrences minimum="0" maximum="1"/&gt;
-      &lt;config&gt;
-        &lt;regexp&gt;^@?(\w){1,15}$&lt;/regexp&gt;
-      &lt;/config&gt;
-    &lt;/input&gt;
-    &lt;input type="TextLine" name="instagram"&gt;
-      &lt;help-text&gt;Instagram Handle - i.e. @username&lt;/help-text&gt;
-      &lt;label&gt;Instagram&lt;/label&gt;
-      &lt;occurrences minimum="0" maximum="1"/&gt;
-      &lt;config&gt;
-        &lt;regexp&gt;^@?(\w){1,28}$&lt;/regexp&gt;
-      &lt;/config&gt;
-    &lt;/input&gt;
-  &lt;/form&gt;
-&lt;/x-data&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You can also see what the persisted version looks like in the JSON.</p>
-</div>
-<div class="listingblock">
-<div class="title">Snippet of Uma Thurman including x-data.</div>
-<div class="content">
-<pre class="highlight"><code class="language-JSON" data-lang="JSON">{
-  "data": {
-    "photos": "8d47792f-0ae6-4d74-a6e4-bab0e8d2374b",
-    "bio": "Uma Karuna Thurman was born in Boston, Massachusetts, into a highly unorthodox and Eurocentric family",
-    "dateofbirth": "1970-04-29"
-  },
-  "x": {
-    "com-example-myapp": {
-      "SoMe": {
-        "imdb": "https://www.imdb.com/name/nm0000235/"
-      }
-    }
-  }
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="adding_a_new_content_type"><a class="link" href="#adding_a_new_content_type">Adding a new content type</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Let&#8217;s do a practical exercise by adding a new content type called <code>Review</code> to your app. This will allow you to create reviews of movies.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>From inside the <code>samples/</code> folder of your app, <strong>copy or move</strong> the <code>review/</code> folder to <code>src/main/resources/site/content-types/</code>.</p>
-</li>
-<li>
-<p><strong>Write a review</strong>. Content Studio should pick up the changes immediately. From the Content navigation view click <b class="button">New</b>, then select content type <code>Review</code> and start filling out the form fields in the new content item.</p>
-<div class="imageblock">
-<div class="content">
-<img src="media/review.png" alt="Sample Review" width="1024px">
-</div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="next_up"><a class="link" href="#next_up">Next up</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>You&#8217;re now familiar with the XP Admin, Content Studio, Content type, and x-data schemas. In the following chapter you&#8217;ll get to play with <a href="api.ahtml">Query Playground and the Headless Content API aka Guillotine</a>.</p>
+<p>You just created and built your very own application. In the next chapter you&#8217;ll get familiar with <a href="cms.ahtml">Content Studio and content modelling</a>.</p>
 </div>
 </div>
 </div>

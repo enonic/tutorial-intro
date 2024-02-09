@@ -442,13 +442,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel1">
 <li><a href="#install_cli">Install CLI</a></li>
 <li><a href="#create_a_sandbox">Create a sandbox</a></li>
-<li><a href="#create_an_app">Create an app</a>
-<ul class="sectlevel2">
-<li><a href="#project_structure">Project structure</a></li>
-</ul>
-</li>
-<li><a href="#build_the_app">Build the app</a></li>
-<li><a href="#xp_admin">XP Admin</a></li>
+<li><a href="#sandbox_admin">Sandbox Admin</a></li>
 <li><a href="#coming_up">Coming up</a></li>
 </ul>
 </div>
@@ -549,159 +543,10 @@ Dev mode optimizes the development process.
 </div>
 </div>
 <div class="sect1">
-<h2 id="create_an_app"><a class="link" href="#create_an_app">Create an app</a></h2>
+<h2 id="sandbox_admin"><a class="link" href="#sandbox_admin">Sandbox Admin</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="https://developer.enonic.com/docs/xp/stable/apps" target="_blank" rel="noopener">Enonic apps</a> are used to ship everything from content models, to code and platform extensions.</p>
-</div>
-<div class="paragraph">
-<p><strong>Open a new terminal window</strong> and create your first Enonic app by running this command:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>enonic project create -r tutorial-intro -n com.example.myapp -d myapp -v 1.0.0 --sb mysandbox</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This command will:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>use the GitHub repo <code>github.com/enonic/tutorial-intro</code> as a starter</p>
-</li>
-<li>
-<p>to create an app called <code>com.example.myapp</code></p>
-</li>
-<li>
-<p>in the directory <code>myapp</code> setting version number to <code>1.0.0</code></p>
-</li>
-<li>
-<p>and link it to <code>mysandbox</code> which you created earlier</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-A pre-compiled standard version of this app is also available on <a href="https://market.enonic.com/vendors/enonic/intro" target="_blank" rel="noopener">Enonic Market</a>.
-</td>
-</tr>
-</table>
-</div>
-<div class="sect2">
-<h3 id="project_structure"><a class="link" href="#project_structure">Project structure</a></h3>
-<div class="paragraph">
-<p>Inside the <code>myapp</code> directory you should now have a file structure looking something like this:</p>
-</div>
-<div class="listingblock">
-<div class="title">Selected files from the app code:</div>
-<div class="content">
-<pre class="highlight"><code class="language-files" data-lang="files">docs/ <i class="conum" data-value="1"></i><b>(1)</b>
-samples/ <i class="conum" data-value="2"></i><b>(2)</b>
-src/
- main/
-  resources/
-   assets <i class="conum" data-value="3"></i><b>(3)</b>
-   controllers <i class="conum" data-value="4"></i><b>(4)</b>
-   i18n <i class="conum" data-value="5"></i><b>(5)</b>
-   import <i class="conum" data-value="6"></i><b>(6)</b>
-   site/
-    content-types/ <i class="conum" data-value="7"></i><b>(7)</b>
-    x-data/ <i class="conum" data-value="8"></i><b>(8)</b>
-gradle.properties <i class="conum" data-value="9"></i><b>(9)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The documentation you are reading now</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Code samples that will be used in this guide</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Client-side assets</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td><a href="https://developer.enonic.com/docs/xp/stable/framework/controllers" target="_blank" rel="noopener">Server-side controllers and templates</a></td>
-</tr>
-<tr>
-<td><i class="conum" data-value="5"></i><b>5</b></td>
-<td><a href="https://developer.enonic.com/docs/xp/stable/framework/i18n" target="_blank" rel="noopener">Localisation bundles</a></td>
-</tr>
-<tr>
-<td><i class="conum" data-value="6"></i><b>6</b></td>
-<td>Sample content</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="7"></i><b>7</b></td>
-<td><a href="https://developer.enonic.com/docs/xp/stable/cms/content-types" target="_blank" rel="noopener">Content Type schemas</a></td>
-</tr>
-<tr>
-<td><i class="conum" data-value="8"></i><b>8</b></td>
-<td><a href="https://developer.enonic.com/docs/xp/stable/cms/x-data" target="_blank" rel="noopener">X-data schemas</a></td>
-</tr>
-<tr>
-<td><i class="conum" data-value="9"></i><b>9</b></td>
-<td>App name and other settings</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="build_the_app"><a class="link" href="#build_the_app">Build the app</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Assuming <code>mysandbox</code> is still running in another Terminal window, run these commands:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>cd myapp
-enonic dev</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The last command will build and deploy the app to <code>mysandbox</code> - then keep watching for changes in the code to automatically rebuild as you work on it.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Look for the following output to verify that the app has been built:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>BUILD SUCCESSFUL in 6s
-3 actionable tasks: 3 executed
-Waiting for changes to input files...</pre>
-</div>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="xp_admin"><a class="link" href="#xp_admin">XP Admin</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Let&#8217;s have a look at the Sandbox' web interface. Open <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a> in your browser (or just click the link).</p>
+<p>Let&#8217;s have a look at the Sandbox' web interface - aka XP admin. Open <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a> in your browser (or just click the link).</p>
 </div>
 <div class="paragraph">
 <p>You should now see the XP boot page:</p>
@@ -715,20 +560,8 @@ Waiting for changes to input files...</pre>
 <div class="paragraph">
 <p>The boot page provides an overview of the sandbox, including installed application, as well as the <a href="https://developer.enonic.com/docs/xp/stable/deployment/config" target="_blank" rel="noopener">standard configuration files</a>.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<code>My App</code> should be in the list, together with other applications that were automatically installed when you created the sandbox.
-</td>
-</tr>
-</table>
-</div>
 <div class="paragraph">
-<p>Click <b class="button">Log In as Guest</b> to open the XP admin dashboard. You should now see the following:</p>
+<p>Click <b class="button">Log In as Guest</b> to open the XP admin dashboard. You should now see something like this:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -757,14 +590,14 @@ If things don&#8217;t look exactly the same, don&#8217;t worry. In every new ver
 <h2 id="coming_up"><a class="link" href="#coming_up">Coming up</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You&#8217;re now familiar with the CLI, sandboxes, and even created and built your own app. In the next chapter you&#8217;ll get familiar with <a href="cms.ahtml">Content Studio and how to manage schemas</a>.</p>
+<p>You&#8217;re now familiar with the CLI and sandboxes. In the next chapter you&#8217;ll get create an <a href="cms.ahtml">Enonic application</a>.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-01-23 07:20:31 UTC
+Last updated 2024-02-09 07:30:17 UTC
 </div>
 </div>
 </body>

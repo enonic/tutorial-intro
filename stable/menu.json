@@ -1,19 +1,23 @@
 {
     "menuItems": [
       {
-        "title": "1 - Developer setup",
+        "title": "1 - Sandbox",
         "document": "setup"
       },
       {
-        "title": "2 - Content Studio",
+        "title": "2 - Application",
+        "document": "app"
+      },
+      {
+        "title": "3 - Content Studio",
         "document": "cms"
       },
       {
-        "title": "3 - GraphQL API",
+        "title": "4 - GraphQL API",
         "document": "api"
       },
       {
-        "title": "4 - Go live",
+        "title": "5 - Go live",
         "document": "deploy"
       }
     ]
