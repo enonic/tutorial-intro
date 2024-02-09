@@ -449,7 +449,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="#image_handling">Image handling</a></li>
-<li><a href="#api_augmentation">API augmentation</a></li>
+<li><a href="#api_augmentation">API augmentation</a>
+<ul class="sectlevel2">
+<li><a href="#the_age_field">The age field</a></li>
+</ul>
+</li>
 <li><a href="#one_last_thing">One last thing</a></li>
 </ul>
 </div>
@@ -759,10 +763,15 @@ The red "autofocus" circle, when set, helps the image service to crop the images
 <h2 id="api_augmentation"><a class="link" href="#api_augmentation">API augmentation</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Now the real magic begins! You programmatically augment and extend the Guillotine API. The use-cases are limitless, but rather than babbling about it - why not try it out yourself?</p>
+<p><strong>Now the real magic begins!</strong> You may programmatically extend and augment the Guillotine API - for a fully customizable back-end.</p>
 </div>
 <div class="paragraph">
-<p>We&#8217;ll keep it simple. In the next steps you&#8217;ll add a new <code>age</code> field to the Person content type, and use the <code>dateofbirth</code> to calculate the persons age.</p>
+<p>The use-cases are limitless, but rather than babbling about it - lets see it in action!</p>
+</div>
+<div class="sect2">
+<h3 id="the_age_field"><a class="link" href="#the_age_field">The age field</a></h3>
+<div class="paragraph">
+<p>We&#8217;ll keep it simple. In a few steps you&#8217;ll add a new <code>age</code> field to the Person content type, and use the <code>dateofbirth</code> to calculate the result.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -879,6 +888,7 @@ enonic dev</pre>
 </div>
 </div>
 </div>
+</div>
 <div class="sect1">
 <h2 id="one_last_thing"><a class="link" href="#one_last_thing">One last thing</a></h2>
 <div class="sectionbody">
@@ -890,7 +900,7 @@ enonic dev</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-02-09 15:58:40 UTC
+Last updated 2024-02-09 16:11:37 UTC
 </div>
 </div>
 </body>
