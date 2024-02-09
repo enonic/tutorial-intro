@@ -449,7 +449,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="#image_handling">Image handling</a></li>
-<li><a href="#one_final_step">One final step</a></li>
+<li><a href="#api_augmentation">API augmentation</a></li>
+<li><a href="#one_last_thing">One last thing</a></li>
 </ul>
 </div>
 </div>
@@ -755,17 +756,141 @@ The red "autofocus" circle, when set, helps the image service to crop the images
 </div>
 </div>
 <div class="sect1">
-<h2 id="one_final_step"><a class="link" href="#one_final_step">One final step</a></h2>
+<h2 id="api_augmentation"><a class="link" href="#api_augmentation">API augmentation</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Knowing how headless a CMS can get with an API calle Guillotine, and GraphQL queries flowing from your fingertips. It&#8217;s time for the big finale where you <a href="deploy.ahtml">deploy your app to the Enonic cloud</a>.</p>
+<p>Now the real magic begins! You programmatically augment and extend the Guillotine API. The use-cases are limitless, but rather than babbling about it - why not try it out yourself?</p>
+</div>
+<div class="paragraph">
+<p>We&#8217;ll keep it simple. In the next steps you&#8217;ll add a new <code>age</code> field to the Person content type, and use the <code>dateofbirth</code> to calculate the persons age.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From the <code>samples/</code> folder of your app, <strong>copy or move</strong> the <code>guillotine/</code> folder to <code>src/main/resources/</code>. You should then have the following TypeScript controller ready:</p>
+<div class="listingblock">
+<div class="title">/src/main/resources/guillotine/guillotine.ts</div>
+<div class="content">
+<pre class="highlight"><code class="language-TypeScript" data-lang="TypeScript">// Using the Person data type
+const personType = 'com_example_myapp_Person_Data';
+
+export const extensions = (graphQL) =&gt; {
+	return {
+		creationCallbacks: {
+			[personType]: function (params) {
+				// Add a new field: age
+				params.addFields({
+					age: {
+						type: graphQL.GraphQLInt
+					}
+				});
+			}
+		},
+		resolvers: {
+			[personType]: {
+				// Implement the age resolver
+				age: (env) =&gt; {
+                    if (!env.source.dateofbirth) {return null;}
+                    
+					// Caclulate age
+                    let age = null;
+                	const today = new Date();
+                    const birthDate = new Date(env.source.dateofbirth);
+                    age = today.getFullYear() - birthDate.getFullYear();
+                    const m = today.getMonth() - birthDate.getMonth();
+                
+                    // Tune for moth and day
+                    if (m &lt; 0 || (m === 0 &amp;&amp; today.getDate() &lt; birthDate.getDate())) {
+                        age--;
+                    }
+                    return age;
+                }
+			}
+		},
+	}
+};</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Guillotine requires the app to be redeployed (or restarted) in order to pick up changes to schemas and/or controllers. Stop the build (using control-c) and start it again:</p>
+<div class="literalblock">
+<div class="content">
+<pre>^c
+enonic dev</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Back in Query Playground, run the following query:</p>
+<div class="listingblock">
+<div class="title">Query using the new field</div>
+<div class="content">
+<pre class="highlight"><code class="language-GraphQL" data-lang="GraphQL">{
+  guillotine {
+    getChildren(key: "/persons", first: 2) {
+      displayName
+      ... on com_example_myapp_Person {
+        data {
+          age
+          dateofbirth
+        }
+      }
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The response should now contain a new age filed, with a calculated value:</p>
+</div>
+<div class="listingblock">
+<div class="title">Query response</div>
+<div class="content">
+<pre class="highlight"><code class="language-JSON" data-lang="JSON">{
+  "data": {
+    "guillotine": {
+      "getChildren": [
+        {
+          "displayName": "Léa Seydoux",
+          "data": {
+            "age": 38,
+            "dateofbirth": "1985-07-01"
+          }
+        },
+        {
+          "displayName": "Jeffrey Wright",
+          "data": {
+            "age": 58,
+            "dateofbirth": "1965-12-07"
+          }
+        }
+      ]
+    }
+  }
+}</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>As you have now seen, XP lets you run server-side <a href="https://developer.enonic.com/docs/xp/stable/framework">TypeScript and JavaScript code</a>. API augmentation is just the tip of the iceberg - believe us.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="one_last_thing"><a class="link" href="#one_last_thing">One last thing</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>With GraphQL queries flowing from your fingertips. It&#8217;s time for the big finale where you <a href="deploy.ahtml">deploy your app to the Enonic cloud</a>.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-02-09 09:13:40 UTC
+Last updated 2024-02-09 15:58:40 UTC
 </div>
 </div>
 </body>
