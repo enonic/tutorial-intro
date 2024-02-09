@@ -67,17 +67,16 @@ Assuming `mysandbox` is still running in another Terminal window, run these comm
   cd myapp
   enonic dev
 
-The last command will build and deploy the app to `mysandbox` - then keep watching for changes in the code to automatically rebuild as you work on it.
+The last command will build and deploy the app to `mysandbox`.
 
 [NOTE]
-====
-Look for the following output to verify that the app has been built:
+===
+The initial build may take a while to setup, look for these lines to confirm it has completed
 
-    BUILD SUCCESSFUL in 6s
-    3 actionable tasks: 3 executed
-    Waiting for changes to input files...
+BUILD SUCCESSFUL in 6s
+3 actionable tasks: 3 executed
+Waiting for changes to input files...
 ====
-
 
 == Moving forward
 

@@ -236,6 +236,77 @@ image::morgan-original.png["The original version of Morgan Freemans photo is wid
 
 NOTE: The red "autofocus" circle, when set, helps the image service to crop the images optimally - as you can see above.
 
-== One final step
+== API augmentation
 
-Knowing how headless a CMS can get with an API calle Guillotine, and GraphQL queries flowing from your fingertips. It's time for the big finale where you <<deploy#, deploy your app to the Enonic cloud>>.
+Now the real magic begins! You programmatically augment and extend the Guillotine API. The use-cases are limitless, but rather than babbling about it - why not try it out yourself?
+
+We'll keep it simple. In the next steps you'll add a new `age` field to the Person content type, and use the `dateofbirth` to calculate the persons age.
+
+. From the `samples/` folder of your app, *copy or move* the `guillotine/` folder to `src/main/resources/`. You should then have the following TypeScript controller ready:
++
+./src/main/resources/guillotine/guillotine.ts
+[source,TypeScript]
+----
+include::{sourcedir}/samples/guillotine/guillotine.ts[]
+----
++
+. Guillotine requires the app to be redeployed (or restarted) in order to pick up changes to schemas and/or controllers. Stop the build (using control-c) and start it again:
++
+  ^c
+  enonic dev
++
+. Back in Query Playground, run the following query: 
++
+.Query using the new field
+[source,GraphQL]
+----
+{
+  guillotine {
+    getChildren(key: "/persons", first: 2) {
+      displayName
+      ... on com_example_myapp_Person {
+        data {
+          age
+          dateofbirth
+        }
+      }
+    }
+  }
+}
+----
++
+The response should now contain a new age filed, with a calculated value:
++
+.Query response
+[source,JSON]
+----
+{
+  "data": {
+    "guillotine": {
+      "getChildren": [
+        {
+          "displayName": "Léa Seydoux",
+          "data": {
+            "age": 38,
+            "dateofbirth": "1985-07-01"
+          }
+        },
+        {
+          "displayName": "Jeffrey Wright",
+          "data": {
+            "age": 58,
+            "dateofbirth": "1965-12-07"
+          }
+        }
+      ]
+    }
+  }
+}
+----
+
+
+As you have now seen, XP lets you run server-side https://developer.enonic.com/docs/xp/stable/framework[TypeScript and JavaScript code]. API augmentation is just the tip of the iceberg - believe us.
+
+== One last thing
+
+With GraphQL queries flowing from your fingertips. It's time for the big finale where you <<deploy#, deploy your app to the Enonic cloud>>.
