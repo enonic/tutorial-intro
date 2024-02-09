@@ -61,4 +61,4 @@ NOTE: If things don't look exactly the same, don't worry. In every new version o
 
 == Coming up
 
-You're now familiar with the CLI and sandboxes. In the next chapter you'll get create an <<cms#, Enonic application>>.
+You're now familiar with the CLI and sandboxes. In the next chapter you'll get create an <<app#, Enonic application>>.
