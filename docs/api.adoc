@@ -238,9 +238,13 @@ NOTE: The red "autofocus" circle, when set, helps the image service to crop the 
 
 == API augmentation
 
-Now the real magic begins! You programmatically augment and extend the Guillotine API. The use-cases are limitless, but rather than babbling about it - why not try it out yourself?
+*Now the real magic begins!* You may programmatically extend and augment the Guillotine API - for a fully customizable back-end. 
 
-We'll keep it simple. In the next steps you'll add a new `age` field to the Person content type, and use the `dateofbirth` to calculate the persons age.
+The use-cases are limitless, but rather than babbling about it - lets see it in action!
+
+=== The age field
+
+We'll keep it simple. In a few steps you'll add a new `age` field to the Person content type, and use the `dateofbirth` to calculate the result.
 
 . From the `samples/` folder of your app, *copy or move* the `guillotine/` folder to `src/main/resources/`. You should then have the following TypeScript controller ready:
 +
