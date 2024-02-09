@@ -17,7 +17,7 @@ https://developer.enonic.com/docs/xp/stable/apps[Enonic apps^] are used to ship 
 
 *Open a new terminal window* and create your first Enonic app by running this command:
 
-  enonic project create -r tutorial-intro -n com.example.myapp -d myapp -v 1.0.0 --sb mysandbox
+  enonic create com.example.myapp -r tutorial-intro --sb mysandbox
 
 This command will:
 
