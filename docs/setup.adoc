@@ -38,76 +38,9 @@ NOTE: Dev mode optimizes the development process.
 
 image::sandbox-start.gif["Booting the sandbox in the terminal", width="1024px"]
 
-== Create an app
+== Sandbox Admin
 
-https://developer.enonic.com/docs/xp/stable/apps[Enonic apps^] are used to ship everything from content models, to code and platform extensions.
-
-*Open a new terminal window* and create your first Enonic app by running this command:
-
-  enonic project create -r tutorial-intro -n com.example.myapp -d myapp -v 1.0.0 --sb mysandbox
-
-This command will:
-
-* use the GitHub repo `github.com/enonic/tutorial-intro` as a starter
-* to create an app called `com.example.myapp`
-* in the directory `myapp` setting version number to `1.0.0`
-* and link it to `mysandbox` which you created earlier
-
-TIP: A pre-compiled standard version of this app is also available on https://market.enonic.com/vendors/enonic/intro[Enonic Market^].
-
-=== Project structure
-
-Inside the `myapp` directory you should now have a file structure looking something like this:
-
-.Selected files from the app code:
-[source,files]
-----
-docs/ <1>
-samples/ <2>
-src/
- main/
-  resources/
-   assets <3>
-   controllers <4>
-   i18n <5>
-   import <6>
-   site/
-    content-types/ <7>
-    x-data/ <8>
-gradle.properties <9>
-----
-
-<1> The documentation you are reading now
-<2> Code samples that will be used in this guide
-<3> Client-side assets
-<4> https://developer.enonic.com/docs/xp/stable/framework/controllers[Server-side controllers and templates^]
-<5> https://developer.enonic.com/docs/xp/stable/framework/i18n[Localisation bundles^]
-<6> Sample content
-<7> https://developer.enonic.com/docs/xp/stable/cms/content-types[Content Type schemas^]
-<8> https://developer.enonic.com/docs/xp/stable/cms/x-data[X-data schemas^]
-<9> App name and other settings
-
-== Build the app
-
-Assuming `mysandbox` is still running in another Terminal window, run these commands:
-
-  cd myapp
-  enonic dev
-
-The last command will build and deploy the app to `mysandbox` - then keep watching for changes in the code to automatically rebuild as you work on it.
-
-[NOTE]
-====
-Look for the following output to verify that the app has been built:
-
-    BUILD SUCCESSFUL in 6s
-    3 actionable tasks: 3 executed
-    Waiting for changes to input files...
-====
-
-== XP Admin
-
-Let's have a look at the Sandbox' web interface. Open http://localhost:8080[http://localhost:8080^] in your browser (or just click the link).
+Let's have a look at the Sandbox' web interface - aka XP admin. Open http://localhost:8080[http://localhost:8080^] in your browser (or just click the link).
 
 You should now see the XP boot page:
 
@@ -116,9 +49,7 @@ image::xp-boot.png[The XP boot page, 1085w]
 
 The boot page provides an overview of the sandbox, including installed application, as well as the https://developer.enonic.com/docs/xp/stable/deployment/config[standard configuration files^].
 
-NOTE: `My App` should be in the list, together with other applications that were automatically installed when you created the sandbox.
-
-Click btn:[Log In as Guest] to open the XP admin dashboard. You should now see the following:
+Click btn:[Log In as Guest] to open the XP admin dashboard. You should now see something like this:
 
 .The XP admin dashboard
 image::xp-dashboard.png[The XP admin dashboard, 1727w]
@@ -130,4 +61,4 @@ NOTE: If things don't look exactly the same, don't worry. In every new version o
 
 == Coming up
 
-You're now familiar with the CLI, sandboxes, and even created and built your own app. In the next chapter you'll get familiar with <<cms#, Content Studio and how to manage schemas>>.
+You're now familiar with the CLI and sandboxes. In the next chapter you'll get create an <<cms#, Enonic application>>.

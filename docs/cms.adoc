@@ -4,7 +4,7 @@
 :imagesdir: media/
 :sourcedir: ../
 
-Introduction to the XP admin, Content Studio, content types and x-data.
+Introduction to Content Studio, content types and x-data.
 
 
 == Content Studio
@@ -13,7 +13,7 @@ https://market.enonic.com/vendors/enonic/content-studio[Content Studio^] is the 
 
 *Click btn:[Content Studio]* in the XP menu to launch it.
 
-When your application was installed, it automatically created a content project called `Intro Project` and populated it with content.Since this is the only available project at the moment, Content Studio will automatically open it, revealing the list of sample content.
+When your own application was started, it automatically created a content project called `Intro Project` and populated it with content. Since this is the only available project at the moment, Content Studio will automatically open it, revealing the list of sample content.
 
 TIP: The current project is shown at the top of Content Studio.
 
@@ -97,8 +97,6 @@ You can also see what the persisted version looks like in the JSON.
   }
 }
 ----
-
-
 
 
 == Adding a new content type
