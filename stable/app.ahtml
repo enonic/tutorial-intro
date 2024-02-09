@@ -478,7 +478,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>enonic project create -r tutorial-intro -n com.example.myapp -d myapp -v 1.0.0 --sb mysandbox</pre>
+<pre>enonic create com.example.myapp -r tutorial-intro --sb mysandbox</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -627,7 +627,7 @@ Waiting for changes to input files...</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-02-09 07:35:10 UTC
+Last updated 2024-02-09 09:13:40 UTC
 </div>
 </div>
 </body>
