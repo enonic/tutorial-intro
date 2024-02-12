@@ -440,14 +440,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#api_endpoint">API endpoint</a></li>
-<li><a href="#deploy_to_server">Deploy to server</a>
-<ul class="sectlevel2">
-<li><a href="#1_sign_up">1. Sign up</a></li>
-<li><a href="#2_upload_your_app">2. Upload your app</a></li>
-<li><a href="#3_explose_the_api">3. Explose the API</a></li>
-</ul>
-</li>
+<li><a href="#public_api">Public API</a></li>
+<li><a href="#sign_up">Sign up</a></li>
+<li><a href="#create_solution">Create solution</a></li>
+<li><a href="#deploy_application">Deploy application</a></li>
+<li><a href="#explose_the_api">Explose the API</a></li>
 <li><a href="#dive_deeper">Dive deeper</a></li>
 </ul>
 </div>
@@ -461,10 +458,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="api_endpoint"><a class="link" href="#api_endpoint">API endpoint</a></h2>
+<h2 id="public_api"><a class="link" href="#public_api">Public API</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>So far, you&#8217;ve been playing with the API via Content Studio. If you want to access the API endpoint directly, it&#8217;s available at respectively</p>
+<p>So far, you&#8217;ve been playing with the API via Content Studio. If you want to access the API endpoint directly on your sandbo, it&#8217;s available at respectively:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -477,7 +474,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 <div class="paragraph">
-<p>The API will be served from a real domain when you go live. Also, important to notice - the GraphQL API is accessed via <code>HTTP POST</code> method, as such - visiting via a regular browser will give you a 404 error.</p>
+<p>In the following steps, you will deploy the API to a live URL. Remember, the GraphQL API is accessed via <code>HTTP POST</code> method, as such - visiting via a regular browser will give you a 404 error.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -494,13 +491,11 @@ The Chrome extension <a href="https://chrome.google.com/webstore/detail/altair-g
 </div>
 </div>
 <div class="sect1">
-<h2 id="deploy_to_server"><a class="link" href="#deploy_to_server">Deploy to server</a></h2>
+<h2 id="sign_up"><a class="link" href="#sign_up">Sign up</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To deploy your application to production, you&#8217;ll need Enonic XP running on a server. Here we&#8217;ll use Enonic&#8217;s free tier, follow these steps:</p>
+<p>To complete this step, you&#8217;ll need Enonic XP running on a server. To get the job don, we&#8217;ll use Enonic&#8217;s free hosting tier:</p>
 </div>
-<div class="sect2">
-<h3 id="1_sign_up"><a class="link" href="#1_sign_up">1. Sign up</a></h3>
 <div class="admonitionblock tip">
 <table>
 <tr>
@@ -518,26 +513,49 @@ The Chrome extension <a href="https://chrome.google.com/webstore/detail/altair-g
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Start by <strong><a href="https://enonic.com/sign-up" target="_blank" rel="noopener">signing up</a></strong> for a forever-free account. You must complete the verification steps before you can move on.</p>
+<p>Visit our <strong><a href="https://enonic.com/sign-up" target="_blank" rel="noopener">sign up</a></strong> for to claim your forever-free account.</p>
 </li>
 <li>
-<p>then <strong>Log in to the <a href="https://console.enonic.com" target="_blank" rel="noopener">Enonic Console</a></strong></p>
-</li>
-<li>
-<p>and <strong>create a new solution</strong> from the menu: <code>Solutions &#8594; Essentials &#8594; Create</code>. Complete the solution wizard steps using your preferences.</p>
-<div class="paragraph">
-<p>This will spin up an instance of Enonic XP, similar to your local sandbox but this time on a real server in the Cloud.</p>
-</div>
+<p>After signing up, complete the verification of your e-mail before you can move to the next step.</p>
 </li>
 </ol>
 </div>
 </div>
-<div class="sect2">
-<h3 id="2_upload_your_app"><a class="link" href="#2_upload_your_app">2. Upload your app</a></h3>
+</div>
+<div class="sect1">
+<h2 id="create_solution"><a class="link" href="#create_solution">Create solution</a></h2>
+<div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Once the solution has started, <strong>authenticate the CLI</strong> by running this command from your project folder:</p>
+<p>With a verified e-mail <strong>Log in to the <a href="https://console.enonic.com" target="_blank" rel="noopener">Enonic Console</a></strong></p>
+</li>
+<li>
+<p>Choosing a name to create your account
+NOTE: The name cannot be changed later</p>
+</li>
+<li>
+<p>then  <strong>create a new solution</strong> from the menu: <code>Solutions &#8594; Essentials &#8594; Create</code>. Complete the solution wizard steps using your personal preferences.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/console-solution-create.png" alt="Select the 'Essentials' template" width="1440px">
+</div>
+</div>
+<div class="paragraph">
+<p>We will then spin up an Enonic XP environment, similar to your local sandbox but this time on a real server in the Cloud.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="deploy_application"><a class="link" href="#deploy_application">Deploy application</a></h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Once the solution has started (verify by logging in to the XP admin), you need to <strong>authorize the CLI</strong>. Run this command:</p>
 <div class="literalblock">
 <div class="content">
 <pre>enonic cloud login</pre>
@@ -558,7 +576,7 @@ The Chrome extension <a href="https://chrome.google.com/webstore/detail/altair-g
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-You must execute the command from your app folder.
+You must execute this command from your app folder.
 </td>
 </tr>
 </table>
@@ -570,49 +588,65 @@ You must execute the command from your app folder.
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Alternatively upload the app from the Console directly: <code>Solutions &#8594; &lt;Your solution&gt; &#8594; Applications &#8594; Install</code>.
+Alternatively upload the app from the Console directly: <code>Solutions &#8594; &lt;Your solution&gt; &#8594; Applications &#8594; Install</code>. The app file can be found in your project folder i.e. <code>build/libs/myapp.jar</code>.
 </td>
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>The app file is located in your project folder i.e. <code>build/libs/myapp.jar</code>.</p>
-</div>
 </li>
 </ol>
 </div>
+<div class="paragraph">
+<p>Once installed, the app should be listed in the Cloud console:</p>
 </div>
-<div class="sect2">
-<h3 id="3_explose_the_api"><a class="link" href="#3_explose_the_api">3. Explose the API</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="media/console-application-list.png" alt="List of applications including 'MyApp'" width="1440px">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="explose_the_api"><a class="link" href="#explose_the_api">Explose the API</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Finally, you may also want to expose the API:</p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Expose your API by <strong>creating an ingress</strong> in the Enonic Cloud console: <code>Solutions &#8594; &lt;Your solution&gt; &#8594; Ingresses &#8594; Create</code>.</p>
-<div class="paragraph">
-<p>Give it a suitable name i.e. <code>Intro API</code>, and use the following values:</p>
+<p><strong>create an ingress</strong> in the Enonic Cloud console: <code>Solutions &#8594; &lt;Your solution&gt; &#8594; Ingresses &#8594; Create</code>. Give it a suitable name i.e. <code>Intro API</code>, and use the following values:</p>
+<div class="exampleblock">
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Environment</dt>
+<dd>
+<p>Use the default value</p>
+</dd>
+<dt class="hdlist1">Target</dt>
+<dd>
+<p><code>/site/intro</code></p>
+</dd>
+<dt class="hdlist1">Domain</dt>
+<dd>
+<p>Use the default value</p>
+</dd>
+<dt class="hdlist1">Path</dt>
+<dd>
+<p><code>/api</code></p>
+</dd>
+<dt class="hdlist1">ID provider</dt>
+<dd>
+<p>leave empty</p>
+</dd>
+</dl>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Environment: keep the default/selected value</p>
-</li>
-<li>
-<p>Target: <code>/site/intro</code></p>
-</li>
-<li>
-<p>Domain: keep the default/selected value</p>
-</li>
-<li>
-<p>Path: <code>/api</code></p>
-</li>
-<li>
-<p>ID provider: leave empty</p>
-</li>
-</ul>
+</div>
 </div>
 </li>
 <li>
-<p><strong>Select the ingress</strong> to reveal the link to your API on the right.</p>
+<p>Once the incress is created, <strong>Select it in the list</strong>. This will reveal a link to your API on the right. hand side</p>
 </li>
 <li>
 <p><strong>Visit the URL</strong> to see the <code>Query Playground</code> API browser.</p>
@@ -628,14 +662,16 @@ The API browser can be disabled by changing the configuration of the <code>Guill
 </tr>
 </table>
 </div>
-<div class="admonitionblock note">
+<div class="paragraph">
+<p>To use the published content API directly from a GraphQL client, simply add append <code>/master</code> to the Ingress URL.</p>
+</div>
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-<div class="title">To access the GraphQL endpoint for your published content, append <code>/master</code> to the API URL.</div>
 Remember, the GraphQL API only accepts <code>POST</code> requests, so the browser will only show a 404 at this point.
 </td>
 </tr>
@@ -643,7 +679,6 @@ Remember, the GraphQL API only accepts <code>POST</code> requests, so the browse
 </div>
 </li>
 </ol>
-</div>
 </div>
 </div>
 </div>
@@ -670,7 +705,7 @@ Remember, the GraphQL API only accepts <code>POST</code> requests, so the browse
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-02-12 12:08:48 UTC
+Last updated 2024-02-12 17:06:18 UTC
 </div>
 </div>
 </body>
