@@ -30,13 +30,14 @@ If you are looking for other hosting options, Enonic XP is open source, and http
 
 . Visit our *https://enonic.com/sign-up[sign up^]* for to claim your forever-free account. 
 . After signing up, complete the verification of your e-mail before you can move to the next step.
+. *Log in to the https://console.enonic.com[Enonic Console^]* and choose your account name.
+
+image::console-account-create.png["Choose your account name", width="750px"]
+
 
 
 == Create solution
 
-. With a verified e-mail *Log in to the https://console.enonic.com[Enonic Console^]*
-. Choosing a name to create your account
-NOTE: The name cannot be changed later
 . then  *create a new solution* from the menu: `Solutions -> Essentials -> Create`. Complete the solution wizard steps using your personal preferences.
 
 image::console-solution-create.png["Select the 'Essentials' template", width="1440px"]
