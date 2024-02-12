@@ -781,42 +781,44 @@ The red "autofocus" circle, when set, helps the image service to crop the images
 <div class="title">/src/main/resources/guillotine/guillotine.ts</div>
 <div class="content">
 <pre class="highlight"><code class="language-TypeScript" data-lang="TypeScript">// Using the Person data type
-const personType = 'com_example_myapp_Person_Data';
+const personType = "com_example_myapp_Person_Data";
 
 export const extensions = (graphQL) =&gt; {
-	return {
-		creationCallbacks: {
-			[personType]: function (params) {
-				// Add a new field: age
-				params.addFields({
-					age: {
-						type: graphQL.GraphQLInt
-					}
-				});
-			}
-		},
-		resolvers: {
-			[personType]: {
-				// Implement the age resolver
-				age: (env) =&gt; {
-                    if (!env.source.dateofbirth) {return null;}
-                    
-					// Caclulate age
-                    let age = null;
-                	const today = new Date();
-                    const birthDate = new Date(env.source.dateofbirth);
-                    age = today.getFullYear() - birthDate.getFullYear();
-                    const m = today.getMonth() - birthDate.getMonth();
-                
-                    // Tune for moth and day
-                    if (m &lt; 0 || (m === 0 &amp;&amp; today.getDate() &lt; birthDate.getDate())) {
-                        age--;
-                    }
-                    return age;
-                }
-			}
-		},
-	}
+  return {
+    creationCallbacks: {
+      [personType]: function (params) {
+        // Add a new field: age
+        params.addFields({
+          age: {
+            type: graphQL.GraphQLInt,
+          },
+        });
+      },
+    },
+    resolvers: {
+      [personType]: {
+        // Implement the age resolver
+        age: (env) =&gt; {
+          if (!env.source.dateofbirth) {
+            return null;
+          }
+
+          // Calculate age
+          let age = 0;
+          const today = new Date();
+          const birthDate = new Date(env.source.dateofbirth);
+          age = today.getFullYear() - birthDate.getFullYear();
+          const m = today.getMonth() - birthDate.getMonth();
+
+          // Tune for month and day
+          if (m &lt; 0 || (m === 0 &amp;&amp; today.getDate() &lt; birthDate.getDate())) {
+            age--;
+          }
+          return age;
+        },
+      },
+    },
+  };
 };</code></pre>
 </div>
 </div>
@@ -900,7 +902,7 @@ enonic dev</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-02-09 16:11:37 UTC
+Last updated 2024-02-12 09:57:08 UTC
 </div>
 </div>
 </body>
