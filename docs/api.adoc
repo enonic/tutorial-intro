@@ -308,7 +308,6 @@ The response should now contain a new age filed, with a calculated value:
 }
 ----
 
-
 As you have now seen, XP lets you run server-side https://developer.enonic.com/docs/xp/stable/framework[TypeScript and JavaScript code]. API augmentation is just the tip of the iceberg - believe us.
 
 == One last thing

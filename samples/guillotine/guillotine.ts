@@ -22,7 +22,7 @@ export const extensions = (graphQL) => {
           }
 
           // Calculate age
-          let age = null;
+          let age = 0;
           const today = new Date();
           const birthDate = new Date(env.source.dateofbirth);
           age = today.getFullYear() - birthDate.getFullYear();
