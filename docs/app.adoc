@@ -70,7 +70,7 @@ Assuming `mysandbox` is still running in another Terminal window, run these comm
 The last command will build and deploy the app to `mysandbox`.
 
 [NOTE]
-===
+====
 The initial build may take a while to setup, look for these lines to confirm it has completed
 
 BUILD SUCCESSFUL in 6s
