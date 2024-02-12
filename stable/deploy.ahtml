@@ -518,7 +518,15 @@ The Chrome extension <a href="https://chrome.google.com/webstore/detail/altair-g
 <li>
 <p>After signing up, complete the verification of your e-mail before you can move to the next step.</p>
 </li>
+<li>
+<p><strong>Log in to the <a href="https://console.enonic.com" target="_blank" rel="noopener">Enonic Console</a></strong> and choose your account name.</p>
+</li>
 </ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/console-account-create.png" alt="Choose your account name" width="750px">
+</div>
 </div>
 </div>
 </div>
@@ -527,13 +535,6 @@ The Chrome extension <a href="https://chrome.google.com/webstore/detail/altair-g
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
-<li>
-<p>With a verified e-mail <strong>Log in to the <a href="https://console.enonic.com" target="_blank" rel="noopener">Enonic Console</a></strong></p>
-</li>
-<li>
-<p>Choosing a name to create your account
-NOTE: The name cannot be changed later</p>
-</li>
 <li>
 <p>then  <strong>create a new solution</strong> from the menu: <code>Solutions &#8594; Essentials &#8594; Create</code>. Complete the solution wizard steps using your personal preferences.</p>
 </li>
@@ -705,7 +706,7 @@ Remember, the GraphQL API only accepts <code>POST</code> requests, so the browse
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-02-12 17:06:18 UTC
+Last updated 2024-02-12 17:23:28 UTC
 </div>
 </div>
 </body>
