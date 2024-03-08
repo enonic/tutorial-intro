@@ -24,7 +24,7 @@ export default function buildServerConfig(): Options {
 		dts: false, // d.ts files are use useless at runtime
 		entry: FILES_SERVER,
 		env: {
-			BROWSER_SYNC_PORT: '3000',
+			BROWSER_SYNC_PORT: '3100',
 		},
 		esbuildOptions(options, context) {
 			// If you have libs with chunks, use this to avoid collisions

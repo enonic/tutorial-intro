@@ -40,7 +40,7 @@
     "lint": "eslint --cache src/main/resources/**/*.ts",
     "minify": "concurrently -c auto -g --timings 'npm:build:sass -- --style compressed' 'npm:build:server -- --minify' 'npm:build:static -- --minify'",
     "watch": "concurrently -c auto npm:watch:*",
-    "watch:browserSync": "npx browser-sync start --files \"src/main/resources/**/*.html\" \"src/main/resources/**/*.xml\" \"build/resources/main\" --reload-delay 0 --no-snippet --watch",
+    "watch:browserSync": "npx browser-sync start --files \"src/main/resources/**/*.html\" \"src/main/resources/**/*.xml\" \"build/resources/main\" --reload-delay 0 --port 3100 --no-snippet --watch",
     "watch:sass": "npm run build:sass -- --watch",
     "watch:server": "npm run build:server -- --watch",
     "watch:static": "npm run build:static -- --watch",
