@@ -17,7 +17,7 @@ https://developer.enonic.com/docs/xp/stable/apps[Enonic apps^] are used to ship 
 
 *Open a new terminal window* and create your first Enonic app by running this command:
 
-  enonic create com.example.myapp -r tutorial-intro --sb mysandbox
+  enonic create com.example.myapp -r tutorial-intro -s mysandbox
 
 This command will:
 
@@ -67,11 +67,11 @@ Assuming `mysandbox` is still running in another Terminal window, run these comm
   cd myapp
   enonic dev
 
-The last command will build and deploy the app to `mysandbox`.
+The last command (`dev`) will build the app, deploy it to `mysandbox` and start continuously watching for changes in the source code, automatically deploying the changes without you having to rebuild/redeploy the app after each change.
 
 [NOTE]
 ====
-The initial build may take a while to setup, look for these lines to confirm it has completed
+The initial build may take a while, look for these lines to confirm it has completed:
 
 BUILD SUCCESSFUL in 6s
 3 actionable tasks: 3 executed

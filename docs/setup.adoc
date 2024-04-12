@@ -24,17 +24,11 @@ TIP: To upgrade, use `enonic latest`. If there are new versions you will see ins
 
 == Create a sandbox
 
-A https://developer.enonic.com/docs/xp/stable/development/sandboxes[sandbox^] is a local development instance of the platform - Enonic XP. Create a sandbox called `mysandbox` by running this command in your terminal:
+A https://developer.enonic.com/docs/xp/stable/development/sandboxes[sandbox^] is a local development instance of the platform - Enonic XP. Create and start a sandbox called `mysandbox` by running this command in your terminal:
 
   enonic sandbox create mysandbox -t essentials -f
 
-NOTE: `-f` flag will force using the most recent release of Enonic XP.
-
-Start the sandbox with this command:
-
-  enonic sandbox start mysandbox --dev
-
-NOTE: Dev mode optimizes the development process.
+NOTE: `-f` flag will force using the most recent release of Enonic XP and automatically start the sandbox.
 
 image::sandbox-start.gif["Booting the sandbox in the terminal", width="1024px"]
 
