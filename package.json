@@ -21,7 +21,7 @@
     "eslint-plugin-jsx-a11y": "^6",
     "glob": "^10.3.12",
     "rimraf": "^5",
-    "sass": "^1.74.1",
+    "sass": "^1.75.0",
     "tsup": "^8"
   },
   "directories": {
