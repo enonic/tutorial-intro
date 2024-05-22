@@ -102,7 +102,22 @@
         </property-set>
         <property-set name="data">
             <reference name="photos">09b3af0e-6da3-4bcf-88d9-11cbe9c41283</reference>
-            <string name="bio">French actress Léa Seydoux was born in 1985 in Paris, France, to Valérie Schlumberger, a philanthropist, and Henri Seydoux, a businessman.</string>
+            <string name="bio">&lt;p&gt;French actress Léa Seydoux was born in 1985 in Paris, France, to Valérie Schlumberger, a philanthropist, and Henri Seydoux, a businessman.&lt;/p&gt;
+
+&lt;h3&gt;Additional photos&lt;/h3&gt;
+
+&lt;figure class="editor-align-justify"&gt;&lt;img alt="Seydoux at the 2013 Cannes Film Festival" src="image://dfe76f74-e6c1-459c-869a-7702f1974c29" style="width:100%" /&gt;
+&lt;figcaption&gt;Seydoux at the 2013 Cannes Film Festival&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3&gt;External Links&lt;/h3&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;Léa Seydoux at &lt;a href="https://en.wikipedia.org/wiki/L%C3%A9a_Seydoux"&gt;Wikipedia&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;[filmography heading="Léa's Movies"/]&lt;/p&gt;
+</string>
             <localDate name="dateofbirth">1985-07-01Z</localDate>
             <string isNull="true" name="document"/>
         </property-set>
@@ -136,6 +151,19 @@
                     <includeInAllText>false</includeInAllText>
                 </indexConfig>
                 <path>x.*</path>
+            </pathIndexConfig>
+            <pathIndexConfig>
+                <indexConfig>
+                    <decideByType>false</decideByType>
+                    <enabled>true</enabled>
+                    <nGram>true</nGram>
+                    <fulltext>true</fulltext>
+                    <includeInAllText>true</includeInAllText>
+                    <indexValueProcessors>
+                        <indexValueProcessor>htmlStripper</indexValueProcessor>
+                    </indexValueProcessors>
+                </indexConfig>
+                <path>data.bio</path>
             </pathIndexConfig>
             <pathIndexConfig>
                 <indexConfig>
