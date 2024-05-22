@@ -1,41 +1,16 @@
 <node>
-    <id>2d50ddce-444f-474e-821f-83ae63049c97</id>
+    <id>8b40fdc9-0dd6-4043-b85b-4ee667eace1c</id>
     <childOrder>modifiedtime DESC</childOrder>
     <nodeType>content</nodeType>
-    <timestamp>2020-09-23T12:34:46.524Z</timestamp>
-    <inheritPermissions>true</inheritPermissions>
+    <timestamp>2024-05-22T09:59:52.769Z</timestamp>
     <permissions>
-        <principal key="role:cms.project.intro.viewer">
+        <principal key="role:system.everyone">
             <allow type="array">
                 <value>READ</value>
-            </allow>
-            <deny type="array"/>
-        </principal>
-        <principal key="role:cms.project.intro.owner">
-            <allow type="array">
-                <value>READ</value>
-                <value>CREATE</value>
-                <value>MODIFY</value>
-                <value>DELETE</value>
-                <value>PUBLISH</value>
-                <value>READ_PERMISSIONS</value>
-                <value>WRITE_PERMISSIONS</value>
             </allow>
             <deny type="array"/>
         </principal>
         <principal key="role:system.admin">
-            <allow type="array">
-                <value>READ</value>
-                <value>CREATE</value>
-                <value>MODIFY</value>
-                <value>DELETE</value>
-                <value>PUBLISH</value>
-                <value>READ_PERMISSIONS</value>
-                <value>WRITE_PERMISSIONS</value>
-            </allow>
-            <deny type="array"/>
-        </principal>
-        <principal key="role:cms.project.intro.editor">
             <allow type="array">
                 <value>READ</value>
                 <value>CREATE</value>
@@ -59,9 +34,27 @@
             </allow>
             <deny type="array"/>
         </principal>
-        <principal key="role:cms.project.intro.contributor">
+        <principal key="role:cms.project.intro.owner">
             <allow type="array">
                 <value>READ</value>
+                <value>CREATE</value>
+                <value>MODIFY</value>
+                <value>DELETE</value>
+                <value>PUBLISH</value>
+                <value>READ_PERMISSIONS</value>
+                <value>WRITE_PERMISSIONS</value>
+            </allow>
+            <deny type="array"/>
+        </principal>
+        <principal key="role:cms.project.intro.editor">
+            <allow type="array">
+                <value>READ</value>
+                <value>CREATE</value>
+                <value>MODIFY</value>
+                <value>DELETE</value>
+                <value>PUBLISH</value>
+                <value>READ_PERMISSIONS</value>
+                <value>WRITE_PERMISSIONS</value>
             </allow>
             <deny type="array"/>
         </principal>
@@ -74,7 +67,13 @@
             </allow>
             <deny type="array"/>
         </principal>
-        <principal key="role:system.everyone">
+        <principal key="role:cms.project.intro.contributor">
+            <allow type="array">
+                <value>READ</value>
+            </allow>
+            <deny type="array"/>
+        </principal>
+        <principal key="role:cms.project.intro.viewer">
             <allow type="array">
                 <value>READ</value>
             </allow>
@@ -83,49 +82,62 @@
     </permissions>
     <data>
         <boolean name="valid">true</boolean>
-        <string name="displayName">Keanu Reeves</string>
-        <string name="type">com.enonic.app.intro:person</string>
+        <string name="displayName">Keanu_Reeves</string>
+        <string name="type">media:image</string>
+        <dateTime name="createdTime">2024-05-22T09:59:52.757Z</dateTime>
+        <string name="creator">user:system:su</string>
+        <string name="modifier">user:system:su</string>
+        <dateTime name="modifiedTime">2024-05-22T09:59:52.757Z</dateTime>
         <string name="owner">user:system:su</string>
         <string name="language">en</string>
-        <dateTime name="modifiedTime">2018-07-03T06:39:06.998Z</dateTime>
-        <string name="modifier">user:system:su</string>
-        <string name="creator">user:system:su</string>
-        <dateTime name="createdTime">2018-07-03T06:37:17.135Z</dateTime>
-        <property-set name="publish">
-            <dateTime isNull="true" name="first"/>
-            <dateTime isNull="true" name="from"/>
-            <dateTime isNull="true" name="to"/>
-        </property-set>
         <property-set name="data">
-            <reference name="photos">35870699-fcae-4694-a378-0ae610eb0117</reference>
-            <string name="bio">&lt;p&gt;Keanu Charles Reeves, whose first name means "cool breeze over the mountains" in Hawaiian, was born September 2, 1964 in Beirut, Lebanon&lt;/p&gt;
-
-&lt;h3&gt;Additional photos&lt;/h3&gt;
-
-&lt;figure class="editor-align-justify editor-width-custom" style="width: 50%;"&gt;&lt;img alt="Reeves in 2015" src="image://8b40fdc9-0dd6-4043-b85b-4ee667eace1c" style="width:100%" /&gt;
-&lt;figcaption&gt;Reeves in 2015&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;h3&gt;External Links&lt;/h3&gt;
-
-&lt;ul&gt;
-	&lt;li&gt;Keanu Reeves at &lt;a href="https://en.wikipedia.org/wiki/Keanu_Reeves" target="_blank"&gt;Wikipedia&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;[filmography/]&lt;/p&gt;
-</string>
-            <localDate name="dateofbirth">1964-09-02Z</localDate>
+            <property-set name="media">
+                <string name="attachment">Keanu_Reeves.jpg</string>
+                <property-set name="focalPoint">
+                    <double name="x">0.5</double>
+                    <double name="y">0.5</double>
+                </property-set>
+            </property-set>
+            <string name="caption"/>
+            <string name="artist"/>
+            <string name="copyright"/>
+            <string name="tags"/>
+            <string name="altText"/>
         </property-set>
         <property-set name="x">
-            <property-set name="com-enonic-app-intro">
-                <property-set name="SoMe">
-                    <string name="imdb">https://www.imdb.com/name/nm0000206/</string>
-                    <string isNull="true" name="twitter"/>
-                    <string isNull="true" name="instagram"/>
+            <property-set name="media">
+                <property-set name="cameraInfo">
+                    <string name="exposureMode">Auto exposure</string>
+                    <string name="make">NIKON CORPORATION</string>
+                    <string name="exposureBias">1/3 EV</string>
+                    <string name="meteringMode">Multi-segment</string>
+                    <string name="whiteBalance">Auto white balance</string>
+                    <string name="orientation">Top, left side (Horizontal / normal)</string>
+                    <localDateTime name="date">2015-09-04T19:44:09.000Z</localDateTime>
+                    <string name="shutterTime">1/1250 sec</string>
+                    <string name="focalLength">50 mm</string>
+                    <string name="model">NIKON D3200</string>
+                    <string name="iso">100</string>
+                    <string name="exposureProgram">Aperture priority</string>
+                </property-set>
+                <property-set name="imageInfo">
+                    <long name="imageHeight">3034</long>
+                    <string name="contentType">image/jpeg</string>
+                    <long name="imageWidth">2427</long>
+                    <long name="pixelSize">7363518</long>
+                    <long name="byteSize">1231305</long>
                 </property-set>
             </property-set>
         </property-set>
-        <reference name="processedReferences">8b40fdc9-0dd6-4043-b85b-4ee667eace1c</reference>
+        <property-set name="attachment">
+            <string name="name">Keanu_Reeves.jpg</string>
+            <string name="label">source</string>
+            <binaryReference name="binary">Keanu_Reeves.jpg</binaryReference>
+            <string name="mimeType">image/jpeg</string>
+            <string isNull="true" name="text"/>
+            <long name="size">1231305</long>
+            <string name="sha512">8087706a6eb438f3bde15131934971ff473a841a91c19c0de3945a2d599c5114d7dd0224eec143e542fb95c78a9c9dd9302d933d716913e9765baf9af6915227</string>
+        </property-set>
     </data>
     <indexConfigs>
         <analyzer>document_index_default</analyzer>
@@ -156,19 +168,6 @@
                     <includeInAllText>false</includeInAllText>
                 </indexConfig>
                 <path>x.*</path>
-            </pathIndexConfig>
-            <pathIndexConfig>
-                <indexConfig>
-                    <decideByType>false</decideByType>
-                    <enabled>true</enabled>
-                    <nGram>true</nGram>
-                    <fulltext>true</fulltext>
-                    <includeInAllText>true</includeInAllText>
-                    <indexValueProcessors>
-                        <indexValueProcessor>htmlStripper</indexValueProcessor>
-                    </indexValueProcessors>
-                </indexConfig>
-                <path>data.bio</path>
             </pathIndexConfig>
             <pathIndexConfig>
                 <indexConfig>
