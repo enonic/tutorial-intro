@@ -8,9 +8,12 @@
       <label>Photos</label>
       <occurrences minimum="0" maximum="0"/>
     </input>
-    <input type="TextArea" name="bio">
+    <input type="HtmlArea" name="bio">
       <label>Bio</label>
-       <occurrences minimum="1" maximum="1"/>
+      <occurrences minimum="1" maximum="1"/>
+      <config>
+        <exclude>NumberedList Outdent Indent SpecialChar Anchor Table PasteModeSwitcher</exclude>
+      </config>
     </input>
     <input type="Date" name="dateofbirth">
       <label>Birth Date</label>
