@@ -102,7 +102,7 @@
 
 &lt;h3&gt;Additional photos&lt;/h3&gt;
 
-&lt;figure class="editor-align-justify editor-width-custom" style="width: 50%;"&gt;&lt;img alt="Reeves in 2015" src="image://8b40fdc9-0dd6-4043-b85b-4ee667eace1c" style="width:100%" /&gt;
+&lt;figure class="captioned editor-align-justify editor-image-square editor-width-custom" style="width: 50%;"&gt;&lt;img alt="Reeves in 2015" src="image://8b40fdc9-0dd6-4043-b85b-4ee667eace1c?style=editor-image-square" style="width:100%" /&gt;
 &lt;figcaption&gt;Reeves in 2015&lt;/figcaption&gt;
 &lt;/figure&gt;
 

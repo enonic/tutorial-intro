@@ -106,7 +106,7 @@
 
 &lt;h3&gt;Additional photos&lt;/h3&gt;
 
-&lt;figure class="editor-align-justify"&gt;&lt;img alt="Seydoux at the 2013 Cannes Film Festival" src="image://dfe76f74-e6c1-459c-869a-7702f1974c29" style="width:100%" /&gt;
+&lt;figure class="captioned editor-align-justify editor-image-widescreen"&gt;&lt;img alt="Seydoux at the 2013 Cannes Film Festival" src="image://dfe76f74-e6c1-459c-869a-7702f1974c29?style=editor-image-widescreen" style="width:100%" /&gt;
 &lt;figcaption&gt;Seydoux at the 2013 Cannes Film Festival&lt;/figcaption&gt;
 &lt;/figure&gt;
 
@@ -121,6 +121,7 @@
             <localDate name="dateofbirth">1985-07-01Z</localDate>
             <string isNull="true" name="document"/>
         </property-set>
+        <reference name="processedReferences">dfe76f74-e6c1-459c-869a-7702f1974c29</reference>
     </data>
     <indexConfigs>
         <analyzer>document_index_default</analyzer>
