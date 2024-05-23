@@ -8,7 +8,7 @@ export function get(): Response {
     const photoId = (Array.isArray(content.data.photos)) ? content.data.photos[0] : content.data.photos;
     const view = resolve('preview.html');
     const model = {
-      cssUrl: assetUrl({path: 'styles.css'}),
+      cssUrl: assetUrl({path: 'styles/styles.css'}),
       displayName: (content.displayName) ? content.displayName : null,
       imageUrl: (photoId) ?
         imageUrl({
