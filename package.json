@@ -19,7 +19,7 @@
     "esbuild-sass-plugin": "^2.16.1",
     "eslint": "^8",
     "eslint-plugin-jsx-a11y": "^6",
-    "glob": "^10.4.3",
+    "glob": "^11.0.0",
     "rimraf": "^6",
     "sass": "^1.77.6",
     "tsup": "^8"
