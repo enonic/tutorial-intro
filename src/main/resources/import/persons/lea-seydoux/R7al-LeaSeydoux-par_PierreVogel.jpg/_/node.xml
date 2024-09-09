@@ -1,41 +1,16 @@
 <node>
-    <id>a8b374a2-c532-45eb-9aa1-73d1c37cd681</id>
+    <id>05be5762-bb26-4b2f-a8ca-0a445a3513a5</id>
     <childOrder>modifiedtime DESC</childOrder>
     <nodeType>content</nodeType>
-    <timestamp>2021-11-23T13:06:38.494Z</timestamp>
-    <inheritPermissions>true</inheritPermissions>
+    <timestamp>2024-09-05T14:24:59.164Z</timestamp>
     <permissions>
-        <principal key="role:cms.project.intro.viewer">
+        <principal key="role:system.everyone">
             <allow type="array">
                 <value>READ</value>
-            </allow>
-            <deny type="array"/>
-        </principal>
-        <principal key="role:cms.project.intro.owner">
-            <allow type="array">
-                <value>READ</value>
-                <value>CREATE</value>
-                <value>MODIFY</value>
-                <value>DELETE</value>
-                <value>PUBLISH</value>
-                <value>READ_PERMISSIONS</value>
-                <value>WRITE_PERMISSIONS</value>
             </allow>
             <deny type="array"/>
         </principal>
         <principal key="role:system.admin">
-            <allow type="array">
-                <value>READ</value>
-                <value>CREATE</value>
-                <value>MODIFY</value>
-                <value>DELETE</value>
-                <value>PUBLISH</value>
-                <value>READ_PERMISSIONS</value>
-                <value>WRITE_PERMISSIONS</value>
-            </allow>
-            <deny type="array"/>
-        </principal>
-        <principal key="role:cms.project.intro.editor">
             <allow type="array">
                 <value>READ</value>
                 <value>CREATE</value>
@@ -59,9 +34,27 @@
             </allow>
             <deny type="array"/>
         </principal>
-        <principal key="role:cms.project.intro.contributor">
+        <principal key="role:cms.project.intro.owner">
             <allow type="array">
                 <value>READ</value>
+                <value>CREATE</value>
+                <value>MODIFY</value>
+                <value>DELETE</value>
+                <value>PUBLISH</value>
+                <value>READ_PERMISSIONS</value>
+                <value>WRITE_PERMISSIONS</value>
+            </allow>
+            <deny type="array"/>
+        </principal>
+        <principal key="role:cms.project.intro.editor">
+            <allow type="array">
+                <value>READ</value>
+                <value>CREATE</value>
+                <value>MODIFY</value>
+                <value>DELETE</value>
+                <value>PUBLISH</value>
+                <value>READ_PERMISSIONS</value>
+                <value>WRITE_PERMISSIONS</value>
             </allow>
             <deny type="array"/>
         </principal>
@@ -74,7 +67,13 @@
             </allow>
             <deny type="array"/>
         </principal>
-        <principal key="role:system.everyone">
+        <principal key="role:cms.project.intro.contributor">
+            <allow type="array">
+                <value>READ</value>
+            </allow>
+            <deny type="array"/>
+        </principal>
+        <principal key="role:cms.project.intro.viewer">
             <allow type="array">
                 <value>READ</value>
             </allow>
@@ -83,54 +82,49 @@
     </permissions>
     <data>
         <boolean name="valid">true</boolean>
-        <string name="displayName">Léa Seydoux</string>
-        <string name="type">com.enonic.app.intro:person</string>
+        <string name="displayName">R7al-LeaSeydoux-par_PierreVogel</string>
+        <string name="type">media:image</string>
+        <dateTime name="createdTime">2024-09-05T14:22:18.588Z</dateTime>
+        <string name="creator">user:system:su</string>
+        <string name="modifier">user:system:su</string>
+        <dateTime name="modifiedTime">2024-09-05T14:22:18.588Z</dateTime>
         <string name="owner">user:system:su</string>
         <string name="language">en</string>
-        <dateTime name="modifiedTime">2021-11-23T13:06:38.493Z</dateTime>
-        <string name="modifier">user:system:su</string>
-        <string name="creator">user:system:su</string>
-        <dateTime name="createdTime">2021-11-23T10:01:16.711Z</dateTime>
-        <property-set name="publish">
-            <dateTime isNull="true" name="first"/>
-            <dateTime isNull="true" name="from"/>
-            <dateTime isNull="true" name="to"/>
-        </property-set>
-        <property-set name="workflow">
-            <string name="state">READY</string>
-            <property-set name="checks"/>
-        </property-set>
         <property-set name="data">
-            <reference name="photos">7fa8cbdd-2601-4fda-bb0a-da643b91defb</reference>
-            <reference name="photos">d64699ed-a882-4bc0-b0ab-7b8c48cfe45a</reference>
-            <reference name="photos">05be5762-bb26-4b2f-a8ca-0a445a3513a5</reference>
-            <string name="bio">&lt;figure class="captioned editor-align-right" style="float: right; width: 40%;"&gt;&lt;img alt="Léa Seydoux" src="image://09b3af0e-6da3-4bcf-88d9-11cbe9c41283" style="width:100%" /&gt;
-&lt;figcaption&gt;Léa Seydoux &lt;a href="media://download/09b3af0e-6da3-4bcf-88d9-11cbe9c41283"&gt;(download the image)&lt;/a&gt;&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;Born on 1 July 1985, Léa Seydoux is the daughter of businessman Henri Seydoux and Valérie Schlumberger. She was born in Passy and grew up in Saint-Germain-des-Prés. Seydoux is one of seven children.&lt;/p&gt;
-
-&lt;p&gt;She began her acting career with her film debut in &lt;em&gt;Girlfriends&lt;/em&gt; (2006) with early roles in &lt;em&gt;The Last Mistress&lt;/em&gt; (2007) and &lt;em&gt;On War&lt;/em&gt; (2008). She won acclaim for her French roles in &lt;em&gt;The Beautiful Person&lt;/em&gt; (2008), &lt;em&gt;Belle Épine&lt;/em&gt; (2010), and &lt;em&gt;Farewell, My Queen&lt;/em&gt; (2012). During this time she expanded her career appearing in supporting roles in high-profile Hollywood films, including Quentin Tarantino's &lt;em&gt;Inglourious Basterds&lt;/em&gt; (2009), Ridley Scott's &lt;em&gt;Robin Hood&lt;/em&gt; (2010), Woody Allen's &lt;em&gt;Midnight in Paris&lt;/em&gt; (2011) and the action film &lt;em&gt;Mission: Impossible – Ghost Protocol&lt;/em&gt; (2011).&lt;/p&gt;
-
-&lt;div&gt;[factbox]&amp;lt;ul&amp;gt;&amp;lt;li&amp;gt;&amp;lt;strong&amp;gt;French actress:&amp;lt;/strong&amp;gt; Léa Seydoux is a prominent French actress known for her roles in both French and international films.&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;&amp;lt;strong&amp;gt;Cannes Film Festival winner:&amp;lt;/strong&amp;gt; She won the prestigious Palme d'Or at the Cannes Film Festival in 2013 for her role in &amp;lt;em&amp;gt;Blue Is the Warmest Colour&amp;lt;/em&amp;gt;.&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;&amp;lt;strong&amp;gt;James Bond franchise:&amp;lt;/strong&amp;gt; Seydoux portrayed Dr. Madeleine Swann in the James Bond films &amp;lt;em&amp;gt;Spectre&amp;lt;/em&amp;gt; (2015) and &amp;lt;em&amp;gt;No Time to Die&amp;lt;/em&amp;gt; (2021).&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;&amp;lt;strong&amp;gt;Family ties to cinema:&amp;lt;/strong&amp;gt; She comes from a family with strong ties to the French film industry; her grandfather, Jérôme Seydoux, is the chairman of Pathé, a major French film production company.&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;&amp;lt;strong&amp;gt;Diverse filmography:&amp;lt;/strong&amp;gt; Her acting range spans from independent arthouse films like &amp;lt;em&amp;gt;The Lobster&amp;lt;/em&amp;gt; (2015) to blockbuster hits like &amp;lt;em&amp;gt;Mission: Impossible – Ghost Protocol&amp;lt;/em&amp;gt; (2011).&amp;lt;/li&amp;gt;&amp;lt;/ul&amp;gt;[/factbox]&lt;/div&gt;
-
-&lt;p&gt;Her breakthrough role came with the controversial and acclaimed film &lt;em&gt;Blue Is the Warmest Colour&lt;/em&gt; (2013) for which she received the Lumières Award for Best Actress, as well as the Palme d'Or at the Cannes Film Festival along with her co-star Adèle Exarchopoulos. She received her second Lumières Award within the same year for the film &lt;em&gt;Grand Central&lt;/em&gt;. She gained international attention for her role as Bond girl Madeleine Swann in &lt;em&gt;&lt;a href="https://en.wikipedia.org/wiki/Spectre_(2015_film)" target="_blank" title="Spectre (2015 film)"&gt;Spectre&lt;/a&gt;&lt;/em&gt; (2015), and &lt;em&gt;&lt;a href="content://b909b9d6-0c45-447f-be67-6c2624a1dd31" title="No Time to Die"&gt;No Time to Die&lt;/a&gt;&lt;/em&gt; (2021) in which she co-starred with &lt;a href="content://f29ba9b7-a73a-4767-82db-9da4df952924"&gt;Daniel Craig&lt;/a&gt;.&lt;/p&gt;
-</string>
-            <localDate name="dateofbirth">1985-07-01Z</localDate>
-            <string isNull="true" name="document"/>
+            <property-set name="media">
+                <string name="attachment">R7al-LeaSeydoux-par_PierreVogel.jpg</string>
+                <property-set name="focalPoint">
+                    <double name="x">0.5</double>
+                    <double name="y">0.5</double>
+                </property-set>
+            </property-set>
+            <string name="caption"/>
+            <string name="artist"/>
+            <string name="copyright"/>
+            <string name="tags"/>
+            <string name="altText"/>
         </property-set>
         <property-set name="x">
-            <property-set name="com-enonic-app-intro">
-                <property-set name="SoMe">
-                    <string isNull="true" name="imdb"/>
-                    <string isNull="true" name="twitter"/>
-                    <string isNull="true" name="instagram"/>
+            <property-set name="media">
+                <property-set name="imageInfo">
+                    <long name="imageHeight">1595</long>
+                    <string name="colorSpace">RGB</string>
+                    <string name="contentType">image/jpeg</string>
+                    <long name="imageWidth">1280</long>
+                    <long name="pixelSize">2041600</long>
+                    <long name="byteSize">563858</long>
                 </property-set>
             </property-set>
         </property-set>
-        <reference name="processedReferences">09b3af0e-6da3-4bcf-88d9-11cbe9c41283</reference>
-        <reference name="processedReferences">b909b9d6-0c45-447f-be67-6c2624a1dd31</reference>
-        <reference name="processedReferences">f29ba9b7-a73a-4767-82db-9da4df952924</reference>
+        <property-set name="attachment">
+            <string name="name">R7al-LeaSeydoux-par_PierreVogel.jpg</string>
+            <string name="label">source</string>
+            <binaryReference name="binary">R7al-LeaSeydoux-par_PierreVogel.jpg</binaryReference>
+            <string name="mimeType">image/jpeg</string>
+            <string isNull="true" name="text"/>
+            <long name="size">563858</long>
+            <string name="sha512">1ddfe47d89038d42ffbf05e172de2a7337b34d216778412cff85a6a18f619a555a75825ba7ea47dd0a873c3ae4951d2b1fb9fa5a6ef91261005cf4fe3153b1dd</string>
+        </property-set>
     </data>
     <indexConfigs>
         <analyzer>document_index_default</analyzer>
@@ -161,19 +155,6 @@
                     <includeInAllText>false</includeInAllText>
                 </indexConfig>
                 <path>x.*</path>
-            </pathIndexConfig>
-            <pathIndexConfig>
-                <indexConfig>
-                    <decideByType>false</decideByType>
-                    <enabled>true</enabled>
-                    <nGram>true</nGram>
-                    <fulltext>true</fulltext>
-                    <includeInAllText>true</includeInAllText>
-                    <indexValueProcessors>
-                        <indexValueProcessor>htmlStripper</indexValueProcessor>
-                    </indexValueProcessors>
-                </indexConfig>
-                <path>data.bio</path>
             </pathIndexConfig>
             <pathIndexConfig>
                 <indexConfig>
