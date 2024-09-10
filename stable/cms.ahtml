@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.22">
+<meta name="generator" content="Asciidoctor 2.0.23">
 <title>Content Studio and content forms</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -515,9 +515,12 @@ The current project is shown at the top of Content Studio.
       &lt;label&gt;Photos&lt;/label&gt;
       &lt;occurrences minimum="0" maximum="0"/&gt;
     &lt;/input&gt;
-    &lt;input type="TextArea" name="bio"&gt;
+    &lt;input type="HtmlArea" name="bio"&gt;
       &lt;label&gt;Bio&lt;/label&gt;
-       &lt;occurrences minimum="1" maximum="1"/&gt;
+      &lt;occurrences minimum="1" maximum="1"/&gt;
+      &lt;config&gt;
+        &lt;exclude&gt;NumberedList Outdent Indent SpecialChar Anchor Table PasteModeSwitcher&lt;/exclude&gt;
+      &lt;/config&gt;
     &lt;/input&gt;
     &lt;input type="Date" name="dateofbirth"&gt;
       &lt;label&gt;Birth Date&lt;/label&gt;
@@ -664,7 +667,7 @@ The current project is shown at the top of Content Studio.
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-04-15 11:03:36 UTC
+Last updated 2024-09-10 08:05:54 UTC
 </div>
 </div>
 </body>
