@@ -469,7 +469,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="introduction"><a class="link" href="#introduction">Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This guide will slow you how to:</p>
+<p>This guide will show you how to:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -506,7 +506,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-11-27 09:02:32 UTC
+Last updated 2024-11-27 12:44:22 UTC
 </div>
 </div>
 </body>
