@@ -10,7 +10,7 @@ TIP: *Just looking for a demo?* - https://enonic.com/sign-up[Sign up for a free 
 
 == Introduction
 
-This guide will slow you how to:
+This guide will show you how to:
 
 * set up a local developer environment
 * create an Enonic app
