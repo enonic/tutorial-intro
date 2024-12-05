@@ -63,7 +63,7 @@ Once installed, the app should be listed in the Cloud console:
 image::console-application-list.png["List of applications including 'MyApp'", width="1440px"]
 
 
-== Explose the API
+== Expose the API
 
 Finally, you may also want to expose the API:
 
