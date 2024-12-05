@@ -445,7 +445,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#sign_up">Sign up</a></li>
 <li><a href="#create_solution">Create solution</a></li>
 <li><a href="#deploy_application">Deploy application</a></li>
-<li><a href="#explose_the_api">Explose the API</a></li>
+<li><a href="#expose_the_api">Expose the API</a></li>
 <li><a href="#dive_deeper">Dive deeper</a></li>
 </ul>
 </div>
@@ -609,7 +609,7 @@ Alternatively upload the app from the Console directly: <code>Solutions &#8594; 
 </div>
 </div>
 <div class="sect1">
-<h2 id="explose_the_api"><a class="link" href="#explose_the_api">Explose the API</a></h2>
+<h2 id="expose_the_api"><a class="link" href="#expose_the_api">Expose the API</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Finally, you may also want to expose the API:</p>
@@ -707,7 +707,7 @@ Remember, the GraphQL API only accepts <code>POST</code> requests, so the browse
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-11-27 12:44:22 UTC
+Last updated 2024-12-05 14:19:12 UTC
 </div>
 </div>
 </body>
