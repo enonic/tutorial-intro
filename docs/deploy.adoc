@@ -9,7 +9,7 @@ It's time for the final act - sign up for a free account and deploy your app on 
 
 == Public API
 
-So far, you've been playing with the API via Content Studio. If you want to access the API endpoint directly on your sandbo, it's available at respectively:
+So far, you've been playing with the API via Content Studio. If you want to access the API endpoint directly on your sandbox, it's available at respectively:
 
 * \http://localhost:8080/site/intro/draft (draft items)
 * \http://localhost:8080/site/intro/master (published items)
