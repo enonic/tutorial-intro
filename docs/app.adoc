@@ -8,9 +8,9 @@ Create, build and deploy an application based on a starter
 
 == Intro
 
-The expression "There's an app for that" fits well with Enonic. When you created the sandbox, several applications were automatically installed (based on the `Essentials`` template), and extended the platforms capabilities.
+The expression "There's an app for that" fits well with Enonic. When you created the sandbox, several applications were automatically installed (based on the `Essentials` template), which extended the platform's capabilities.
 
-https://developer.enonic.com/docs/xp/stable/apps[Enonic apps^] are used to ship everything from content models, to code and platform extensions, which you will soon discover.
+https://developer.enonic.com/docs/xp/stable/apps[Enonic apps^] are used to ship everything from content models to code and platform extensions, which you will soon discover.
 
 
 == Create an app
@@ -30,7 +30,7 @@ TIP: A pre-compiled standard version of this app is also available on https://ma
 
 === Project structure
 
-Inside the `myapp` directory you should now have a file structure looking something like this:
+Inside the `myapp` directory, you should now have a file structure looking something like this:
 
 .Selected files from the app code:
 [source,files]
@@ -67,15 +67,17 @@ Assuming `mysandbox` is still running in another Terminal window, run these comm
   cd myapp
   enonic dev
 
-The last command (`dev`) will build the app, deploy it to `mysandbox` and start continuously watching for changes in the source code, automatically deploying the changes without you having to rebuild/redeploy the app after each change.
+The last command (`dev`) will build the app, deploy it to `mysandbox`, and start continuously watching for changes in the source code, automatically deploying the changes without you having to rebuild/redeploy the app after each change.
 
 [NOTE]
 ====
-The initial build may take a while, look for these lines to confirm it has completed:
+The initial build may take a while.  Look for these lines to confirm it has completed:
 
-BUILD SUCCESSFUL in 6s
-3 actionable tasks: 3 executed
-Waiting for changes to input files...
+```
+[server] CJS ⚡️ Build success in 228ms
+[server] CLI Watching for changes in "."
+[server] CLI Ignoring changes in "**/{.git,node_modules}/**" | "build/resources/main"
+```
 ====
 
 == Moving forward
