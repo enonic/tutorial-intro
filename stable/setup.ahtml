@@ -516,11 +516,6 @@ To upgrade, use <code>enonic latest</code>. If there are new versions you will s
 </tr>
 </table>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="media/sandbox-start.gif" alt="Booting the sandbox in the terminal" width="1024px">
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -578,7 +573,7 @@ If things don&#8217;t look exactly the same, don&#8217;t worry. In every new ver
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-01-20 14:14:47 UTC
+Last updated 2025-03-25 14:38:35 UTC
 </div>
 </div>
 </body>
