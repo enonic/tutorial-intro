@@ -464,10 +464,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="intro"><a class="link" href="#intro">Intro</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The expression "There&#8217;s an app for that" fits well with Enonic. When you created the sandbox, several applications were automatically installed (based on the <code>Essentials`</code> template), and extended the platforms capabilities.</p>
+<p>The expression "There&#8217;s an app for that" fits well with Enonic. When you created the sandbox, several applications were automatically installed (based on the <code>Essentials</code> template), which extended the platform&#8217;s capabilities.</p>
 </div>
 <div class="paragraph">
-<p><a href="https://developer.enonic.com/docs/xp/stable/apps" target="_blank" rel="noopener">Enonic apps</a> are used to ship everything from content models, to code and platform extensions, which you will soon discover.</p>
+<p><a href="https://developer.enonic.com/docs/xp/stable/apps" target="_blank" rel="noopener">Enonic apps</a> are used to ship everything from content models to code and platform extensions, which you will soon discover.</p>
 </div>
 </div>
 </div>
@@ -516,7 +516,7 @@ A pre-compiled standard version of this app is also available on <a href="https:
 <div class="sect2">
 <h3 id="project_structure"><a class="link" href="#project_structure">Project structure</a></h3>
 <div class="paragraph">
-<p>Inside the <code>myapp</code> directory you should now have a file structure looking something like this:</p>
+<p>Inside the <code>myapp</code> directory, you should now have a file structure looking something like this:</p>
 </div>
 <div class="listingblock">
 <div class="title">Selected files from the app code:</div>
@@ -592,7 +592,7 @@ enonic dev</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The last command (<code>dev</code>) will build the app, deploy it to <code>mysandbox</code> and start continuously watching for changes in the source code, automatically deploying the changes without you having to rebuild/redeploy the app after each change.</p>
+<p>The last command (<code>dev</code>) will build the app, deploy it to <code>mysandbox</code>, and start continuously watching for changes in the source code, automatically deploying the changes without you having to rebuild/redeploy the app after each change.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -602,12 +602,14 @@ enonic dev</pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>The initial build may take a while, look for these lines to confirm it has completed:</p>
+<p>The initial build may take a while.  Look for these lines to confirm it has completed:</p>
 </div>
-<div class="paragraph">
-<p>BUILD SUCCESSFUL in 6s
-3 actionable tasks: 3 executed
-Waiting for changes to input files&#8230;&#8203;</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>[server] CJS ⚡️ Build success in 228ms
+[server] CLI Watching for changes in "."
+[server] CLI Ignoring changes in "**/{.git,node_modules}/**" | "build/resources/main"</code></pre>
+</div>
 </div>
 </td>
 </tr>
@@ -626,7 +628,7 @@ Waiting for changes to input files&#8230;&#8203;</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-03-25 14:39:18 UTC
+Last updated 2025-03-25 15:11:42 UTC
 </div>
 </div>
 </body>
