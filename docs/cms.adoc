@@ -9,7 +9,7 @@ Introduction to Content Studio, content types and x-data.
 
 == Content Studio
 
-https://market.enonic.com/vendors/enonic/content-studio[Content Studio^] is the editorial interface used to create and manage content. It was pre-installed from https://market.enonic.com[Enonic Market^] as a part of the `Essentials` template when you started the sandbox, and can now be accessed from the XP menu.
+https://market.enonic.com/vendors/enonic/content-studio[Content Studio^] is the editorial interface used to create and manage content. It was pre-installed from https://market.enonic.com[Enonic Market^] as a part of the `Essentials` template when you started the sandbox and can now be accessed from the XP menu.
 
 *Click btn:[Content Studio]* in the XP menu to launch it.
 
@@ -22,13 +22,13 @@ image::content-studio-in-action.gif["Content Studio with Sample content", width=
 
 == Content type: Person
 
-To edit an item, simply select it and click `Edit` in the menu bar, or by using right click. When editing a Person content item, this is what the form looks like in Content Studio. On bigger screens you will also get a preview on the right-hand side.
+To edit an item, simply select it and click `Edit` in the menu bar, or by using right click. When editing a Person content item, this is what the form looks like in Content Studio. On bigger screens, you will also get a preview on the right-hand side.
 
 image::person.png["Person Form", width="1024px"]
 
 The form comes from the content type definition, which is located inside the app. Here is what it looks like:
 
-./src/main/resources/site/content-type/person/person.xml
+./src/main/resources/site/content-types/person/person.xml
 [source,XML]
 ----
 include::{sourcedir}/src/main/resources/site/content-types/person/person.xml[]
@@ -63,7 +63,7 @@ When used to create content, it is stored like this:
 
 == X-Data: Social media
 
-When editing a Person, you'll notice an additional subset of fields inside the Content form with title `Social Media`. This is strictly speaking a separate form, injected into the Person content type - we call it "eXtended data" (or just "x-data").
+When editing a Person, you'll notice an additional subset of fields inside the Content form with the title `Social Media`. This is, strictly speaking, a separate form, injected into the Person content type - we call it "eXtended data" (or just "x-data").
 
 image::some.gif["Social Media x-data form", width="1024px"]
 
@@ -111,4 +111,4 @@ image::review.png["Sample Review", width="1024px"]
 
 == Next up
 
-You're now familiar with the XP Admin, Content Studio, Content type, and x-data schemas. In the following chapter you'll get to play with <<api#, Query Playground and the Headless Content API aka Guillotine>>.
+You're now familiar with the XP Admin, Content Studio, Content type, and x-data schemas. In the following chapter, you'll get to play with <<api#, Query Playground, and the Headless Content API, aka Guillotine>>.
