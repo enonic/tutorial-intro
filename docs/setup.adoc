@@ -30,8 +30,6 @@ A https://developer.enonic.com/docs/xp/stable/development/sandboxes[sandbox^] is
 
 NOTE: `-f` flag will force using the most recent release of Enonic XP and automatically start the sandbox.
 
-image::sandbox-start.gif["Booting the sandbox in the terminal", width="1024px"]
-
 == Sandbox Admin
 
 Let's have a look at the Sandbox' web interface - aka XP admin. Open http://localhost:8080[http://localhost:8080^] in your browser (or just click the link).
