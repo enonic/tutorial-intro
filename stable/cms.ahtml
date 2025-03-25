@@ -461,7 +461,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="content_studio"><a class="link" href="#content_studio">Content Studio</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="https://market.enonic.com/vendors/enonic/content-studio" target="_blank" rel="noopener">Content Studio</a> is the editorial interface used to create and manage content. It was pre-installed from <a href="https://market.enonic.com" target="_blank" rel="noopener">Enonic Market</a> as a part of the <code>Essentials</code> template when you started the sandbox, and can now be accessed from the XP menu.</p>
+<p><a href="https://market.enonic.com/vendors/enonic/content-studio" target="_blank" rel="noopener">Content Studio</a> is the editorial interface used to create and manage content. It was pre-installed from <a href="https://market.enonic.com" target="_blank" rel="noopener">Enonic Market</a> as a part of the <code>Essentials</code> template when you started the sandbox and can now be accessed from the XP menu.</p>
 </div>
 <div class="paragraph">
 <p><strong>Click <b class="button">Content Studio</b></strong> in the XP menu to launch it.</p>
@@ -492,7 +492,7 @@ The current project is shown at the top of Content Studio.
 <h2 id="content_type_person"><a class="link" href="#content_type_person">Content type: Person</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To edit an item, simply select it and click <code>Edit</code> in the menu bar, or by using right click. When editing a Person content item, this is what the form looks like in Content Studio. On bigger screens you will also get a preview on the right-hand side.</p>
+<p>To edit an item, simply select it and click <code>Edit</code> in the menu bar, or by using right click. When editing a Person content item, this is what the form looks like in Content Studio. On bigger screens, you will also get a preview on the right-hand side.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -503,7 +503,7 @@ The current project is shown at the top of Content Studio.
 <p>The form comes from the content type definition, which is located inside the app. Here is what it looks like:</p>
 </div>
 <div class="listingblock">
-<div class="title">/src/main/resources/site/content-type/person/person.xml</div>
+<div class="title">/src/main/resources/site/content-types/person/person.xml</div>
 <div class="content">
 <pre class="highlight"><code class="language-XML" data-lang="XML">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;content-type xmlns="urn:enonic:xp:model:1.0"&gt;
@@ -564,7 +564,7 @@ The current project is shown at the top of Content Studio.
 <h2 id="x_data_social_media"><a class="link" href="#x_data_social_media">X-Data: Social media</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When editing a Person, you&#8217;ll notice an additional subset of fields inside the Content form with title <code>Social Media</code>. This is strictly speaking a separate form, injected into the Person content type - we call it "eXtended data" (or just "x-data").</p>
+<p>When editing a Person, you&#8217;ll notice an additional subset of fields inside the Content form with the title <code>Social Media</code>. This is, strictly speaking, a separate form, injected into the Person content type - we call it "eXtended data" (or just "x-data").</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -660,14 +660,14 @@ The current project is shown at the top of Content Studio.
 <h2 id="next_up"><a class="link" href="#next_up">Next up</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You&#8217;re now familiar with the XP Admin, Content Studio, Content type, and x-data schemas. In the following chapter you&#8217;ll get to play with <a href="api.ahtml">Query Playground and the Headless Content API aka Guillotine</a>.</p>
+<p>You&#8217;re now familiar with the XP Admin, Content Studio, Content type, and x-data schemas. In the following chapter, you&#8217;ll get to play with <a href="api.ahtml">Query Playground, and the Headless Content API, aka Guillotine</a>.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-03-25 15:11:42 UTC
+Last updated 2025-03-25 16:09:09 UTC
 </div>
 </div>
 </body>
