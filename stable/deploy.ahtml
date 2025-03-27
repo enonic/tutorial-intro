@@ -462,7 +462,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="public_api"><a class="link" href="#public_api">Public API</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>So far, you&#8217;ve been playing with the API via Content Studio. If you want to access the API endpoint directly on your sandbox, it&#8217;s available at respectively:</p>
+<p>So far, you&#8217;ve been playing with the API via Content Studio. If you want to access the API endpoint directly on your sandbox, it&#8217;s available at:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -484,7 +484,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-The Chrome extension <a href="https://chrome.google.com/webstore/detail/altair-graphql-client/flnheeellpciglgpaodhkhmapeljopja" target="_blank" rel="noopener">Altair</a> lets you browse any GraphQL API, simply by pointing it to the API URL.
+The Chrome extension <a href="https://chrome.google.com/webstore/detail/altair-graphql-client/flnheeellpciglgpaodhkhmapeljopja" target="_blank" rel="noopener">Altair</a> lets you browse any GraphQL API simply by pointing it to the API URL.
 </td>
 </tr>
 </table>
@@ -495,7 +495,7 @@ The Chrome extension <a href="https://chrome.google.com/webstore/detail/altair-g
 <h2 id="sign_up"><a class="link" href="#sign_up">Sign up</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To complete this step, you&#8217;ll need Enonic XP running on a server. To get the job don, we&#8217;ll use Enonic&#8217;s free hosting tier:</p>
+<p>To complete this step, you&#8217;ll need Enonic XP running on a server. To get the job done, we&#8217;ll use Enonic&#8217;s free hosting tier:</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -514,7 +514,7 @@ The Chrome extension <a href="https://chrome.google.com/webstore/detail/altair-g
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Visit our <strong><a href="https://enonic.com/sign-up" target="_blank" rel="noopener">sign up</a></strong> for to claim your forever-free account.</p>
+<p>Visit our <strong><a href="https://enonic.com/sign-up" target="_blank" rel="noopener">sign up</a></strong> to claim your forever-free account.</p>
 </li>
 <li>
 <p>After signing up, complete the verification of your e-mail before you can move to the next step.</p>
@@ -547,7 +547,7 @@ The Chrome extension <a href="https://chrome.google.com/webstore/detail/altair-g
 </div>
 </div>
 <div class="paragraph">
-<p>We will then spin up an Enonic XP environment, similar to your local sandbox but this time on a real server in the Cloud.</p>
+<p>We will then spin up an Enonic XP environment, similar to your local sandbox, but this time on a real server in the Cloud.</p>
 </div>
 </div>
 </div>
@@ -590,7 +590,7 @@ You must execute this command from your app folder.
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Alternatively upload the app from the Console directly: <code>Solutions &#8594; &lt;Your solution&gt; &#8594; Applications &#8594; Install</code>. The app file can be found in your project folder i.e. <code>build/libs/myapp.jar</code>.
+Alternatively, upload the app from the Console directly: <code>Solutions &#8594; &lt;Your solution&gt; &#8594; Applications &#8594; Install</code>. The app file can be found in your project folder i.e. <code>build/libs/myapp.jar</code>.
 </td>
 </tr>
 </table>
@@ -648,7 +648,7 @@ Alternatively upload the app from the Console directly: <code>Solutions &#8594; 
 </div>
 </li>
 <li>
-<p>Once the incress is created, <strong>Select it in the list</strong>. This will reveal a link to your API on the right. hand side</p>
+<p>Once the ingress is created, <strong>Select it in the list</strong>. This will reveal a link to your API on the right. hand side</p>
 </li>
 <li>
 <p><strong>Visit the URL</strong> to see the <code>Query Playground</code> API browser.</p>
@@ -665,7 +665,7 @@ The API browser can be disabled by changing the configuration of the <code>Guill
 </table>
 </div>
 <div class="paragraph">
-<p>To use the published content API directly from a GraphQL client, simply add append <code>/master</code> to the Ingress URL.</p>
+<p>To use the published content API directly from a GraphQL client, append <code>/master</code> to the Ingress URL.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -694,7 +694,7 @@ Remember, the GraphQL API only accepts <code>POST</code> requests, so the browse
 <p>In the process, you created an Enonic XP sandbox, built and customized your own app, ran GraphQL queries, got to know the Enonic CLI and our SaaS service.</p>
 </div>
 <div class="paragraph">
-<p>As you may already imagine, the Platform is capable of so much more. Did you for instance know that Enonic has a <a href="https://developer.enonic.com/docs/xp/stable/framework" target="_blank" rel="noopener">JavaScript framework</a>, complete with <a href="https://www.npmjs.com/org/enonic-types" target="_blank" rel="noopener">TypeScript definitions</a> the entire platform API? You may use it in your apps to extend and customize the Platform as you like.</p>
+<p>As you may already imagine, the Platform is capable of so much more. Did you know that Enonic has a <a href="https://developer.enonic.com/docs/xp/stable/framework" target="_blank" rel="noopener">JavaScript framework</a>, complete with <a href="https://www.npmjs.com/org/enonic-types" target="_blank" rel="noopener">TypeScript definitions</a> the entire platform API? You may use it in your apps to extend and customize the Platform as you like.</p>
 </div>
 <div class="paragraph">
 <p>To continue the journey, we recommend visiting the <a href="https://developer.enonic.com/docs/tutorials">Enonic tutorials</a> section of the Developer Portal.</p>
@@ -707,7 +707,7 @@ Remember, the GraphQL API only accepts <code>POST</code> requests, so the browse
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-03-27 17:10:12 UTC
+Last updated 2025-03-27 18:02:07 UTC
 </div>
 </div>
 </body>
