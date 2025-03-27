@@ -4,23 +4,23 @@
 :imagesdir: media/
 :sourcedir: ../
 
-Get familiar with the Guillotine API - our cutting edge headless GraphQL content API
+Get familiar with the Guillotine API - our cutting-edge headless GraphQL content API
 
 == Guillotine
 
-The Headless API aka https://market.enonic.com/vendors/enonic/guillotine[Guillotine^] - yes, we take headlessness seriously around here - provides access to all the content within your project. Clients requesting content will naturally only get access to the content they have read-permissions for. The `Intro project` is configured with public read access for everything.
+The Headless API, aka https://market.enonic.com/vendors/enonic/guillotine[Guillotine^] - yes, we take headlessness seriously around here - provides access to all the content within your project. Clients requesting content will naturally only get access to the content they have read-permissions for. The `Intro project` is configured with public read access for everything.
 
-Click the GraphQL icon in the Content Studio's left hand menu to open `Query Playground`. Here you may test and play with the GraphQL API directly.
+Click the GraphQL icon in the Content Studio's left-hand menu to open `Query Playground`. Here you may test and play with the GraphQL API directly.
 
 image::query-playground.png["Query Playground in action", width="1024px"]
 
-The API documentation is available from the Top left `file cabinet icon`. Use the tabs on the top right to query against the Draft or Master branch, accessing the draft and published items respectively.
+The API documentation is available from the Top left `file cabinet icon`. Use the tabs on the top right to query against the Draft or Master branch, accessing the draft and published items, respectively.
 
 Want to know more about GraphQL in general? Visit the https://graphql.org[official GraphQL documentation^].
 
 == Sample queries
 
-Below are some example queries you can use for fetching the sample content.
+Below are some example queries you can use to fetch the sample content.
 
 === Get Persons
 
@@ -75,7 +75,7 @@ Query variables are defined with JSON. You can add them using the `Variables` bu
 }
 ----
 
-With the variable set, update your query to use the variable. This query should provide the exact same response as it did before.
+With the variable set, update your query to use the variable. This query should provide the exact same response as before.
 
 .The Person query, this time using path as a variable:
 [source,GraphQL]
@@ -157,9 +157,9 @@ IMPORTANT: The GraphQL schema is automatically generated from your application a
 
 == Image handling
 
-In this case, Guillotine plays tag-team with XP's image service, which is capable of delivering real-time cropped and optimized versions of images. In this case we are requesting a 400 x 400px version of the image.
+In this case, Guillotine plays tag-team with XP's image service, which can deliver real-time cropped and optimized versions of images. Here, we are requesting a 400 x 400px version of the image.
 
-The query below shows the name of actors containing the term `morgan`, and provide a link to a cropped image of the actor.
+The query below shows the names of actors containing the term `morgan`, and provides a link to a cropped image of the actor.
 
 IMPORTANT: Again, if your app was called something else than `com.example.myapp`, replace `com.example.myapp:person` and `com_example_myapp_Person` for the query below to work.
 
@@ -230,21 +230,21 @@ When looking at the result in Query Playground, you can see the actual image by 
 
 image::morgan-photo.png["Cropped version of Morgan Freemans image", width="1024px"]
 
-The original higher resolution image is stored as a content item, just like persons and reviews. This is what it looks like from Content Studio:
+The original higher-resolution image is stored as a content item, just like persons and reviews. This is what it looks like from Content Studio:
 
 image::morgan-original.png["The original version of Morgan Freemans photo is widescreen, with a red "autofocus" circle marked around his face", width="1024px"]
 
-NOTE: The red "autofocus" circle, when set, helps the image service to crop the images optimally - as you can see above.
+NOTE: The red "autofocus" circle, when set, helps the image service to crop the images optimally, as you can see above.
 
 == API augmentation
 
 *Now the real magic begins!* You may programmatically extend and augment the Guillotine API - for a fully customizable back-end. 
 
-The use-cases are limitless, but rather than babbling about it - lets see it in action!
+The use-cases are limitless, but rather than babbling about it - let's see it in action!
 
 === The age field
 
-We'll keep it simple. In a few steps you'll add a new `age` field to the Person content type, and use the `dateofbirth` to calculate the result.
+We'll keep it simple. In a few steps, you'll add a new `age` field to the Person content type and use the `dateofbirth` to calculate the result.
 
 . From the `samples/` folder of your app, *copy or move* the `guillotine/` folder to `src/main/resources/`. You should then have the following TypeScript controller ready:
 +
@@ -254,7 +254,7 @@ We'll keep it simple. In a few steps you'll add a new `age` field to the Person 
 include::{sourcedir}/samples/guillotine/guillotine.ts[]
 ----
 +
-. Guillotine requires the app to be redeployed (or restarted) in order to pick up changes to schemas and/or controllers. Stop the build (using control-c) and start it again:
+. Guillotine requires the app to be redeployed (or restarted) to pick up changes to schemas and/or controllers. Stop the build (using control-c) and start it again:
 +
   ^c
   enonic dev
