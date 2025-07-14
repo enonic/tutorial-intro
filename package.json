@@ -23,7 +23,7 @@
     "rimraf": "^6",
     "sass": "^1.89.2",
     "tsup": "^8",
-    "typescript-eslint": "^8.35.1"
+    "typescript-eslint": "^8.36.0"
   },
   "directories": {
     "doc": "docs"
