@@ -12,7 +12,7 @@
     "@enonic-types/lib-project": "^7",
     "@enonic-types/lib-task": "^7",
     "@eslint/js": "^9.39.2",
-    "@swc/core": "^1.15.11",
+    "@swc/core": "^1.15.13",
     "browser-sync": "^3",
     "concurrently": "^9",
     "esbuild-plugin-globals": "^0.2.0",
