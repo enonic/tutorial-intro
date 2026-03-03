@@ -1,15 +1,28 @@
-name: Build
+name: Gradle Build
 
-on: [push]
+on: [ push ]
 
 jobs:
   build:
+    runs-on: ubuntu-latest
+    outputs:
+      release: ${{ steps.build-and-publish.outputs.release }}
+    steps:
+      - id: build-and-publish
+        uses: enonic/release-tools/build-and-publish@master
+        with:
+          repoUser: ci
+          repoPassword: ${{ secrets.ARTIFACTORY_PASSWORD }}
+          codecovToken: ${{ secrets.CODECOV_TOKEN }}
+          npmToken: ${{ secrets.NPM_TOKEN }}
 
+  release:
     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v6
+    needs: build
+    if: needs.build.outputs.release == 'true'
 
-      - uses: enonic/action-app-build@v1
-      
-      - uses: codecov/codecov-action@v5
+    steps:
+      - uses: enonic/release-tools/release@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}

@@ -1,9 +1,9 @@
-import { create as createProject, get as getProject } from '/lib/xp/project';
-import { publish } from '/lib/xp/content';
-import { run } from '/lib/xp/context';
-import { isMaster } from '/lib/xp/cluster';
-import { executeFunction } from '/lib/xp/task';
-import { importNodes } from '/lib/xp/export';
+import {create as createProject, get as getProject} from '/lib/xp/project';
+import {publish} from '/lib/xp/content';
+import {run} from '/lib/xp/context';
+import {isMaster} from '/lib/xp/cluster';
+import {executeFunction} from '/lib/xp/task';
+import {importNodes} from '/lib/xp/export';
 
 const projectData = {
     id: 'intro',
@@ -22,6 +22,7 @@ const runInContext = (callback) => {
     let result;
     try {
         result = run({
+            branch: "draft",
             principals: ["role:system.admin"],
             repository: 'com.enonic.cms.' + projectData.id
         }, callback);

@@ -1,0 +1,11 @@
+displayName: "Persons"
+form:
+  - type: "ContentSelector"
+    name: "person"
+    label: "Person"
+    helpText: "Tag persons in the picture"
+    occurrences:
+      min: 0
+      max: 0
+    allowContentType:
+      - "person"
