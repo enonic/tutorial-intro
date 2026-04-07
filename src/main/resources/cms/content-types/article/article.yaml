@@ -1,0 +1,12 @@
+kind: "ContentType"
+superType: "base:structured"
+title:
+  text: "Article"
+  i18n: "article.displayName"
+displayNamePlaceholder:
+  text: "Article heading"
+  i18n: "article.title"
+form:
+  - type: "FieldSet"
+  - type: "FieldSet"
+  - type: "FieldSet"
