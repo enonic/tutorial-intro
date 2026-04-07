@@ -1,0 +1,14 @@
+kind: "Style"
+styles:
+  - name: "editor-image-widescreen"
+    type: "Image"
+    label: "Widescreen (16:9)"
+    aspectRatio: "16:9"
+    editor:
+      css: ""
+  - name: "editor-image-square"
+    type: "Image"
+    label: "Square (1:1)"
+    aspectRatio: "1:1"
+    editor:
+      css: ""

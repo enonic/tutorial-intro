@@ -1,0 +1,5 @@
+kind: "Site"
+mappings:
+  - controller: "/controllers/preview.js"
+    order: 50
+    match: "type:'.*:person|.*:movie|.*:folder'"
