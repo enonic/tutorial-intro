@@ -18,4 +18,4 @@ form:
       max: 1
     exclude: "*"
     include: "Format | Bold Italic Underline | BulletedList NumberedList | SpecialChar\
-    \ Link Unlink"
+      \ Link Unlink"

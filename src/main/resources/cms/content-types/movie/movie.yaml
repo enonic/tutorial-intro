@@ -31,7 +31,7 @@ form:
       min: 0
       max: 1
     regexp: "^http(?:s?):\\/\\/(?:www\\.)?youtu(?:be\\.com\\/watch\\?v=|\\.be\\/)([\\\
-    w\\-\\_]*)(&(amp;)?[\\w\\?‌​=]*)?$"
+      w\\-\\_]*)(&(amp;)?[\\w\\?‌​=]*)?$"
   - type: "TextArea"
     name: "abstract"
     label: "Abstract"
@@ -45,6 +45,26 @@ form:
       min: 0
       max: 1
   - type: "ItemSet"
+    name: "cast"
+    label: "Cast"
+    occurrences:
+      min: 0
+      max: 0
+    items:
+      - type: "ContentSelector"
+        name: "actor"
+        label: "Actor"
+        occurrences:
+          min: 1
+          max: 1
+        allowContentType:
+          - "person"
+      - type: "TextLine"
+        name: "character"
+        label: "Character"
+        occurrences:
+          min: 1
+          max: 1
   - type: "TextLine"
     name: "website"
     label: "Official Website"
