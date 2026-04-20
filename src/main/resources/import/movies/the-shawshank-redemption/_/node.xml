@@ -120,7 +120,7 @@
         </property-set>
         <property-set name="x">
             <property-set name="com-enonic-app-intro">
-                <property-set name="SoMe">
+              <property-set name="some">
                     <string name="imdb">https://www.imdb.com/title/tt0111161/</string>
                     <string isNull="true" name="twitter"/>
                     <string isNull="true" name="instagram"/>

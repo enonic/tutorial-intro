@@ -1,6 +1,6 @@
 kind: "CMS"
 mixin:
-  - name: "com.enonic.app.intro:SoMe"
+  - name: "com.enonic.app.intro:some"
     allowContentTypes: ".*:person|.*:movie"
     optional: false
   - name: "com.enonic.app.intro:spotlight"
