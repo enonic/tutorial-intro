@@ -1,0 +1,9 @@
+kind: "CMS"
+mixins:
+  - name: "com.enonic.app.intro:some"
+    allowContentTypes: ".*:person|.*:movie"
+    optional: false
+  - name: "com.enonic.app.intro:spotlight"
+    allowContentTypes: "media:image"
+    optional: false
+form: [ ]

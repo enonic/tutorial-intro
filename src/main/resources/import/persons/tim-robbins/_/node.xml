@@ -103,7 +103,7 @@
         </property-set>
         <property-set name="x">
             <property-set name="com-enonic-app-intro">
-                <property-set name="SoMe">
+              <property-set name="some">
                     <string name="imdb">https://www.imdb.com/name/nm0000209/</string>
                     <string name="twitter">@TimRobbins1</string>
                     <string name="instagram">@realtimrobbins</string>

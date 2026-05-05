@@ -71,10 +71,10 @@ X-data can be applied across multiple content types. In this app for instance, t
 
 This is what the definition looks like:
 
-./src/main/resources/site/x-data/some/some.xml
-[source,XML]
+./src/main/resources/cms/mixins/some/some.xml
+[source,YAML]
 ----
-include::{sourcedir}/src/main/resources/site/x-data/SoMe/SoMe.xml[]
+include::{sourcedir}/src/main/resources/cms/mixins/some/some.yaml[]
 ----
 
 You can also see what the persisted version looks like in the JSON.
@@ -90,7 +90,7 @@ You can also see what the persisted version looks like in the JSON.
   },
   "x": {
     "com-example-myapp": {
-      "SoMe": {
+      "some": {
         "imdb": "https://www.imdb.com/name/nm0000235/"
       }
     }
