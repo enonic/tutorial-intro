@@ -1,5 +1,8 @@
 kind: "Site"
+apis:
+  - "asset"
 mappings:
-  - controller: "/controllers/preview.js"
-    order: 50
-    match: "type:'.*:person|.*:movie|.*:folder'"
+  - controller: "/lib/info.js"
+    match: "type:'portal:site'"
+  - controller: "/lib/preview.js"
+    match: "type:'(?!media:).*'"

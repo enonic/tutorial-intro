@@ -1,17 +1,11 @@
 plugins {
     id 'maven-publish'
+    id 'com.enonic.defaults' version '2.1.7'
     id 'com.enonic.xp.app'
     id 'com.github.node-gradle.node' version '7.1.0'
-    id 'com.enonic.defaults' version '2.1.7'
-}
-
-app {
-    createDefaultDevTask = false
 }
 
 dependencies {
-    include "com.enonic.lib:lib-thymeleaf:3.0.0"
-
     include xplibs.content
     include xplibs.portal
     include xplibs.cluster
@@ -19,6 +13,8 @@ dependencies {
     include xplibs.export
     include xplibs.project
     include xplibs.task
+    include "com.enonic.lib:lib-asset:2.0.0"
+    include "com.enonic.lib:lib-thymeleaf:3.0.0"
 }
 
 repositories {
@@ -35,57 +31,45 @@ node {
 
     // Version of node to download and install (only used if download is true)
     // It will be unpacked in the workDir
-    version = '20.10.0'
+    version = '24.11.0'
 }
-
-apply from: "$projectDir/gradle/env.gradle"
-
-tasks.register('dev', NpmTask) {
-    args = [
-            'run',
-            'watch'
-    ]
-    dependsOn npmInstall, deploy
-    environment = [
-            'FORCE_COLOR': 'true',
-    ]
-}
-
-tasks.register('npmCheck', NpmTask) {
-    dependsOn npmInstall
-    args = [
-            'run',
-            'check'
-    ]
-    environment = [
-            'FORCE_COLOR': 'true',
-    ]
-}
-
-tasks.register('npmBuild', NpmTask) {
-    args = [
-            'run',
-            //'--silent',
-            isProd() ? 'minify' : 'build'
-    ]
-    dependsOn npmInstall
-    environment = [
-            'FORCE_COLOR': 'true',
-            'LOG_LEVEL_FROM_GRADLE': gradle.startParameter.logLevel.toString(),
-            'NODE_ENV': nodeEnvironment()
-    ]
-    inputs.dir 'src/main/resources'
-    outputs.dir 'build/resources/main'
-}
-
-check.dependsOn npmCheck
-jar.dependsOn npmBuild
 
 processResources {
     exclude '**/.gitkeep'
     exclude '**/*.json'
-    exclude '**/*.sass'
-    exclude '**/*.scss'
     exclude '**/*.ts'
     exclude '**/*.tsx'
+}
+
+tasks.register( 'npmBuild', NpmTask ) {
+    args = ['run',
+            '--silent',
+            'build'
+    ]
+    dependsOn npmInstall
+    environment = ['FORCE_COLOR'          : 'true',
+                   'LOG_LEVEL_FROM_GRADLE': gradle.startParameter.logLevel.toString(),
+                   'NODE_ENV'             : project.hasProperty( 'dev' ) || project.hasProperty( 'development' ) ? 'development' :
+                       'production'
+    ]
+    inputs.dir 'src/main/resources'
+    outputs.dir 'build/resources/main'
+    outputs.upToDateWhen { false }
+}
+
+jar.dependsOn npmBuild
+
+tasks.register('npmCheck', NpmTask) {
+    dependsOn npmInstall
+    args = ['run',
+            'check'
+    ]
+    environment = ['FORCE_COLOR': 'true',
+    ]
+}
+
+check.dependsOn npmCheck
+
+tasks.withType( Copy ).configureEach {
+    includeEmptyDirs = false
 }
