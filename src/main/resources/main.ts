@@ -10,7 +10,6 @@ interface ProjectData {
     displayName: string;
     description: string;
     language: string;
-    siteConfig: { applicationKey: string }[];
     publicRead: boolean;
 }
 
@@ -19,9 +18,6 @@ const projectData: ProjectData = {
     displayName: 'Intro Project',
     description: 'Sample content from the cinematic industry',
     language: 'en',
-    siteConfig: [{
-        applicationKey: app.name
-    }],
     publicRead: true
 };
 
@@ -59,7 +55,8 @@ function createContent(): void {
         targetNodePath: '/content',
         xslt: resolve('/import/replace_app.xsl'),
         xsltParams: {
-            applicationId: app.name
+            applicationId: app.name,
+            projectName: projectData.id
         },
         versionAttributes: {
             'content.import': {
@@ -70,7 +67,6 @@ function createContent(): void {
         },
         includeNodeIds: true
     });
-    log.info('Importing Intro DB content');
     if (importResult.importErrors.length > 0) {
         log.warning('Errors:');
         importResult.importErrors.forEach(element => log.warning(element.message));
@@ -80,7 +76,7 @@ function createContent(): void {
 
 function publishRoot(): void {
     const result = contentLib.publish({
-        keys: ['/movies', '/persons', '/articles', '/playlists'],
+        keys: ['/hmdb'],
         includeDependencies: true
     });
     if (result.failedContents.length > 0) {
@@ -109,7 +105,7 @@ function initialize(): void {
         const project = getProject();
         if (!project) {
             taskLib.executeFunction({
-                description: 'Importing Intro DB content',
+                description: 'Importing content',
                 func: initProject
             });
         } else {

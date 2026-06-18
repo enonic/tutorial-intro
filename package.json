@@ -2,6 +2,7 @@
   "name": "intro",
   "version": "1.0.0",
   "description": "Introduction to Enonic XP",
+  "type": "module",
   "devDependencies": {
     "@enonic-types/core": "^8.0.2",
     "@enonic-types/global": "^8.0.3",
@@ -13,6 +14,8 @@
     "@enonic-types/lib-portal": "^8.0.3",
     "@enonic-types/lib-project": "^8.0.3",
     "@enonic-types/lib-task": "^8.0.3",
+    "@item-enonic-types/lib-thymeleaf": "^2.1.0",
+    "@types/node": "^24.10.1",
     "@eslint/js": "^9.39.2",
     "@swc/core": "^1.15.43",
     "browser-sync": "^3",
@@ -52,7 +55,7 @@
   },
   "homepage": "https://github.com/enonic/tutorial-intro#readme",
   "engines": {
-    "node": ">= 20.10.0",
+    "node": ">= 24.16.0",
     "npm": ">= 10.2.3"
   }
 }
