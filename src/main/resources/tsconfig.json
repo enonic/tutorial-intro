@@ -1,0 +1,32 @@
+{
+  // This file should only include Enonic XP server-side source files.
+  // It should exclude any client-side source files.
+  // https://www.typescriptlang.org/tsconfig
+  "include": [
+    "**/*.ts"
+  ],
+  "exclude": [
+    "**/*.d.ts",
+    "assets/**/*.*"
+  ],
+  "compilerOptions": {
+    "paths": {
+      "/lib/xp/*": [
+        "../../../node_modules/@enonic-types/lib-*"
+      ],
+      "/lib/enonic/asset": [
+        "../../../node_modules/@enonic-types/lib-asset"
+      ],
+      "/lib/*": [
+        "../../../node_modules/@item-enonic-types/lib-*"
+      ],
+      "/*": [
+        "./*"
+      ]
+    },
+    "skipLibCheck": true,
+    "types": [
+      "@enonic-types/global"
+    ]
+  }
+}
