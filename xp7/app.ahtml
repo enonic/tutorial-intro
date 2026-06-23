@@ -488,7 +488,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>use the GitHub repo <code>github.com/enonic/tutorial-intro</code> as a starter</p>
+<p>use the GitHub repo <code>github.com/enonic/tutorial-intro</code> as a starter based on the <code>xp7</code> branch</p>
 </li>
 <li>
 <p>to create an app called <code>com.example.myapp</code></p>
@@ -628,7 +628,7 @@ enonic dev</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-06-23 11:47:22 UTC
+Last updated 2026-06-23 12:02:41 UTC
 </div>
 </div>
 </body>
