@@ -467,7 +467,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>The expression "There&#8217;s an app for that" fits well with Enonic. When you created the sandbox, several applications were automatically installed (based on the <code>Essentials</code> template), which extended the platform&#8217;s capabilities.</p>
 </div>
 <div class="paragraph">
-<p><a href="https://developer.enonic.com/docs/xp/stable/apps" target="_blank" rel="noopener">Enonic apps</a> are used to ship everything from content models to code and platform extensions, which you will soon discover.</p>
+<p><a href="https://developer.enonic.com/docs/platform/xp7/apps" target="_blank" rel="noopener">Enonic apps</a> are used to ship everything from content models to code and platform extensions, which you will soon discover.</p>
 </div>
 </div>
 </div>
@@ -479,7 +479,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>enonic create com.example.myapp -r tutorial-intro -s mysandbox</pre>
+<pre>enonic create com.example.myapp -r tutorial-intro -b xp7 -s mysandbox</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -552,11 +552,11 @@ gradle.properties <i class="conum" data-value="9"></i><b>(9)</b></code></pre>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td><a href="https://developer.enonic.com/docs/xp/stable/framework/controllers" target="_blank" rel="noopener">Server-side controllers and templates</a></td>
+<td><a href="https://developer.enonic.com/docs/platform/xp7/framework/controllers" target="_blank" rel="noopener">Server-side controllers and templates</a></td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
-<td><a href="https://developer.enonic.com/docs/xp/stable/framework/i18n" target="_blank" rel="noopener">Localisation bundles</a></td>
+<td><a href="https://developer.enonic.com/docs/platform/xp7/framework/i18n" target="_blank" rel="noopener">Localisation bundles</a></td>
 </tr>
 <tr>
 <td><i class="conum" data-value="6"></i><b>6</b></td>
@@ -564,11 +564,11 @@ gradle.properties <i class="conum" data-value="9"></i><b>(9)</b></code></pre>
 </tr>
 <tr>
 <td><i class="conum" data-value="7"></i><b>7</b></td>
-<td><a href="https://developer.enonic.com/docs/xp/stable/cms/content-types" target="_blank" rel="noopener">Content Type schemas</a></td>
+<td><a href="https://developer.enonic.com/docs/platform/xp7/cms/content-types" target="_blank" rel="noopener">Content Type schemas</a></td>
 </tr>
 <tr>
 <td><i class="conum" data-value="8"></i><b>8</b></td>
-<td><a href="https://developer.enonic.com/docs/xp/stable/cms/x-data" target="_blank" rel="noopener">X-data schemas</a></td>
+<td><a href="https://developer.enonic.com/docs/platform/xp7/cms/x-data" target="_blank" rel="noopener">X-data schemas</a></td>
 </tr>
 <tr>
 <td><i class="conum" data-value="9"></i><b>9</b></td>
@@ -628,7 +628,7 @@ enonic dev</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-06-12 20:22:41 UTC
+Last updated 2026-06-23 10:39:02 UTC
 </div>
 </div>
 </body>

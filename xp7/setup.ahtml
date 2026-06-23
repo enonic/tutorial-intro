@@ -501,7 +501,7 @@ To upgrade, use <code>enonic latest</code>. If there are new versions you will s
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>enonic sandbox create mysandbox -t essentials -f</pre>
+<pre>enonic sandbox create mysandbox -v 7.16.5 -t essentials -f</pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -534,7 +534,7 @@ To upgrade, use <code>enonic latest</code>. If there are new versions you will s
 <div class="title">Figure 1. XP Boot page</div>
 </div>
 <div class="paragraph">
-<p>The boot page provides an overview of the sandbox, including installed application, as well as the <a href="https://developer.enonic.com/docs/xp/stable/deployment/config" target="_blank" rel="noopener">standard configuration files</a>.</p>
+<p>The boot page provides an overview of the sandbox, including installed application, as well as the <a href="https://developer.enonic.com/docs/platform/xp7/deployment/config" target="_blank" rel="noopener">standard configuration files</a>.</p>
 </div>
 <div class="paragraph">
 <p>Click <b class="button">Log In as Guest</b> to open the XP admin dashboard. You should now see something like this:</p>
@@ -573,7 +573,7 @@ If things don&#8217;t look exactly the same, don&#8217;t worry. In every new ver
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-06-12 20:22:41 UTC
+Last updated 2026-06-23 10:39:02 UTC
 </div>
 </div>
 </body>

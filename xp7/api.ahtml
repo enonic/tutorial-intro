@@ -887,7 +887,7 @@ enonic dev</pre>
 </ol>
 </div>
 <div class="paragraph">
-<p>As you have now seen, XP lets you run server-side <a href="https://developer.enonic.com/docs/xp/stable/framework">TypeScript and JavaScript code</a>. API augmentation is just the tip of the iceberg - believe us.</p>
+<p>As you have now seen, XP lets you run server-side <a href="https://developer.enonic.com/docs/platform/xp7/framework">TypeScript and JavaScript code</a>. API augmentation is just the tip of the iceberg - believe us.</p>
 </div>
 </div>
 </div>
@@ -903,7 +903,7 @@ enonic dev</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-06-12 20:22:41 UTC
+Last updated 2026-06-23 10:39:02 UTC
 </div>
 </div>
 </body>
