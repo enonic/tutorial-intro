@@ -479,7 +479,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>enonic create com.example.myapp -r tutorial-intro -b xp7 -s mysandbox</pre>
+<pre>enonic project create com.example.myapp -r tutorial-intro -b xp7 -s mysandbox</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -628,7 +628,7 @@ enonic dev</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-06-23 10:39:02 UTC
+Last updated 2026-06-23 11:47:22 UTC
 </div>
 </div>
 </body>
