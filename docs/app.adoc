@@ -17,7 +17,7 @@ https://developer.enonic.com/docs/platform/xp7/apps[Enonic apps^] are used to sh
 
 *Open a new terminal window* and create your first Enonic app by running this command:
 
-  enonic create com.example.myapp -r tutorial-intro -b xp7 -s mysandbox
+  enonic project create com.example.myapp -r tutorial-intro -b xp7 -s mysandbox
 
 This command will:
 
