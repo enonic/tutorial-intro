@@ -26,7 +26,7 @@ TIP: To upgrade, use `enonic latest`. If there are new versions you will see ins
 
 A https://developer.enonic.com/docs/xp/stable/development/sandboxes[sandbox^] is a local development instance of the platform - Enonic XP. Create and start a sandbox called `mysandbox` by running this command in your terminal:
 
-  enonic sandbox create mysandbox -t essentials -f
+  enonic sandbox create mysandbox -v 7.16.5 -t essentials -f
 
 NOTE: `-f` flag will force using the most recent release of Enonic XP and automatically start the sandbox.
 
@@ -39,7 +39,7 @@ You should now see the XP boot page:
 .XP Boot page
 image::xp-boot.png[The XP boot page, 1085w]
 
-The boot page provides an overview of the sandbox, including installed application, as well as the https://developer.enonic.com/docs/xp/stable/deployment/config[standard configuration files^].
+The boot page provides an overview of the sandbox, including installed application, as well as the https://developer.enonic.com/docs/platform/xp7/deployment/config[standard configuration files^].
 
 Click btn:[Log In as Guest] to open the XP admin dashboard. You should now see something like this:
 

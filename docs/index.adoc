@@ -1,4 +1,4 @@
-= Introduction to Enonic
+= XP7 - Introduction to Enonic
 :toc: right
 :experimental:
 :imagesdir: media/

@@ -10,14 +10,14 @@ Create, build and deploy an application based on a starter
 
 The expression "There's an app for that" fits well with Enonic. When you created the sandbox, several applications were automatically installed (based on the `Essentials` template), which extended the platform's capabilities.
 
-https://developer.enonic.com/docs/xp/stable/apps[Enonic apps^] are used to ship everything from content models to code and platform extensions, which you will soon discover.
+https://developer.enonic.com/docs/platform/xp7/apps[Enonic apps^] are used to ship everything from content models to code and platform extensions, which you will soon discover.
 
 
 == Create an app
 
 *Open a new terminal window* and create your first Enonic app by running this command:
 
-  enonic create com.example.myapp -r tutorial-intro -s mysandbox
+  enonic create com.example.myapp -r tutorial-intro -b xp7 -s mysandbox
 
 This command will:
 
@@ -53,11 +53,11 @@ gradle.properties <9>
 <1> The documentation you are reading now
 <2> Code samples that will be used in this guide
 <3> Client-side assets
-<4> https://developer.enonic.com/docs/xp/stable/framework/controllers[Server-side controllers and templates^]
-<5> https://developer.enonic.com/docs/xp/stable/framework/i18n[Localisation bundles^]
+<4> https://developer.enonic.com/docs/platform/xp7/framework/controllers[Server-side controllers and templates^]
+<5> https://developer.enonic.com/docs/platform/xp7/framework/i18n[Localisation bundles^]
 <6> Sample content
-<7> https://developer.enonic.com/docs/xp/stable/cms/content-types[Content Type schemas^]
-<8> https://developer.enonic.com/docs/xp/stable/cms/x-data[X-data schemas^]
+<7> https://developer.enonic.com/docs/platform/xp7/cms/content-types[Content Type schemas^]
+<8> https://developer.enonic.com/docs/platform/xp7/cms/x-data[X-data schemas^]
 <9> App name and other settings
 
 == Build and deploy
