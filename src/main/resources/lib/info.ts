@@ -1,15 +1,15 @@
-import {assetUrl} from '/lib/enonic/asset';
-import {get, getOutboundDependencies} from '/lib/xp/content';
-import {getContent, imageUrl} from '/lib/xp/portal';
-import type {Content, Request, Response} from '@enonic-types/core';
+import { assetUrl } from '/lib/enonic/asset';
+import { get, getOutboundDependencies } from '/lib/xp/content';
+import { getContent, imageUrl } from '/lib/xp/portal';
+import type { Content, Request, Response } from '@enonic-types/core';
 
 function pickImageId(content: Content): string | null {
-    const refs = getOutboundDependencies({key: content._id});
+    const refs = getOutboundDependencies({ key: content._id });
     if (!refs || refs.length === 0) {
         return null;
     }
     for (let i = 0; i < refs.length; i++) {
-        const item = get({key: refs[i]});
+        const item = get({ key: refs[i] });
         if (item && item.type === 'media:image') {
             return item._id;
         }
@@ -18,15 +18,15 @@ function pickImageId(content: Content): string | null {
 }
 
 export function GET(req: Request): Response {
-    const title = 'Introduction to Enonic XP';
-    const heading = 'Welcome to the Introduction to Enonic XP';
+    const title = 'Headless Movie Database';
+    const heading = 'Welcome to the Headless Movie Database';
     const info = 'Tip: This preview was created by the file: /src/main/resources/lib/info.ts';
     const cssUrl = assetUrl({
         path: 'styles.css'
     });
     const content = getContent();
     const imageId = content ? pickImageId(content) : null;
-    const bannerUrl = imageId ? imageUrl({id: imageId, scale: 'width(500)'}) : null;
+    const bannerUrl = imageId ? imageUrl({ id: imageId, scale: 'width(500)' }) : null;
     const branch = req.branch;
     const mode = req.mode;
 

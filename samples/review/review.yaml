@@ -1,0 +1,49 @@
+kind: "ContentType"
+superType: "base:structured"
+title: "Review"
+form:
+  - type: "ContentSelector"
+    name: "movie"
+    label: "Movie"
+    occurrences:
+      min: 1
+      max: 1
+    allowContentType:
+      - "movie"
+  - type: "TextArea"
+    name: "teaser"
+    label: "Teaser"
+    occurrences:
+      min: 1
+      max: 1
+  - type: "HtmlArea"
+    name: "review"
+    label: "Review"
+    occurrences:
+      min: 1
+      max: 1
+  - type: "ComboBox"
+    name: "rating"
+    label: "Rating"
+    occurrences:
+      min: 1
+      max: 1
+    options:
+      - value: "1"
+        label: "1 (One)"
+      - value: "2"
+        label: "2 (Two)"
+      - value: "3"
+        label: "3 (Three)"
+      - value: "4"
+        label: "4 (Four)"
+      - value: "5"
+        label: "5 (Five)"
+      - value: "6"
+        label: "6 (Six)"
+  - type: "TextLine"
+    name: "author"
+    label: "Author(s)"
+    occurrences:
+      min: 1
+      max: 0

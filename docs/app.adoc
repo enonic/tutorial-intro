@@ -10,7 +10,7 @@ Create, build and deploy an application based on a starter
 
 The expression "There's an app for that" fits well with Enonic. When you created the sandbox, several applications were automatically installed (based on the `Essentials` template), which extended the platform's capabilities.
 
-https://developer.enonic.com/docs/xp/stable/apps[Enonic apps^] are used to ship everything from content models to code and platform extensions, which you will soon discover.
+https://developer.enonic.com/docs/platform/stable/apps[Enonic apps^] are containers for content schemas, as well as code and platform extensions, which we will dive into later.
 
 
 == Create an app
@@ -40,25 +40,24 @@ samples/ <2>
 src/
  main/
   resources/
-   assets <3>
-   controllers <4>
-   i18n <5>
-   import <6>
-   site/
-    content-types/ <7>
-    x-data/ <8>
-gradle.properties <9>
+   assets/ <3>
+   cms/ 
+    content-types/ <4>
+    ...   
+   i18n/ <5>
+   import/ <6>
+   lib/ <7>
+   enonic.yaml <8>
 ----
 
 <1> The documentation you are reading now
 <2> Code samples that will be used in this guide
-<3> Client-side assets
-<4> https://developer.enonic.com/docs/xp/stable/framework/controllers[Server-side controllers and templates^]
-<5> https://developer.enonic.com/docs/xp/stable/framework/i18n[Localisation bundles^]
-<6> Sample content
-<7> https://developer.enonic.com/docs/xp/stable/cms/content-types[Content Type schemas^]
-<8> https://developer.enonic.com/docs/xp/stable/cms/x-data[X-data schemas^]
-<9> App name and other settings
+<3> Static assets for sample preview
+<4> https://developer.enonic.com/docs/cms/xp8/content/content-types[Content Type schemas]
+<5> Sample content
+<6> https://developer.enonic.com/docs/code/stable/fundamentals/i18n[Localisation bundles]
+<7> https://developer.enonic.com/docs/code/stable/fundamentals/functions[Sample preview code]
+<8> App details
 
 == Build and deploy
 
@@ -74,9 +73,9 @@ The last command (`dev`) will build the app, deploy it to `mysandbox`, and start
 The initial build may take a while.  Look for these lines to confirm it has completed:
 
 ```
-[server] CJS ⚡️ Build success in 228ms
-[server] CLI Watching for changes in "."
-[server] CLI Ignoring changes in "**/{.git,node_modules}/**" | "build/resources/main"
+Waiting for changes to input files...
+│···············│ 0% EXECUTING [31s]
+> :dev
 ```
 ====
 

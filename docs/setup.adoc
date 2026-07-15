@@ -4,7 +4,7 @@
 :imagesdir: media/
 :sourcedir: ../
 
-Installing the CLI and creating a development sandbox.
+Installing the CLI and setting up a local Enonic sandbox.
 
 == Install CLI
 
@@ -37,14 +37,14 @@ Let's have a look at the Sandbox' web interface - aka XP admin. Open http://loca
 You should now see the XP boot page:
 
 .XP Boot page
-image::xp-boot.png[The XP boot page, 1085w]
+image::xp-boot.png[The XP boot page, 1024w]
 
 The boot page provides an overview of the sandbox, including installed application, as well as the https://developer.enonic.com/docs/xp/stable/deployment/config[standard configuration files^].
 
 Click btn:[Log In as Guest] to open the XP admin dashboard. You should now see something like this:
 
 .The XP admin dashboard
-image::xp-dashboard.png[The XP admin dashboard, 1727w]
+image::xp-dashboard.png[The XP admin dashboard, 1708w]
 
 You are now on the admin dashboard. The right hand menu (aka `XP menu`) enables navigation between admin tools. Admin tools may be injected as extensions via applications.
 

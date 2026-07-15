@@ -4,72 +4,89 @@
 :imagesdir: media/
 :sourcedir: ../
 
-Introduction to Content Studio, content types and x-data.
+Introduction to Content Studio, content types and mixins.
 
 
 == Content Studio
 
-https://market.enonic.com/vendors/enonic/content-studio[Content Studio^] is the editorial interface used to create and manage content. It was pre-installed from https://market.enonic.com[Enonic Market^] as a part of the `Essentials` template when you started the sandbox and can now be accessed from the XP menu.
+https://market.enonic.com/vendors/enonic/content-studio[Content Studio] is the editorial interface used to create and manage content. It was pre-installed from https://market.enonic.com[Enonic Market] as a part of the `Essentials` template when you started the sandbox and can now be accessed from the XP menu.
 
 *Click btn:[Content Studio]* in the XP menu to launch it.
 
-When your own application was started, it automatically created a content project called `Intro Project` and populated it with content. Since this is the only available project at the moment, Content Studio will automatically open it, revealing the list of sample content.
+When your own application was started, it automatically created a CMS project called `Intro Project` and populated it with content. Content Studio will automatically open it, revealing the list of sample content.
 
-TIP: The current project is shown at the top of Content Studio.
+TIP: The current project is shown at the top left of Content Studio.
 
-image::content-studio-in-action.gif["Content Studio with Sample content", width="1024px"]
+image::content-studio-in-action.gif["Content Studio with in action", width="1920w"]
 
 
 == Content type: Person
 
 To edit an item, simply select it and click `Edit` in the menu bar, or by using right click. When editing a Person content item, this is what the form looks like in Content Studio. On bigger screens, you will also get a preview on the right-hand side.
 
-image::person.png["Person Form", width="1024px"]
+image::person.png["Person Form and preview", width="1440px"]
 
 The form comes from the content type definition, which is located inside the app. Here is what it looks like:
 
-./src/main/resources/site/content-types/person/person.xml
-[source,XML]
+./src/main/resources/cms/content-types/person/person.yaml
+[source,yaml]
 ----
-include::{sourcedir}/src/main/resources/site/content-types/person/person.xml[]
+include::{sourcedir}/src/main/resources/cms/content-types/person/person.yaml[]
 ----
 
 When used to create content, it is stored like this:
 
-.Persisted content for Uma Thurman
+.Sample JSON for a Person content item
 [source,JSON]
 ----
 {
-  "valid": true,
-  "displayName": "Uma Thurman",
-  "type": "com.example.myapp:person",
-  "owner": "user:system:su",
-  "language": "en",
-  "modifiedTime": "2018-07-03T05:58:55.025Z",
-  "modifier": "user:system:su",
-  "creator": "user:system:su",
-  "createdTime": "2018-07-03T05:57:35.292Z",
-  "publish": {
-    "first": "2024-01-18T12:08:23.167Z",
-    "from": "2024-01-18T12:08:23.167Z"
-  },
-  "data": {
-    "photos": "8d47792f-0ae6-4d74-a6e4-bab0e8d2374b",
-    "bio": "Uma Karuna Thurman was born in Boston, Massachusetts, into a highly unorthodox and Eurocentric family",
-    "dateofbirth": "1970-04-29"
-  }
+    "_id": "6414dc62-a3a1-4772-961f-06cb85b1bbb7",
+    "_name": "morgan-floatman",
+    "_path": "/persons/morgan-floatman",
+    "creator": "user:system:su",
+    "modifier": "user:system:su",
+    "createdTime": "2018-07-02T15:33:45.160Z",
+    "modifiedTime": "2026-07-15T14:49:10.004Z",
+    "owner": "user:system:su",
+    "type": "com.enonic.app.intro:person",
+    "displayName": "Morgan Floatman",
+    "language": "en",
+    "valid": true,
+    "childOrder": "modifiedtime DESC",
+    "data": {
+        "photos": "7ab1f76a-69a1-490f-b505-6eb6773c7cec",
+        "bio": "Morgan Floatman is renowned for his soothing baritone — even more remarkable given that his head is a single, large, slowly-rotating balloon. Frequent collaborator with Frank Daraballoon.",
+        "dateofbirth": "1937-06-01"
+    },
+    "x": {
+        "com-enonic-app-intro": {
+            "SoMe": {}
+        }
+    },
+    "page": {},
+    "validationErrors": [],
+    "attachments": {},
+    "publish": {
+        "from": "2026-07-15T13:52:34.373Z",
+        "first": "2026-05-05T12:36:16.195Z"
+    },
+    "workflow": {
+        "state": "READY"
+    }
 }
 ----
 
-== X-Data: Social media
+== Mixin: Social media
 
-When editing a Person, you'll notice an additional subset of fields inside the Content form with the title `Social Media`. This is, strictly speaking, a separate form, injected into the Person content type - we call it "eXtended data" (or just "x-data").
+When editing a Person, you'll notice an additional tab with the title `Social Media`. This is actually separately defined content schema, which is "mixed into" the Person content type - hence the name.
 
-image::some.gif["Social Media x-data form", width="1024px"]
+image::some.png["Social Media mixin form", width="546px"]
 
-X-data can be applied across multiple content types. In this app for instance, the `Social Media` form is also available on the `Movie` content type. More interestingly, X-data can even be injected from a different application - at runtime.
+Mixins can be applied across multiple content types, but can never be used on its own. In this app for instance, the `Social Media` mixin is also available on the `Movie` content type. 
 
-This is what the definition looks like:
+Mixins can also be contributed from a different application - at runtime, making it a powerful feature for content modeling and reuse of schemas.
+
+This is what the Social Media mixin definition looks like:
 
 ./src/main/resources/cms/mixins/SoMe/SoMe.yaml
 [source,YAML]
@@ -79,36 +96,35 @@ include::{sourcedir}/src/main/resources/cms/mixins/SoMe/SoMe.yaml[]
 
 You can also see what the persisted version looks like in the JSON.
 
-.Snippet of Uma Thurman including x-data.
+.Snippet of content JSON created by Social Media mixin:
 [source,JSON]
 ----
 {
-  "data": {
-    "photos": "8d47792f-0ae6-4d74-a6e4-bab0e8d2374b",
-    "bio": "Uma Karuna Thurman was born in Boston, Massachusetts, into a highly unorthodox and Eurocentric family",
-    "dateofbirth": "1970-04-29"
-  },
   "x": {
-    "com-example-myapp": {
-      "SoMe": {
-        "imdb": "https://www.imdb.com/name/nm0000235/"
+      "com-enonic-app-intro": {
+          "SoMe": {
+              "imdb": "https://www.imdb.com/name/nm0000151/",
+              "twitter": "@morgan_freeman",
+              "instagram": "@morganfreeman"
+          }
       }
-    }
   }
 }
 ----
+
+NOTE: Mixin data are stored under the reserved `x` property, and then namespaced by application and schema name to prevent collisions. In this case, the application is `com.example.myapp` and the schema is `SoMe`.
 
 
 == Adding a new content type
 
 Let's do a practical exercise by adding a new content type called `Review` to your app. This will allow you to create reviews of movies.
 
-. From inside the `samples/` folder of your app, *copy or move* the `review/` folder to `src/main/resources/site/content-types/`.
+. From inside the `samples/` folder of your app, *copy or move* the `review/` folder to `src/main/resources/cms/content-types/`.
 . *Write a review*. Content Studio should pick up the changes immediately. From the Content navigation view click btn:[New], then select content type `Review` and start filling out the form fields in the new content item.
 +
-image::review.png["Sample Review", width="1024px"]
+image::review.png["Sample Review", width="737px"]
 
 
 == Next up
 
-You're now familiar with the XP Admin, Content Studio, Content type, and x-data schemas. In the following chapter, you'll get to play with <<api#, Query Playground, and the Headless Content API, aka Guillotine>>.
+You're now familiar with the XP sandbox, Content Studio, Content types, and mixin schemas. In the following chapter, you'll get to play with <<api#, the Headless Content GraphQL API, aka Guillotine>>.
