@@ -39,15 +39,18 @@ types from `@item-enonic-types/lib-thymeleaf`. No test framework is currently wi
 `src/main/resources/main.ts` is the application entry point. On the cluster leader (`clusterLib.isLeader()`) it:
 
 1. Runs in an admin context on repo `com.enonic.cms.intro`.
-2. If the `intro` project does not exist, creates it via `lib-project` (`publicRead: true`, language `en`).
-3. Imports `/import/hmdb` into `/content` using `exportLib.importNodes`, applying `import/replace_app.xsl` with `applicationId=app.name` and
+2. If the `intro` project does not exist, creates it via `lib-project` (`publicRead: true`, language `en`), connecting this app to the
+   project with `siteConfig: [{ applicationKey: app.name }]` so the app's site/content-type schemas are available in the project and the
+   imported content resolves against them. Dropping this link leaves the imported content referencing content types the project doesn't
+   know about.
+3. Imports `/import` into `/content` using `exportLib.importNodes`, applying `import/replace_app.xsl` with `applicationId=app.name` and
    `projectName=intro` so the exported XML's old app name and `role:cms.project.*` principals are rewritten to the currently-deployed
    app/project on import.
-4. Publishes `/hmdb` (descendants included) to `master`. In XP8 `contentLib.publish` takes no source/target branch — it publishes from the
-   current context branch (`draft`, set in `runInContext`) to `master`.
+4. Publishes the top-level content roots `/movies`, `/persons`, `/articles`, and `/playlists` to `master`. In XP8 `contentLib.publish`
+   takes no source/target branch — it publishes from the current context branch (`draft`, set in `runInContext`) to `master`.
 
 The import only runs when the project is **absent**. If the `intro` project already exists in the sandbox, redeploying logs "Project intro
-exists, skipping import" — delete the project/layer (or reset the sandbox) to re-bootstrap with fresh sample data.
+exists, skipping import" at `debug` level — delete the project/layer (or reset the sandbox) to re-bootstrap with fresh sample data.
 
 If you change `appName` in `gradle.properties` the XSLT substitution is what keeps imported content referring to the right app. Don't bypass
 it by hardcoding app IDs in the exported data.
@@ -71,8 +74,8 @@ Under `src/main/resources/`:
 - `assets/` — static assets (`styles.css`). Served by `lib-asset`'s bundled **Asset API** (`assetUrl` is imported from `/lib/enonic/asset`,
   not `/lib/xp/portal`). The app mounts it by listing `asset` under `apis:` in `cms/site.yaml` (XP8 Universal APIs are not exposed by
   default).
-- `import/hmdb/` — XP content export used for first-boot bootstrapping, with `replace_app.xsl` rewriting app IDs and project-role principals
-  on import.
+- `import/` — XP content export used for first-boot bootstrapping (`movies/`, `persons/`, `articles/`, `playlists/`), with
+  `replace_app.xsl` at its root rewriting app IDs and project-role principals on import.
 
 Controllers are authored in TypeScript and compiled to `.js`, so the controller names in `cms/site.yaml` (e.g. `/lib/info.js`) are the *
 *compiled** output paths. Use named uppercase HTTP-method exports — `export function GET(req)` / `POST` (compiled to `exports.GET`) — XP8

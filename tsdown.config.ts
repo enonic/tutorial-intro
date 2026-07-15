@@ -72,6 +72,10 @@ export default defineConfig([
             },
         },
         outputOptions: {
+            // XP loads server scripts by their `.js` resource path (e.g. main.js,
+            // /lib/info.js from site.yaml). Rolldown defaults CJS entries to `.cjs`,
+            // which XP never runs — force `.js` so the entry point and controllers load.
+            entryFileNames: '[name].js',
             chunkFileNames: '_chunks/[name]-[hash].js',
         },
     }] : []),

@@ -11,6 +11,7 @@ interface ProjectData {
     description: string;
     language: string;
     publicRead: boolean;
+    siteConfig: { applicationKey: string }[];
 }
 
 const projectData: ProjectData = {
@@ -18,7 +19,12 @@ const projectData: ProjectData = {
     displayName: 'Intro Project',
     description: 'Sample content from the cinematic industry',
     language: 'en',
-    publicRead: true
+    publicRead: true,
+    // Connect this app to the project on creation so its site/content-type
+    // schemas are available and the imported content resolves against them.
+    siteConfig: [{
+        applicationKey: app.name
+    }]
 };
 
 function runInContext<T>(callback: () => T): T | undefined {
@@ -74,14 +80,13 @@ function createContent(): void {
     }
 }
 
-function publishRoot(): void {
+const publishRoot = () => {
     const result = contentLib.publish({
-        keys: ['/hmdb'],
-        includeDependencies: true
+        keys: ['/movies', '/persons','/articles', '/playlists' ]
     });
     if (result.failedContents.length > 0) {
-        log.warning('Could not publish imported content. failed=' + JSON.stringify(result.failedContents));
-    } else {
+        log.warning('Could not publish imported content. failed=' + JSON.stringify(result.failedContents));} 
+    else {
         log.info('Published ' + result.pushedContents.length + ' content items.');
     }
 }
