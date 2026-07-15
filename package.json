@@ -20,7 +20,7 @@
     "@swc/core": "^1.15.43",
     "browser-sync": "^3",
     "concurrently": "^10",
-    "eslint": "^9",
+    "eslint": "^10",
     "glob": "^10.5.0",
     "tsdown": "^0.22.2",
     "typescript": "^5.9.3",
