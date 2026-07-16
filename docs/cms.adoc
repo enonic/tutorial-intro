@@ -4,7 +4,7 @@
 :imagesdir: media/
 :sourcedir: ../
 
-Introduction to Content Studio, content types and mixins.
+Introduction to Content Studio, Content Types and Mixins.
 
 
 == Content Studio
@@ -22,11 +22,11 @@ image::content-studio-in-action.gif["Content Studio with in action", width="1920
 
 == Content type: Person
 
-To edit an item, simply select it and click `Edit` in the menu bar, or by using right click. When editing a Person content item, this is what the form looks like in Content Studio. On bigger screens, you will also get a preview on the right-hand side.
+To edit an item, simply select it and click btn:[Edit] in the menu bar, or via right click. When editing a Person content item, this is what the content editor looks like, including a preview on the right hand side.
 
 image::person.png["Person Form and preview", width="1440px"]
 
-The form comes from the content type definition, which is located inside the app. Here is what it looks like:
+The person form comes from the content type definition, which us located within your app. Here is the definition, written in YAML:
 
 ./src/main/resources/cms/content-types/person/person.yaml
 [source,yaml]
@@ -34,7 +34,7 @@ The form comes from the content type definition, which is located inside the app
 include::{sourcedir}/src/main/resources/cms/content-types/person/person.yaml[]
 ----
 
-When used to create content, it is stored like this:
+When you create person content, it is stored as JSON, and looks something like this:
 
 .Sample JSON for a Person content item
 [source,JSON]
@@ -76,9 +76,10 @@ When used to create content, it is stored like this:
 }
 ----
 
+
 == Mixin: Social media
 
-When editing a Person, you'll notice an additional tab with the title `Social Media`. This is actually separately defined content schema, which is "mixed into" the Person content type - hence the name.
+When editing a Person, you'll notice an additional tab with the title `Social Media`. This is actually separately defined content schema, which in this case is "mixed into" the Person content type - hence the name.
 
 image::some.png["Social Media mixin form", width="546px"]
 
@@ -94,7 +95,7 @@ This is what the Social Media mixin definition looks like:
 include::{sourcedir}/src/main/resources/cms/mixins/SoMe/SoMe.yaml[]
 ----
 
-You can also see what the persisted version looks like in the JSON.
+When saved, the content JSON will include the mixin data, i.e. like this:
 
 .Snippet of content JSON created by Social Media mixin:
 [source,JSON]
@@ -117,7 +118,7 @@ NOTE: Mixin data are stored under the reserved `x` property, and then namespaced
 
 == Adding a new content type
 
-Let's do a practical exercise by adding a new content type called `Review` to your app. This will allow you to create reviews of movies.
+Finally, a practical exercise by adding the `Review` content type to your app. Allowing you to create reviews of movies.
 
 . From inside the `samples/` folder of your app, *copy or move* the `review/` folder to `src/main/resources/cms/content-types/`.
 . *Write a review*. Content Studio should pick up the changes immediately. From the Content navigation view click btn:[New], then select content type `Review` and start filling out the form fields in the new content item.
@@ -127,4 +128,4 @@ image::review.png["Sample Review", width="737px"]
 
 == Next up
 
-You're now familiar with the XP sandbox, Content Studio, Content types, and mixin schemas. In the following chapter, you'll get to play with <<api#, the Headless Content GraphQL API, aka Guillotine>>.
+You're now familiar with the XP sandbox, Content Studio, Content types, and Mixin schemas. In the following chapter, you'll get to play with <<api#, the Headless Content GraphQL API, aka Guillotine>>.

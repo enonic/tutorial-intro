@@ -4,15 +4,17 @@
 :imagesdir: media/
 :sourcedir: ../
 
-Get familiar with the Guillotine API - our cutting-edge headless GraphQL content API
+Get familiar with our cutting-edge headless GraphQL content API.
 
-== Guillotine
+== Introduction
 
-The Headless API, aka https://market.enonic.com/vendors/enonic/guillotine[Guillotine^] - yes, we take headlessness seriously around here - provides access to all the content within your project. Clients requesting content will naturally only get access to the content they have read-permissions for. The `Intro project` is configured with public read access for everything.
+The GraphQL API, aka https://market.enonic.com/vendors/enonic/guillotine[Guillotine^] - yes, we take headlessness seriously around here - provides typed access to all the content within your project. Clients requesting content will only get access to the content they are authenticated for. The `Intro project` is configured with public read access, so every published item is readable for anyone.
 
-Click the GraphQL icon in the Content Studio's left-hand menu to open `Query Playground`. Here you may test and play with the GraphQL API directly.
+== Playground
 
-image::query-playground.png["Query Playground in action", width="1024px"]
+In Content Studio, click the GraphQL icon in the left-hand menu to open `Query Playground`. Here you may access the documentation and interact with the GraphQL API directly.
+
+image::query-playground.png["Query Playground in action", width="1440px"]
 
 The API documentation is available from the Top left `file cabinet icon`. Use the tabs on the top right to query against the Draft or Master branch, accessing the draft and published items, respectively.
 
@@ -45,16 +47,16 @@ Below are some example queries you can use to fetch the sample content.
     "guillotine": {
       "getChildren": [
         {
-          "displayName": "Léa Seydoux",
-          "_path": "/persons/lea-seydoux"
+          "displayName": "Morgan Floatman",
+          "_path": "/persons/morgan-floatman"
         },
         {
-          "displayName": "Jeffrey Wright",
-          "_path": "/persons/jeffrey-wright"
+          "displayName": "Léa Seydough",
+          "_path": "/persons/lea-seydough"
         },
         {
-          "displayName": "Daniel Craig",
-          "_path": "/persons/daniel-craig"
+          "displayName": "Jeffrey Wroughtair",
+          "_path": "/persons/jeffrey-wroughtair"
         }
       ]
     }
@@ -92,7 +94,7 @@ query($path:ID!){
 
 === Movies and cast
 
-IMPORTANT: The GraphQL schema is automatically generated from your application and schemas. If you used a different name than `com.example.myapp` when the app was created, you would have to replace both `com.example.myapp:movie` and the GraphQL type `com_example_myapp_Movie` for the query below to work.
+IMPORTANT: The GraphQL schema is automatically generated based on your installed applications and schemas. If you used a different name than `com.example.myapp` when the app was created, you would have to replace both `com.example.myapp:movie` and the GraphQL type `com_example_myapp_Movie` for the query below to work.
 
 .Get display name and the cast of the first movie:
 [source,GraphQL]
@@ -131,20 +133,20 @@ IMPORTANT: The GraphQL schema is automatically generated from your application a
     "guillotine": {
       "queryDsl": [
         {
-          "displayName": "The Matrix",
+          "displayName": "No Time to Deflate",
           "data": {
             "cast": [
               {
                 "actor": {
-                  "displayName": "Keanu Reeves"
+                  "displayName": "Daniel Carrigear"
                 },
-                "character": "Neo"
+                "character": "James Balloon - 00-Latex"
               },
               {
                 "actor": {
-                  "displayName": "Carrie-Anne Moss"
+                  "displayName": "Léa Seydough"
                 },
-                "character": "Trinity"
+                "character": "Madeleine Sweyne"
               }
             ]
           }
@@ -157,7 +159,7 @@ IMPORTANT: The GraphQL schema is automatically generated from your application a
 
 == Image handling
 
-In this case, Guillotine plays tag-team with XP's image service, which can deliver real-time cropped and optimized versions of images. Here, we are requesting a 400 x 400px version of the image.
+In this case, Guillotine plays tag-team with XP's image API, which can deliver real-time cropped and optimized versions of images. Here, we are requesting a 400 x 400px version of the image.
 
 The query below shows the names of actors containing the term `morgan`, and provides a link to a cropped image of the actor.
 
@@ -193,7 +195,7 @@ IMPORTANT: Again, if your app was called something else than `com.example.myapp`
         data {
           photos(first:1){
             ... on media_Image {
-              imageUrl(type:absolute scale:"block(400,400)")
+              imageUrl(scale:"block(400,400)")
             }
           }
         }
@@ -211,11 +213,11 @@ IMPORTANT: Again, if your app was called something else than `com.example.myapp`
     "guillotine": {
       "queryDsl": [
         {
-          "displayName": "Morgan Freeman",
+          "displayName": "Morgan Floatman",
           "data": {
             "photos": [
               {
-                "imageUrl": "http://localhost:8080/admin/site/preview/intro/draft/_/image/7ab1f76a-69a1-490f-b505-6eb6773c7cec:603726cc4fa712aa1b70c7eb64e1349f664494c3/block-400-400/morgan-freeman.jpg"
+                "imageUrl": "/admin/com.enonic.app.contentstudio/site/inline/intro/draft/_/media:image/intro:draft/7ab1f76a-69a1-490f-b505-6eb6773c7cec:b6e067d78101d20f297575f7171b4569/block-400-400/morgan-floatman.jpg"
               }
             ]
           }
@@ -228,13 +230,15 @@ IMPORTANT: Again, if your app was called something else than `com.example.myapp`
 
 When looking at the result in Query Playground, you can see the actual image by hovering over the link:
 
-image::morgan-photo.png["Cropped version of Morgan Freemans image", width="1024px"]
+image::morgan-photo.png["Cropped version of Morgan Floatman's image", width="1440px"]
+
+NOTE: The actual URL to the image will vary depending on the context of the request, for instance here we are accessing the draft branch from Admin context.
 
 The original higher-resolution image is stored as a content item, just like persons and reviews. This is what it looks like from Content Studio:
 
-image::morgan-original.png["The original version of Morgan Freemans photo is widescreen, with a red "autofocus" circle marked around his face", width="1024px"]
+image::morgan-original.png["The original version of the photo is widescreen, with a red "autofocus" circle marked around face", width="1440px"]
 
-NOTE: The red "autofocus" circle, when set, helps the image service to crop the images optimally, as you can see above.
+NOTE: The red "autofocus" circle, when set, helps the image API to crop the images optimally, as you can see above.
 
 == API augmentation
 
@@ -244,9 +248,9 @@ The use-cases are limitless, but rather than babbling about it - let's see it in
 
 === The age field
 
-We'll keep it simple. In a few steps, you'll add a new `age` field to the Person content type and use the `dateofbirth` to calculate the result.
+We'll keep it simple. In a few steps, you'll add an `age` field to the Person content type and use the `dateofbirth` to calculate the result.
 
-. From the `samples/` folder of your app, *copy or move* the `guillotine/` folder to `src/main/resources/`. You should then have the following TypeScript controller ready:
+. Copy or move the `samples/guillotine/` folder to `src/main/resources/guillotine/`. You should then have the following TypeScript file ready:
 +
 ./src/main/resources/guillotine/guillotine.ts
 [source,TypeScript]
@@ -254,7 +258,7 @@ We'll keep it simple. In a few steps, you'll add a new `age` field to the Person
 include::{sourcedir}/samples/guillotine/guillotine.ts[]
 ----
 +
-. Guillotine requires the app to be redeployed (or restarted) to pick up changes to schemas and/or controllers. Stop the build (using control-c) and start it again:
+. *Redeploy the application*. Guillotine requires the app to be redeployed (or restarted) to pick up changes to schemas and/or controllers. Stop your build (using control-c) and start it again:
 +
   ^c
   enonic dev
@@ -279,7 +283,7 @@ include::{sourcedir}/samples/guillotine/guillotine.ts[]
 }
 ----
 +
-The response should now contain a new age filed, with a calculated value:
+The response should now contain a new age field (pun intended), with a calculated value:
 +
 .Query response
 [source,JSON]
@@ -289,17 +293,17 @@ The response should now contain a new age filed, with a calculated value:
     "guillotine": {
       "getChildren": [
         {
-          "displayName": "Léa Seydoux",
+          "displayName": "Morgan Floatman",
           "data": {
-            "age": 38,
-            "dateofbirth": "1985-07-01"
+            "age": 89,
+            "dateofbirth": "1937-06-01"
           }
         },
         {
-          "displayName": "Jeffrey Wright",
+          "displayName": "Léa Seydough",
           "data": {
-            "age": 58,
-            "dateofbirth": "1965-12-07"
+            "age": 41,
+            "dateofbirth": "1985-07-01"
           }
         }
       ]
@@ -308,7 +312,7 @@ The response should now contain a new age filed, with a calculated value:
 }
 ----
 
-As you have now seen, XP lets you run server-side https://developer.enonic.com/docs/xp/stable/framework[TypeScript and JavaScript code]. API augmentation is just the tip of the iceberg - believe us.
+As you have now seen, XP lets you execute https://developer.enonic.com/docs/code/stable/fundamentals/functions[server-side functions], where API augmentation is just the tip of the iceberg. You may also run background jobs, use the XP storage, or even build your own APIs from scratch. The possibilities are endless.
 
 == One last thing
 

@@ -1,4 +1,4 @@
-= Deploy your app to the cloud
+= Deploy your app to a live server
 :toc: right
 :experimental:
 :imagesdir: media/
@@ -6,6 +6,8 @@
 
 It's time for the final act - sign up for a free account and deploy your app on a live server.
 
+
+WARNING: We are currently working to add support for XP8 to the Enonic Cloud. The steps will not work until we have completed this work. We will update this guide as soon as the support is available.
 
 == Public API
 
@@ -42,7 +44,7 @@ image::console-account-create.png["Choose your account name", width="750px"]
 
 image::console-solution-create.png["Select the 'Essentials' template", width="1440px"]
 
-We will then spin up an Enonic XP environment, similar to your local sandbox, but this time on a real server in the Cloud.
+We will provision an Enonic XP environment, similar to your local sandbox, but this time on a real server.
 
 == Deploy application
 
@@ -94,9 +96,11 @@ TIP: Remember, the GraphQL API only accepts `POST` requests, so the browser will
 
 In the process, you created an Enonic XP sandbox, built and customized your own app, ran GraphQL queries, got to know the Enonic CLI and our SaaS service.
 
-As you may already imagine, the Platform is capable of so much more. Did you know that Enonic has a https://developer.enonic.com/docs/xp/stable/framework[JavaScript framework^], complete with https://www.npmjs.com/org/enonic-types[TypeScript definitions^] the entire platform API? You may use it in your apps to extend and customize the Platform as you like.
+Visit the https://developer.enonic.com/docs/cms[CMS reference documentation] to learn about content modeling and the CMS features.
 
-To continue the journey, we recommend visiting the https://developer.enonic.com/docs/tutorials[Enonic tutorials] section of the Developer Portal.
+For more details on Enonic app development and platform extensions, visit the  https://developer.enonic.com/docs/code[Enonic Development Kit documentation].
+
+For hands on tutorials, visit the https://developer.enonic.com/docs/learn[Learn section].
 
 Bon voyage!
 

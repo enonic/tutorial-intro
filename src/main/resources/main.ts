@@ -66,7 +66,7 @@ function createContent(): void {
         },
         versionAttributes: {
             'content.import': {
-                user: contextLib.get().authInfo.user.key,
+                user: contextLib.get().authInfo?.user?.key,
                 optime: new Date().toISOString()
             },
             'vacuum.skip': {}

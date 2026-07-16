@@ -1,9 +1,13 @@
 {
     "versions": [
       {
-        "label": "xp7",
-        "checkout": "xp7",
+        "label": "xp8",
+        "checkout": "master",
         "latest": true
+      },
+      {
+        "label": "xp7",
+        "checkout": "xp7"
       }
     ]
   }
