@@ -522,14 +522,14 @@ To upgrade, use <code>enonic latest</code>. If there are new versions you will s
 <h2 id="sandbox_admin"><a class="link" href="#sandbox_admin">Sandbox Admin</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Let&#8217;s have a look at the Sandbox' web interface - aka XP admin. Open <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a> in your browser (or just click the link).</p>
+<p>Sandbox instances have a special web interface. Open <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a> in your browser (or just click the link).</p>
 </div>
 <div class="paragraph">
 <p>You should now see the XP boot page:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="media/xp-boot.png" alt="The XP boot page" width="1024w">
+<img src="media/xp-boot.png" alt="The XP boot page" width="1024px">
 </div>
 <div class="title">Figure 1. XP Boot page</div>
 </div>
@@ -573,7 +573,7 @@ If things don&#8217;t look exactly the same, don&#8217;t worry. In every new ver
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-07-16 12:30:37 UTC
+Last updated 2026-07-16 12:50:58 UTC
 </div>
 </div>
 </body>
