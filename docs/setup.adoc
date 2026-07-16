@@ -32,12 +32,12 @@ NOTE: `-f` flag will force using the most recent release of Enonic XP and automa
 
 == Sandbox Admin
 
-Let's have a look at the Sandbox' web interface - aka XP admin. Open http://localhost:8080[http://localhost:8080^] in your browser (or just click the link).
+Sandbox instances have a special web interface. Open http://localhost:8080[http://localhost:8080^] in your browser (or just click the link).
 
 You should now see the XP boot page:
 
 .XP Boot page
-image::xp-boot.png[The XP boot page, 1024w]
+image::xp-boot.png[The XP boot page, 1024px]
 
 The boot page provides an overview of the sandbox, including installed application, as well as the https://developer.enonic.com/docs/xp/stable/deployment/config[standard configuration files^].
 
