@@ -23,7 +23,7 @@
     "eslint": "^10",
     "glob": "^13.0.6",
     "tsdown": "^0.22.12",
-    "typescript": "^5.9.3",
+    "typescript": "^7.0.2",
     "typescript-eslint": "^8.64.0"
   },
   "directories": {
