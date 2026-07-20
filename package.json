@@ -17,7 +17,7 @@
     "@item-enonic-types/lib-thymeleaf": "^2.1.0",
     "@types/node": "^26.1.1",
     "@eslint/js": "^9.39.2",
-    "@swc/core": "^1.15.43",
+    "@swc/core": "^1.15.46",
     "browser-sync": "^3",
     "concurrently": "^10",
     "eslint": "^10",
