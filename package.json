@@ -15,7 +15,7 @@
     "@enonic-types/lib-project": "^8.0.3",
     "@enonic-types/lib-task": "^8.0.3",
     "@item-enonic-types/lib-thymeleaf": "^2.1.0",
-    "@types/node": "^26.1.1",
+    "@types/node": "^26.1.2",
     "@eslint/js": "^9.39.2",
     "@swc/core": "^1.15.46",
     "browser-sync": "^3",
