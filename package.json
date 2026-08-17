@@ -11,7 +11,7 @@
     "@enonic-types/lib-content": "^8.0.3",
     "@enonic-types/lib-context": "^8.0.4",
     "@enonic-types/lib-export": "^8.0.3",
-    "@enonic-types/lib-portal": "^8.0.3",
+    "@enonic-types/lib-portal": "^8.0.4",
     "@enonic-types/lib-project": "^8.0.3",
     "@enonic-types/lib-task": "^8.0.4",
     "@item-enonic-types/lib-thymeleaf": "^2.1.0",
