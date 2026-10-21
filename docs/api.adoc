@@ -262,6 +262,8 @@ We'll keep it simple. In a few steps, you'll add an `age` field to the Person co
 include::{sourcedir}/samples/guillotine/guillotine.ts[]
 ----
 +
+IMPORTANT: If your app was called something else than `com.example.myapp`, replace `com_example_myapp_Person_Data` in the file, and `com_example_myapp_Person` in the query below, to match your app name. Otherwise, the `age` field will not be added.
++
 . *Redeploy the application*. Guillotine requires the app to be redeployed (or restarted) to pick up changes to schemas and/or controllers. Stop your build (using control-c) and start it again:
 +
   ^c
