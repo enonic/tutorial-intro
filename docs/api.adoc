@@ -31,7 +31,7 @@ Below are some example queries you can use to fetch the sample content.
 ----
 {
  guillotine {
-  getChildren(key:"/persons" first:3){
+  getChildren(key:"/persons" first:3 sort:"displayName ASC"){
     displayName
     _path
     }
@@ -47,16 +47,16 @@ Below are some example queries you can use to fetch the sample content.
     "guillotine": {
       "getChildren": [
         {
-          "displayName": "Morgan Floatman",
-          "_path": "/persons/morgan-floatman"
+          "displayName": "Bob Gondola",
+          "_path": "/persons/bob-gondola"
         },
         {
-          "displayName": "Léa Seydough",
-          "_path": "/persons/lea-seydough"
+          "displayName": "Brad Pittless",
+          "_path": "/persons/brad-pittless"
         },
         {
-          "displayName": "Jeffrey Wroughtair",
-          "_path": "/persons/jeffrey-wroughtair"
+          "displayName": "Bruce Wheezis",
+          "_path": "/persons/bruce-wheezis"
         }
       ]
     }
@@ -84,7 +84,7 @@ With the variable set, update your query to use the variable. This query should 
 ----
 query($path:ID!){
  guillotine {
-  getChildren(key:$path first:3){
+  getChildren(key:$path first:3 sort:"displayName ASC"){
     displayName
     _path
     }
@@ -274,7 +274,7 @@ include::{sourcedir}/samples/guillotine/guillotine.ts[]
 ----
 {
   guillotine {
-    getChildren(key: "/persons", first: 2) {
+    getChildren(key: "/persons", first: 2, sort: "displayName ASC") {
       displayName
       ... on com_example_myapp_Person {
         data {
@@ -297,17 +297,17 @@ The response should now contain a new age field (pun intended), with a calculate
     "guillotine": {
       "getChildren": [
         {
-          "displayName": "Morgan Floatman",
+          "displayName": "Bob Gondola",
           "data": {
-            "age": 89,
-            "dateofbirth": "1937-06-01"
+            "age": 80,
+            "dateofbirth": "1945-11-15"
           }
         },
         {
-          "displayName": "Léa Seydough",
+          "displayName": "Brad Pittless",
           "data": {
-            "age": 41,
-            "dateofbirth": "1985-07-01"
+            "age": 62,
+            "dateofbirth": "1963-12-18"
           }
         }
       ]
