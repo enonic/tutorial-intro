@@ -5,7 +5,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Project
 
 `tutorial-intro` — the "Introduction to Enonic XP" tutorial application (`com.enonic.app.intro`). It is an Enonic XP 8 sample/demonstration
-app that ships the Movie DB sample content and renders simple preview pages. Targets XP `8.0.2` (see `gradle.properties`). Not a
+app that ships the Movie DB sample content and renders simple preview pages. Targets XP `8.1.0` (see `gradle.properties`). Not a
 library/API-only app: it registers a site with controllers and content types, and auto-imports sample data on first install. The app is
 built on the conventions of the `starter-ts` starter and mirrors the sibling `app-hmdb` reference app.
 
