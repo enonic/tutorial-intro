@@ -13,10 +13,33 @@ WARNING: We are currently working to add support for XP8 to the Enonic Cloud. Th
 
 So far, you've been playing with the API via Content Studio. If you want to access the API endpoint directly on your sandbox, it's available at:
 
-* \http://localhost:8080/site/intro/draft (draft items)
-* \http://localhost:8080/site/intro/master (published items)
+  \http://localhost:8080/api/com.enonic.app.guillotine:graphql
 
-In the following steps, you will deploy the API to a live URL. Remember, the GraphQL API is accessed via `HTTP POST` method, as such - visiting via a regular browser will give you a 404 error.
+The same endpoint serves all projects and branches. Outside Content Studio, you select them in the query itself, using the `project` and `branch` arguments:
+
+[source,GraphQL]
+----
+{
+  guillotine(project: "intro", branch: "master") {
+    getChildren(key: "/persons", first: 3) {
+      displayName
+      _path
+    }
+  }
+}
+----
+
+Use `master` for published items, and `draft` for work in progress. Content permissions still apply, so accessing the draft branch normally requires authentication.
+
+.Running the query with cURL:
+[source,shell]
+----
+curl -X POST http://localhost:8080/api/com.enonic.app.guillotine:graphql \
+  -H "Content-Type: application/json" \
+  -d '{"query": "{ guillotine(project: \"intro\", branch: \"master\") { getChildren(key: \"/persons\", first: 3) { displayName _path } } }"}'
+----
+
+In the following steps, you will deploy the API to a live URL. Remember, the GraphQL API is accessed via `HTTP POST` method, as such - visiting it in a regular browser will not work.
 
 TIP: The Chrome extension https://chrome.google.com/webstore/detail/altair-graphql-client/flnheeellpciglgpaodhkhmapeljopja[Altair^] lets you browse any GraphQL API simply by pointing it to the API URL.
 
@@ -73,21 +96,16 @@ Finally, you may also want to expose the API:
 +
 ====
 Environment:: Use the default value
-Target:: `/site/intro`
+Target:: `/api`
 Domain:: Use the default value
 Path:: `/api`
 ID provider:: leave empty
 ====
 +
-. Once the ingress is created, *Select it in the list*. This will reveal a link to your API on the right. hand side
-. *Visit the URL* to see the `Query Playground` API browser.
+. Once the ingress is created, *Select it in the list*. This will reveal a link to your API on the right hand side.
+. *Append `/com.enonic.app.guillotine:graphql`* to the URL, and use it as the endpoint in your GraphQL client. Select the project and branch with the `project` and `branch` arguments, just like on your sandbox.
 +
-NOTE: The API browser can be disabled by changing the configuration of the `Guillotine app`.
-+
-
-To use the published content API directly from a GraphQL client, append `/master` to the Ingress URL.
-+
-TIP: Remember, the GraphQL API only accepts `POST` requests, so the browser will only show a 404 at this point.
+TIP: The ingress exposes all APIs under `/api`, including the media APIs. Image paths returned by Guillotine can be appended directly to the Ingress URL.
 
 
 == Dive deeper

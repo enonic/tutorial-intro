@@ -16,7 +16,7 @@ In Content Studio, click the GraphQL icon in the left-hand menu to open `Query P
 
 image::query-playground.png["Query Playground in action", width="1440px"]
 
-The API documentation is available from the Top left `file cabinet icon`. Use the tabs on the top right to query against the Draft or Master branch, accessing the draft and published items, respectively.
+The API documentation is available from the `Docs` panel on the left. Queries run against the project selected in Content Studio. Use the `Draft` and `Master` buttons to query against the draft or master branch, accessing the draft and published items, respectively.
 
 Want to know more about GraphQL in general? Visit the https://graphql.org[official GraphQL documentation^].
 
@@ -161,7 +161,7 @@ IMPORTANT: The GraphQL schema is automatically generated based on your installed
 
 In this case, Guillotine plays tag-team with XP's image API, which can deliver real-time cropped and optimized versions of images. Here, we are requesting a 400 x 400px version of the image.
 
-The query below shows the names of actors containing the term `morgan`, and provides a link to a cropped image of the actor.
+The query below shows the names of actors containing the term `morgan`, and provides the path to a cropped image of the actor.
 
 IMPORTANT: Again, if your app was called something else than `com.example.myapp`, replace `com.example.myapp:person` and `com_example_myapp_Person` for the query below to work.
 
@@ -195,7 +195,10 @@ IMPORTANT: Again, if your app was called something else than `com.example.myapp`
         data {
           photos(first:1){
             ... on media_Image {
-              imageUrl(scale:"block(400,400)")
+              imageUrl(scale:"block(400,400)") {
+                path
+                queryString
+              }
             }
           }
         }
@@ -217,7 +220,10 @@ IMPORTANT: Again, if your app was called something else than `com.example.myapp`
           "data": {
             "photos": [
               {
-                "imageUrl": "/admin/com.enonic.app.contentstudio/site/inline/intro/draft/_/media:image/intro:draft/7ab1f76a-69a1-490f-b505-6eb6773c7cec:b6e067d78101d20f297575f7171b4569/block-400-400/morgan-floatman.jpg"
+                "imageUrl": {
+                  "path": "/media:image/intro:draft/7ab1f76a-69a1-490f-b505-6eb6773c7cec:b6e067d78101d20f297575f7171b4569/block-400-400/morgan-floatman.jpg",
+                  "queryString": ""
+                }
               }
             ]
           }
@@ -228,17 +234,15 @@ IMPORTANT: Again, if your app was called something else than `com.example.myapp`
 }
 ----
 
-When looking at the result in Query Playground, you can see the actual image by hovering over the link:
+Guillotine returns the parts of the URL rather than a complete link. To get the image, combine the base URL of your API with `path` and `queryString`, for instance `\http://localhost:8080/api` + `path` + `queryString` in your sandbox.
 
-image::morgan-photo.png["Cropped version of Morgan Floatman's image", width="1440px"]
-
-NOTE: The actual URL to the image will vary depending on the context of the request, for instance here we are accessing the draft branch from Admin context.
+NOTE: The `path` includes the project and branch of the request - here `intro:draft`, as we are querying the draft branch. For the master branch, the branch is omitted, as master is the default - for instance `/media:image/intro/...`.
 
 The original higher-resolution image is stored as a content item, just like persons and reviews. This is what it looks like from Content Studio:
 
 image::morgan-original.png["The original version of the photo is widescreen, with a red "autofocus" circle marked around face", width="1440px"]
 
-NOTE: The red "autofocus" circle, when set, helps the image API to crop the images optimally, as you can see above.
+NOTE: The red "autofocus" circle, when set, helps the image API to crop the images optimally.
 
 == API augmentation
 
