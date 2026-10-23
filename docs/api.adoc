@@ -24,9 +24,9 @@ Want to know more about GraphQL in general? Visit the https://graphql.org[offici
 
 Below are some example queries you can use to fetch the sample content.
 
-=== Get Persons
+IMPORTANT: The GraphQL schema is generated from your installed applications and schemas. If you used a different name than `com.example.myapp` when creating the app, replace `com.example.myapp` and `com_example_myapp` with your app name in the queries throughout this chapter.
 
-IMPORTANT: The GraphQL schema is automatically generated based on your installed applications and schemas. If you used a different name than `com.example.myapp` when the app was created, you would have to replace `com.example.myapp:person` for the query below to work.
+=== Get Persons
 
 .Get display name and _path of the first 3 persons, sorted by display name:
 [source,GraphQL]
@@ -116,8 +116,6 @@ query($type: String!) {
 
 === Movies and cast
 
-IMPORTANT: Again, if your app was called something else than `com.example.myapp`, replace both `com.example.myapp:movie` and the GraphQL type `com_example_myapp_Movie` for the query below to work.
-
 .Get display name and the cast of the first movie:
 [source,GraphQL]
 ----
@@ -185,8 +183,6 @@ In this case, Guillotine plays tag-team with XP's image API, which can deliver r
 
 The query below shows the names of actors containing the term `morgan`, and provides the path to a cropped image of the actor.
 
-IMPORTANT: Again, if your app was called something else than `com.example.myapp`, replace `com.example.myapp:person` and `com_example_myapp_Person` for the query below to work.
-
 .Name of persons and a link to 400x400 scaled photo
 [source,GraphQL]
 ----
@@ -219,7 +215,6 @@ IMPORTANT: Again, if your app was called something else than `com.example.myapp`
             ... on media_Image {
               imageUrl(scale:"block(400,400)") {
                 path
-                queryString
               }
             }
           }
@@ -243,8 +238,7 @@ IMPORTANT: Again, if your app was called something else than `com.example.myapp`
             "photos": [
               {
                 "imageUrl": {
-                  "path": "/media:image/intro:draft/7ab1f76a-69a1-490f-b505-6eb6773c7cec:b6e067d78101d20f297575f7171b4569/block-400-400/morgan-floatman.jpg",
-                  "queryString": ""
+                  "path": "/media:image/intro:draft/7ab1f76a-69a1-490f-b505-6eb6773c7cec:b6e067d78101d20f297575f7171b4569/block-400-400/morgan-floatman.jpg"
                 }
               }
             ]
@@ -256,9 +250,13 @@ IMPORTANT: Again, if your app was called something else than `com.example.myapp`
 }
 ----
 
-Guillotine returns the parts of the URL rather than a complete link. To get the image, combine the base URL of your API with `path` and `queryString`, for instance `\http://localhost:8080/api` + `path` + `queryString` in your sandbox.
+Guillotine returns a relative path, and the client is responsible for prefixing it with the deployed location of the API. In our case, that is `\http://localhost:8080/api`.
 
 NOTE: The `path` includes the project and branch of the request - here `intro:draft`, as we are querying the draft branch. For the master branch, the branch is omitted, as master is the default - for instance `/media:image/intro/...`.
+
+Opening the full URL gives you the cropped and scaled 400 x 400px version of the photo:
+
+image::morgan-400x400.jpg["Square crop of the photo, centered on the balloon face", width="400px"]
 
 The original higher-resolution image is stored as a content item, just like persons and reviews. This is what it looks like from Content Studio:
 
@@ -284,7 +282,7 @@ We'll keep it simple. In a few steps, you'll add an `age` field to the Person co
 include::{sourcedir}/samples/guillotine/guillotine.ts[]
 ----
 +
-IMPORTANT: If your app was called something else than `com.example.myapp`, replace `com_example_myapp_Person_Data` in the file, and `com_example_myapp_Person` in the query below, to match your app name. Otherwise, the `age` field will not be added.
+IMPORTANT: If your app was called something else than `com.example.myapp`, also replace `com_example_myapp_Person_Data` in this file. Otherwise, the `age` field will not be added.
 +
 . *Redeploy the application*. Guillotine requires the app to be redeployed (or restarted) to pick up changes to schemas and/or controllers. Stop your build (using control-c) and start it again:
 +
