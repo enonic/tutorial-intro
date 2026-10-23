@@ -21,7 +21,17 @@ The same endpoint serves all projects and branches. Outside Content Studio, you 
 ----
 {
   guillotine(project: "intro", branch: "master") {
-    getChildren(key: "/persons", first: 3, sort: "displayName ASC") {
+    queryDsl(query: {
+      term: {
+        field: "type",
+        value: {
+          string: "com.example.myapp:person"
+        }
+      }
+    }, first: 3, sort: {
+      field: "displayName",
+      direction: ASC
+    }) {
       displayName
       _path
     }
@@ -36,7 +46,7 @@ Use `master` for published items, and `draft` for work in progress. Content perm
 ----
 curl -X POST http://localhost:8080/api/com.enonic.app.guillotine:graphql \
   -H "Content-Type: application/json" \
-  -d '{"query": "{ guillotine(project: \"intro\", branch: \"master\") { getChildren(key: \"/persons\", first: 3, sort: \"displayName ASC\") { displayName _path } } }"}'
+  -d '{"query": "{ guillotine(project: \"intro\", branch: \"master\") { queryDsl(query: {term: {field: \"type\", value: {string: \"com.example.myapp:person\"}}}, first: 3, sort: {field: \"displayName\", direction: ASC}) { displayName _path } } }"}'
 ----
 
 In the following steps, you will deploy the API to a live URL. Remember, the GraphQL API is accessed via `HTTP POST` method, as such - visiting it in a regular browser will not work.

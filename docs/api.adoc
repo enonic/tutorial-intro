@@ -26,14 +26,26 @@ Below are some example queries you can use to fetch the sample content.
 
 === Get Persons
 
-.Get display name and _path of the first 3 items in the `/persons` folder:
+IMPORTANT: The GraphQL schema is automatically generated based on your installed applications and schemas. If you used a different name than `com.example.myapp` when the app was created, you would have to replace `com.example.myapp:person` for the query below to work.
+
+.Get display name and _path of the first 3 persons, sorted by display name:
 [source,GraphQL]
 ----
 {
- guillotine {
-  getChildren(key:"/persons" first:3 sort:"displayName ASC"){
-    displayName
-    _path
+  guillotine {
+    queryDsl(query: {
+      term: {
+        field: "type",
+        value: {
+          string: "com.example.myapp:person"
+        }
+      }
+    }, first: 3, sort: {
+      field: "displayName",
+      direction: ASC
+    }) {
+      displayName
+      _path
     }
   }
 }
@@ -45,7 +57,7 @@ Below are some example queries you can use to fetch the sample content.
 {
   "data": {
     "guillotine": {
-      "getChildren": [
+      "queryDsl": [
         {
           "displayName": "Bob Gondola",
           "_path": "/persons/bob-gondola"
@@ -73,20 +85,30 @@ Query variables are defined with JSON. You can add them using the `Variables` bu
 [source,JSON]
 ----
 {
-  "path": "/persons"
+  "type": "com.example.myapp:person"
 }
 ----
 
 With the variable set, update your query to use the variable. This query should provide the exact same response as before.
 
-.The Person query, this time using path as a variable:
+.The Person query, this time using the content type as a variable:
 [source,GraphQL]
 ----
-query($path:ID!){
- guillotine {
-  getChildren(key:$path first:3 sort:"displayName ASC"){
-    displayName
-    _path
+query($type: String!) {
+  guillotine {
+    queryDsl(query: {
+      term: {
+        field: "type",
+        value: {
+          string: $type
+        }
+      }
+    }, first: 3, sort: {
+      field: "displayName",
+      direction: ASC
+    }) {
+      displayName
+      _path
     }
   }
 }
@@ -94,7 +116,7 @@ query($path:ID!){
 
 === Movies and cast
 
-IMPORTANT: The GraphQL schema is automatically generated based on your installed applications and schemas. If you used a different name than `com.example.myapp` when the app was created, you would have to replace both `com.example.myapp:movie` and the GraphQL type `com_example_myapp_Movie` for the query below to work.
+IMPORTANT: Again, if your app was called something else than `com.example.myapp`, replace both `com.example.myapp:movie` and the GraphQL type `com_example_myapp_Movie` for the query below to work.
 
 .Get display name and the cast of the first movie:
 [source,GraphQL]
@@ -276,7 +298,17 @@ IMPORTANT: If your app was called something else than `com.example.myapp`, repla
 ----
 {
   guillotine {
-    getChildren(key: "/persons", first: 2, sort: "displayName ASC") {
+    queryDsl(query: {
+      term: {
+        field: "type",
+        value: {
+          string: "com.example.myapp:person"
+        }
+      }
+    }, first: 2, sort: {
+      field: "displayName",
+      direction: ASC
+    }) {
       displayName
       ... on com_example_myapp_Person {
         data {
@@ -297,7 +329,7 @@ The response should now contain a new age field (pun intended), with a calculate
 {
   "data": {
     "guillotine": {
-      "getChildren": [
+      "queryDsl": [
         {
           "displayName": "Bob Gondola",
           "data": {
