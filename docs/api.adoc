@@ -16,7 +16,7 @@ In Content Studio, click the GraphQL icon in the left-hand menu to open `Query P
 
 image::query-playground.png["Query Playground in action", width="1440px"]
 
-The API documentation is available from the Top left `file cabinet icon`. Use the tabs on the top right to query against the Draft or Master branch, accessing the draft and published items, respectively.
+The API documentation is available from the `Docs` panel on the left. Queries run against the project selected in Content Studio. Use the `Draft` and `Master` buttons to query against the draft or master branch, accessing the draft and published items, respectively.
 
 Want to know more about GraphQL in general? Visit the https://graphql.org[official GraphQL documentation^].
 
@@ -24,16 +24,28 @@ Want to know more about GraphQL in general? Visit the https://graphql.org[offici
 
 Below are some example queries you can use to fetch the sample content.
 
+IMPORTANT: The GraphQL schema is generated from your installed applications and schemas. If you used a different name than `com.example.myapp` when creating the app, replace `com.example.myapp` and `com_example_myapp` with your app name in the queries throughout this chapter.
+
 === Get Persons
 
-.Get display name and _path of the first 3 items in the `/persons` folder:
+.Get display name and _path of the first 3 persons, sorted by display name:
 [source,GraphQL]
 ----
 {
- guillotine {
-  getChildren(key:"/persons" first:3){
-    displayName
-    _path
+  guillotine {
+    queryDsl(query: {
+      term: {
+        field: "type",
+        value: {
+          string: "com.example.myapp:person"
+        }
+      }
+    }, first: 3, sort: {
+      field: "displayName",
+      direction: ASC
+    }) {
+      displayName
+      _path
     }
   }
 }
@@ -45,18 +57,18 @@ Below are some example queries you can use to fetch the sample content.
 {
   "data": {
     "guillotine": {
-      "getChildren": [
+      "queryDsl": [
         {
-          "displayName": "Morgan Floatman",
-          "_path": "/persons/morgan-floatman"
+          "displayName": "Bob Gondola",
+          "_path": "/persons/bob-gondola"
         },
         {
-          "displayName": "Léa Seydough",
-          "_path": "/persons/lea-seydough"
+          "displayName": "Brad Pittless",
+          "_path": "/persons/brad-pittless"
         },
         {
-          "displayName": "Jeffrey Wroughtair",
-          "_path": "/persons/jeffrey-wroughtair"
+          "displayName": "Bruce Wheezis",
+          "_path": "/persons/bruce-wheezis"
         }
       ]
     }
@@ -73,28 +85,36 @@ Query variables are defined with JSON. You can add them using the `Variables` bu
 [source,JSON]
 ----
 {
-  "path": "/persons"
+  "type": "com.example.myapp:person"
 }
 ----
 
 With the variable set, update your query to use the variable. This query should provide the exact same response as before.
 
-.The Person query, this time using path as a variable:
+.The Person query, this time using the content type as a variable:
 [source,GraphQL]
 ----
-query($path:ID!){
- guillotine {
-  getChildren(key:$path first:3){
-    displayName
-    _path
+query($type: String!) {
+  guillotine {
+    queryDsl(query: {
+      term: {
+        field: "type",
+        value: {
+          string: $type
+        }
+      }
+    }, first: 3, sort: {
+      field: "displayName",
+      direction: ASC
+    }) {
+      displayName
+      _path
     }
   }
 }
 ----
 
 === Movies and cast
-
-IMPORTANT: The GraphQL schema is automatically generated based on your installed applications and schemas. If you used a different name than `com.example.myapp` when the app was created, you would have to replace both `com.example.myapp:movie` and the GraphQL type `com_example_myapp_Movie` for the query below to work.
 
 .Get display name and the cast of the first movie:
 [source,GraphQL]
@@ -161,9 +181,7 @@ IMPORTANT: The GraphQL schema is automatically generated based on your installed
 
 In this case, Guillotine plays tag-team with XP's image API, which can deliver real-time cropped and optimized versions of images. Here, we are requesting a 400 x 400px version of the image.
 
-The query below shows the names of actors containing the term `morgan`, and provides a link to a cropped image of the actor.
-
-IMPORTANT: Again, if your app was called something else than `com.example.myapp`, replace `com.example.myapp:person` and `com_example_myapp_Person` for the query below to work.
+The query below shows the names of actors containing the term `morgan`, and provides the path to a cropped image of the actor.
 
 .Name of persons and a link to 400x400 scaled photo
 [source,GraphQL]
@@ -195,7 +213,9 @@ IMPORTANT: Again, if your app was called something else than `com.example.myapp`
         data {
           photos(first:1){
             ... on media_Image {
-              imageUrl(scale:"block(400,400)")
+              imageUrl(scale:"block(400,400)") {
+                path
+              }
             }
           }
         }
@@ -217,7 +237,9 @@ IMPORTANT: Again, if your app was called something else than `com.example.myapp`
           "data": {
             "photos": [
               {
-                "imageUrl": "/admin/com.enonic.app.contentstudio/site/inline/intro/draft/_/media:image/intro:draft/7ab1f76a-69a1-490f-b505-6eb6773c7cec:b6e067d78101d20f297575f7171b4569/block-400-400/morgan-floatman.jpg"
+                "imageUrl": {
+                  "path": "/media:image/intro:draft/7ab1f76a-69a1-490f-b505-6eb6773c7cec:b6e067d78101d20f297575f7171b4569/block-400-400/morgan-floatman.jpg"
+                }
               }
             ]
           }
@@ -228,17 +250,19 @@ IMPORTANT: Again, if your app was called something else than `com.example.myapp`
 }
 ----
 
-When looking at the result in Query Playground, you can see the actual image by hovering over the link:
+Guillotine returns a relative path, and the client is responsible for prefixing it with the deployed location of the API. In our case, that is `\http://localhost:8080/api`.
 
-image::morgan-photo.png["Cropped version of Morgan Floatman's image", width="1440px"]
+NOTE: The `path` includes the project and branch of the request - here `intro:draft`, as we are querying the draft branch. For the master branch, the branch is omitted, as master is the default - for instance `/media:image/intro/...`.
 
-NOTE: The actual URL to the image will vary depending on the context of the request, for instance here we are accessing the draft branch from Admin context.
+Opening the full URL gives you the cropped and scaled 400 x 400px version of the photo:
+
+image::morgan-400x400.jpg["Square crop of the photo, centered on the balloon face", width="400px"]
 
 The original higher-resolution image is stored as a content item, just like persons and reviews. This is what it looks like from Content Studio:
 
 image::morgan-original.png["The original version of the photo is widescreen, with a red "autofocus" circle marked around face", width="1440px"]
 
-NOTE: The red "autofocus" circle, when set, helps the image API to crop the images optimally, as you can see above.
+NOTE: The red "autofocus" circle, when set, helps the image API to crop the images optimally.
 
 == API augmentation
 
@@ -258,6 +282,8 @@ We'll keep it simple. In a few steps, you'll add an `age` field to the Person co
 include::{sourcedir}/samples/guillotine/guillotine.ts[]
 ----
 +
+IMPORTANT: If your app was called something else than `com.example.myapp`, also replace `com_example_myapp_Person_Data` in this file. Otherwise, the `age` field will not be added.
++
 . *Redeploy the application*. Guillotine requires the app to be redeployed (or restarted) to pick up changes to schemas and/or controllers. Stop your build (using control-c) and start it again:
 +
   ^c
@@ -270,7 +296,17 @@ include::{sourcedir}/samples/guillotine/guillotine.ts[]
 ----
 {
   guillotine {
-    getChildren(key: "/persons", first: 2) {
+    queryDsl(query: {
+      term: {
+        field: "type",
+        value: {
+          string: "com.example.myapp:person"
+        }
+      }
+    }, first: 2, sort: {
+      field: "displayName",
+      direction: ASC
+    }) {
       displayName
       ... on com_example_myapp_Person {
         data {
@@ -291,19 +327,19 @@ The response should now contain a new age field (pun intended), with a calculate
 {
   "data": {
     "guillotine": {
-      "getChildren": [
+      "queryDsl": [
         {
-          "displayName": "Morgan Floatman",
+          "displayName": "Bob Gondola",
           "data": {
-            "age": 89,
-            "dateofbirth": "1937-06-01"
+            "age": 80,
+            "dateofbirth": "1945-11-15"
           }
         },
         {
-          "displayName": "Léa Seydough",
+          "displayName": "Brad Pittless",
           "data": {
-            "age": 41,
-            "dateofbirth": "1985-07-01"
+            "age": 62,
+            "dateofbirth": "1963-12-18"
           }
         }
       ]
