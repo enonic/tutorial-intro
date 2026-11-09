@@ -14,7 +14,7 @@ dependencies {
     include xplibs.project
     include xplibs.task
     include "com.enonic.lib:lib-asset:2.0.1"
-    include "com.enonic.lib:lib-thymeleaf:3.0.0"
+    include "com.enonic.lib:lib-thymeleaf:3.0.1"
 }
 
 repositories {
