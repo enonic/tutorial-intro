@@ -3,7 +3,7 @@ name: Generate Documentation
 on:
   push:
     branches:
-      - "xp7"
+      - "7.x"
       - "master"
     paths:
       - 'docs/**'
