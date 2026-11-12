@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
-<title>Content Studio and content forms</title>
+<title>Deploy your app to a live server</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -437,15 +437,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
-<h1>Content Studio and content forms</h1>
+<h1>Deploy your app to a live server</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#content_studio">Content Studio</a></li>
-<li><a href="#content_type_person">Content type: Person</a></li>
-<li><a href="#mixin_social_media">Mixin: Social media</a></li>
-<li><a href="#adding_a_new_content_type">Adding a new content type</a></li>
-<li><a href="#next_up">Next up</a></li>
+<li><a href="#public_api">Public API</a></li>
+<li><a href="#sign_up">Sign up</a></li>
+<li><a href="#create_solution">Create solution</a></li>
+<li><a href="#deploy_application">Deploy application</a></li>
+<li><a href="#expose_the_api">Expose the API</a></li>
+<li><a href="#dive_deeper">Dive deeper</a></li>
 </ul>
 </div>
 </div>
@@ -453,21 +454,71 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Introduction to Content Studio, Content Types and Mixins.</p>
+<p>It&#8217;s time for the final act - sign up for a free account and deploy your app on a live server.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+We are currently working to add support for XP8 to the Enonic Cloud. The steps will not work until we have completed this work. We will update this guide as soon as the support is available.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="content_studio"><a class="link" href="#content_studio">Content Studio</a></h2>
+<h2 id="public_api"><a class="link" href="#public_api">Public API</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="https://market.enonic.com/vendors/enonic/content-studio">Content Studio</a> is the editorial interface used to create and manage content. It was pre-installed from <a href="https://market.enonic.com">Enonic Market</a> as a part of the <code>Essentials</code> template when you started the sandbox and can now be accessed from the XP menu.</p>
+<p>So far, you&#8217;ve been playing with the API via Content Studio. If you want to access the API endpoint directly on your sandbox, it&#8217;s available at:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>\http://localhost:8080/api/com.enonic.app.guillotine:graphql</pre>
+</div>
 </div>
 <div class="paragraph">
-<p><strong>Click <b class="button">Content Studio</b></strong> in the XP menu to launch it.</p>
+<p>The same endpoint serves all projects and branches. Outside Content Studio, you select them in the query itself, using the <code>project</code> and <code>branch</code> arguments:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-GraphQL" data-lang="GraphQL">{
+  guillotine(project: "intro", branch: "master") {
+    queryDsl(query: {
+      term: {
+        field: "type",
+        value: {
+          string: "com.example.myapp:person"
+        }
+      }
+    }, first: 3, sort: {
+      field: "displayName",
+      direction: ASC
+    }) {
+      displayName
+      _path
+    }
+  }
+}</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>When your own application was started, it automatically created a CMS project called <code>Intro Project</code> and populated it with content. Content Studio will automatically open it, revealing the list of sample content.</p>
+<p>Use <code>master</code> for published items, and <code>draft</code> for work in progress. Content permissions still apply, so accessing the draft branch normally requires authentication.</p>
+</div>
+<div class="listingblock">
+<div class="title">Running the query with cURL:</div>
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">curl -X POST http://localhost:8080/api/com.enonic.app.guillotine:graphql \
+  -H "Content-Type: application/json" \
+  -d '{"query": "{ guillotine(project: \"intro\", branch: \"master\") { queryDsl(query: {term: {field: \"type\", value: {string: \"com.example.myapp:person\"}}}, first: 3, sort: {field: \"displayName\", direction: ASC}) { displayName _path } } }"}'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the following steps, you will deploy the API to a live URL. Remember, the GraphQL API is accessed via <code>HTTP POST</code> method, as such - visiting it in a regular browser will not work.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -476,207 +527,185 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-The current project is shown at the top left of Content Studio.
+The Chrome extension <a href="https://chrome.google.com/webstore/detail/altair-graphql-client/flnheeellpciglgpaodhkhmapeljopja" target="_blank" rel="noopener">Altair</a> lets you browse any GraphQL API simply by pointing it to the API URL.
 </td>
 </tr>
 </table>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="media/content-studio-in-action.gif" alt="Content Studio with in action" width="1920w">
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="content_type_person"><a class="link" href="#content_type_person">Content type: Person</a></h2>
+<h2 id="sign_up"><a class="link" href="#sign_up">Sign up</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To edit an item, simply select it and click <b class="button">Edit</b> in the menu bar, or via right click. When editing a Person content item, this is what the content editor looks like, including a preview on the right hand side.</p>
+<p>To complete this step, you&#8217;ll need Enonic XP running on a server. To get the job done, we&#8217;ll use Enonic&#8217;s free hosting tier:</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="media/person.png" alt="Person Form and preview" width="1440px">
-</div>
-</div>
-<div class="paragraph">
-<p>The person form comes from the content type definition, which us located within your app. Here is the definition, written in YAML:</p>
-</div>
-<div class="listingblock">
-<div class="title">/src/main/resources/cms/content-types/person/person.yaml</div>
-<div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">kind: "ContentType"
-superType: "base:structured"
-title: "Person"
-description: "Historical or living human"
-form:
-  - type: "ImageSelector"
-    name: "photos"
-    label: "Photos"
-    occurrences:
-      min: 0
-      max: 0
-  - type: "HtmlArea"
-    name: "bio"
-    label: "Bio"
-    occurrences:
-      min: 1
-      max: 1
-    exclude: "NumberedList Outdent Indent SpecialChar Anchor Table PasteModeSwitcher"
-  - type: "Date"
-    name: "dateofbirth"
-    label: "Birth Date"
-    occurrences:
-      min: 0
-      max: 1</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>When you create person content, it is stored as JSON, and looks something like this:</p>
-</div>
-<div class="listingblock">
-<div class="title">Sample JSON for a Person content item</div>
-<div class="content">
-<pre class="highlight"><code class="language-JSON" data-lang="JSON">{
-    "_id": "6414dc62-a3a1-4772-961f-06cb85b1bbb7",
-    "_name": "morgan-floatman",
-    "_path": "/persons/morgan-floatman",
-    "creator": "user:system:su",
-    "modifier": "user:system:su",
-    "createdTime": "2018-07-02T15:33:45.160Z",
-    "modifiedTime": "2026-07-15T14:49:10.004Z",
-    "owner": "user:system:su",
-    "type": "com.enonic.app.intro:person",
-    "displayName": "Morgan Floatman",
-    "language": "en",
-    "valid": true,
-    "childOrder": "modifiedtime DESC",
-    "data": {
-        "photos": "7ab1f76a-69a1-490f-b505-6eb6773c7cec",
-        "bio": "Morgan Floatman is renowned for his soothing baritone — even more remarkable given that his head is a single, large, slowly-rotating balloon. Frequent collaborator with Frank Daraballoon.",
-        "dateofbirth": "1937-06-01"
-    },
-    "x": {
-        "com-enonic-app-intro": {
-            "SoMe": {}
-        }
-    },
-    "page": {},
-    "validationErrors": [],
-    "attachments": {},
-    "publish": {
-        "from": "2026-07-15T13:52:34.373Z",
-        "first": "2026-05-05T12:36:16.195Z"
-    },
-    "workflow": {
-        "state": "READY"
-    }
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="mixin_social_media"><a class="link" href="#mixin_social_media">Mixin: Social media</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>When editing a Person, you&#8217;ll notice an additional tab with the title <code>Social Media</code>. This is actually separately defined content schema, which in this case is "mixed into" the Person content type - hence the name.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="media/some.png" alt="Social Media mixin form" width="546px">
-</div>
-</div>
-<div class="paragraph">
-<p>Mixins can be applied across multiple content types, but can never be used on its own. In this app for instance, the <code>Social Media</code> mixin is also available on the <code>Movie</code> content type.</p>
-</div>
-<div class="paragraph">
-<p>Mixins can also be contributed from a different application - at runtime, making it a powerful feature for content modeling and reuse of schemas.</p>
-</div>
-<div class="paragraph">
-<p>This is what the Social Media mixin definition looks like:</p>
-</div>
-<div class="listingblock">
-<div class="title">/src/main/resources/cms/mixins/SoMe/SoMe.yaml</div>
-<div class="content">
-<pre class="highlight"><code class="language-YAML" data-lang="YAML">kind: "Mixin"
-title: "Social Media"
-form:
-  - type: "TextLine"
-    name: "imdb"
-    label: "Internet Movie Database Url"
-    helpText: "URL to IMDB"
-    occurrences:
-      min: 0
-      max: 1
-  - type: "TextLine"
-    name: "twitter"
-    label: "Twitter"
-    helpText: "Twitter Handle - i.e. @enonicHQ"
-    occurrences:
-      min: 0
-      max: 1
-    regexp: "^@?(\\w){1,15}$"
-  - type: "TextLine"
-    name: "instagram"
-    label: "Instagram"
-    helpText: "Instagram Handle - i.e. @username"
-    occurrences:
-      min: 0
-      max: 1
-    regexp: "^@?(\\w){1,28}$"</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>When saved, the content JSON will include the mixin data, i.e. like this:</p>
-</div>
-<div class="listingblock">
-<div class="title">Snippet of content JSON created by Social Media mixin:</div>
-<div class="content">
-<pre class="highlight"><code class="language-JSON" data-lang="JSON">{
-  "x": {
-      "com-enonic-app-intro": {
-          "SoMe": {
-              "imdb": "https://www.imdb.com/name/nm0000151/",
-              "twitter": "@morgan_freeman",
-              "instagram": "@morganfreeman"
-          }
-      }
-  }
-}</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Mixin data are stored under the reserved <code>x</code> property, and then namespaced by application and schema name to prevent collisions. In this case, the application is <code>com.example.myapp</code> and the schema is <code>SoMe</code>.
+<div class="paragraph">
+<p>If you are looking for other hosting options, Enonic XP is open source, and <a href="https://developer.enonic.com/docs/hosting" target="_blank" rel="noopener">can be deployed pretty much anywhere</a>.</p>
+</div>
 </td>
 </tr>
 </table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="adding_a_new_content_type"><a class="link" href="#adding_a_new_content_type">Adding a new content type</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Finally, a practical exercise by adding the <code>Review</code> content type to your app. Allowing you to create reviews of movies.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>From inside the <code>samples/</code> folder of your app, <strong>copy or move</strong> the <code>review/</code> folder to <code>src/main/resources/cms/content-types/</code>.</p>
+<p>Visit our <strong><a href="https://enonic.com/sign-up" target="_blank" rel="noopener">sign up</a></strong> to claim your forever-free account.</p>
 </li>
 <li>
-<p><strong>Write a review</strong>. Content Studio should pick up the changes immediately. From the Content navigation view click <b class="button">New</b>, then select content type <code>Review</code> and start filling out the form fields in the new content item.</p>
+<p>After signing up, complete the verification of your e-mail before you can move to the next step.</p>
+</li>
+<li>
+<p><strong>Log in to the <a href="https://console.enonic.com" target="_blank" rel="noopener">Enonic Console</a></strong> and choose your account name.</p>
+</li>
+</ol>
+</div>
 <div class="imageblock">
 <div class="content">
-<img src="media/review.png" alt="Sample Review" width="737px">
+<img src="media/console-account-create.png" alt="Choose your account name" width="750px">
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="create_solution"><a class="link" href="#create_solution">Create solution</a></h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>then  <strong>create a new solution</strong> from the menu: <code>Solutions &#8594; Essentials &#8594; Create</code>. Complete the solution wizard steps using your personal preferences.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/console-solution-create.png" alt="Select the 'Essentials' template" width="1440px">
+</div>
+</div>
+<div class="paragraph">
+<p>We will provision an Enonic XP environment, similar to your local sandbox, but this time on a real server.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="deploy_application"><a class="link" href="#deploy_application">Deploy application</a></h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Once the solution has started (verify by logging in to the XP admin), you need to <strong>authorize the CLI</strong>. Run this command:</p>
+<div class="literalblock">
+<div class="content">
+<pre>enonic cloud login</pre>
+</div>
+</div>
+</li>
+<li>
+<p>After successful authentication <strong>install your app</strong> using this command:</p>
+<div class="literalblock">
+<div class="content">
+<pre>enonic cloud app install</pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+You must execute this command from your app folder.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Alternatively, upload the app from the Console directly: <code>Solutions &#8594; &lt;Your solution&gt; &#8594; Applications &#8594; Install</code>. The app file can be found in your project folder i.e. <code>build/libs/myapp.jar</code>.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Once installed, the app should be listed in the Cloud console:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/console-application-list.png" alt="List of applications including 'MyApp'" width="1440px">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="expose_the_api"><a class="link" href="#expose_the_api">Expose the API</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Finally, you may also want to expose the API:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>create an ingress</strong> in the Enonic Cloud console: <code>Solutions &#8594; &lt;Your solution&gt; &#8594; Ingresses &#8594; Create</code>. Give it a suitable name i.e. <code>Intro API</code>, and use the following values:</p>
+<div class="exampleblock">
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Environment</dt>
+<dd>
+<p>Use the default value</p>
+</dd>
+<dt class="hdlist1">Target</dt>
+<dd>
+<p><code>/api</code></p>
+</dd>
+<dt class="hdlist1">Domain</dt>
+<dd>
+<p>Use the default value</p>
+</dd>
+<dt class="hdlist1">Path</dt>
+<dd>
+<p><code>/api</code></p>
+</dd>
+<dt class="hdlist1">ID provider</dt>
+<dd>
+<p>leave empty</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Once the ingress is created, <strong>Select it in the list</strong>. This will reveal a link to your API on the right hand side.</p>
+</li>
+<li>
+<p><strong>Append <code>/com.enonic.app.guillotine:graphql</code></strong> to the URL, and use it as the endpoint in your GraphQL client. Select the project and branch with the <code>project</code> and <code>branch</code> arguments, just like on your sandbox.</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The ingress exposes all APIs under <code>/api</code>, including the media APIs. Image paths returned by Guillotine can be appended directly to the Ingress URL.
+</td>
+</tr>
+</table>
 </div>
 </li>
 </ol>
@@ -684,17 +713,32 @@ Mixin data are stored under the reserved <code>x</code> property, and then names
 </div>
 </div>
 <div class="sect1">
-<h2 id="next_up"><a class="link" href="#next_up">Next up</a></h2>
+<h2 id="dive_deeper"><a class="link" href="#dive_deeper">Dive deeper</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You&#8217;re now familiar with the XP sandbox, Content Studio, Content types, and Mixin schemas. In the following chapter, you&#8217;ll get to play with <a href="api.ahtml">the Headless Content GraphQL API, aka Guillotine</a>.</p>
+<p>🎉 Awesome! You made it to the end.</p>
+</div>
+<div class="paragraph">
+<p>In the process, you created an Enonic XP sandbox, built and customized your own app, ran GraphQL queries, got to know the Enonic CLI and our SaaS service.</p>
+</div>
+<div class="paragraph">
+<p>Visit the <a href="https://developer.enonic.com/docs/cms">CMS reference documentation</a> to learn about content modeling and the CMS features.</p>
+</div>
+<div class="paragraph">
+<p>For more details on Enonic app development and platform extensions, visit the  <a href="https://developer.enonic.com/docs/code">Enonic Development Kit documentation</a>.</p>
+</div>
+<div class="paragraph">
+<p>For hands on tutorials, visit the <a href="https://developer.enonic.com/docs/learn">Learn section</a>.</p>
+</div>
+<div class="paragraph">
+<p>Bon voyage!</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-07-16 12:50:58 UTC
+Last updated 2026-11-12 10:48:11 UTC
 </div>
 </div>
 </body>

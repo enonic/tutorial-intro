@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
-<title>Content Studio and content forms</title>
+<title>GraphQL API for headless content</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -437,15 +437,25 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
-<h1>Content Studio and content forms</h1>
+<h1>GraphQL API for headless content</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#content_studio">Content Studio</a></li>
-<li><a href="#content_type_person">Content type: Person</a></li>
-<li><a href="#x_data_social_media">X-Data: Social media</a></li>
-<li><a href="#adding_a_new_content_type">Adding a new content type</a></li>
-<li><a href="#next_up">Next up</a></li>
+<li><a href="#guillotine">Guillotine</a></li>
+<li><a href="#sample_queries">Sample queries</a>
+<ul class="sectlevel2">
+<li><a href="#get_persons">Get Persons</a></li>
+<li><a href="#query_variables">Query variables</a></li>
+<li><a href="#movies_and_cast">Movies and cast</a></li>
+</ul>
+</li>
+<li><a href="#image_handling">Image handling</a></li>
+<li><a href="#api_augmentation">API augmentation</a>
+<ul class="sectlevel2">
+<li><a href="#the_age_field">The age field</a></li>
+</ul>
+</li>
+<li><a href="#one_last_thing">One last thing</a></li>
 </ul>
 </div>
 </div>
@@ -453,179 +463,181 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Introduction to Content Studio, content types and x-data.</p>
+<p>Get familiar with the Guillotine API - our cutting-edge headless GraphQL content API</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="content_studio"><a class="link" href="#content_studio">Content Studio</a></h2>
+<h2 id="guillotine"><a class="link" href="#guillotine">Guillotine</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="https://market.enonic.com/vendors/enonic/content-studio" target="_blank" rel="noopener">Content Studio</a> is the editorial interface used to create and manage content. It was pre-installed from <a href="https://market.enonic.com" target="_blank" rel="noopener">Enonic Market</a> as a part of the <code>Essentials</code> template when you started the sandbox and can now be accessed from the XP menu.</p>
+<p>The Headless API, aka <a href="https://market.enonic.com/vendors/enonic/guillotine" target="_blank" rel="noopener">Guillotine</a> - yes, we take headlessness seriously around here - provides access to all the content within your project. Clients requesting content will naturally only get access to the content they have read-permissions for. The <code>Intro project</code> is configured with public read access for everything.</p>
 </div>
 <div class="paragraph">
-<p><strong>Click <b class="button">Content Studio</b></strong> in the XP menu to launch it.</p>
-</div>
-<div class="paragraph">
-<p>When your own application was started, it automatically created a content project called <code>Intro Project</code> and populated it with content. Since this is the only available project at the moment, Content Studio will automatically open it, revealing the list of sample content.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-The current project is shown at the top of Content Studio.
-</td>
-</tr>
-</table>
+<p>Click the GraphQL icon in the Content Studio&#8217;s left-hand menu to open <code>Query Playground</code>. Here you may test and play with the GraphQL API directly.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="media/content-studio-in-action.gif" alt="Content Studio with Sample content" width="1024px">
+<img src="media/query-playground.png" alt="Query Playground in action" width="1024px">
 </div>
+</div>
+<div class="paragraph">
+<p>The API documentation is available from the Top left <code>file cabinet icon</code>. Use the tabs on the top right to query against the Draft or Master branch, accessing the draft and published items, respectively.</p>
+</div>
+<div class="paragraph">
+<p>Want to know more about GraphQL in general? Visit the <a href="https://graphql.org" target="_blank" rel="noopener">official GraphQL documentation</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="content_type_person"><a class="link" href="#content_type_person">Content type: Person</a></h2>
+<h2 id="sample_queries"><a class="link" href="#sample_queries">Sample queries</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To edit an item, simply select it and click <code>Edit</code> in the menu bar, or by using right click. When editing a Person content item, this is what the form looks like in Content Studio. On bigger screens, you will also get a preview on the right-hand side.</p>
+<p>Below are some example queries you can use to fetch the sample content.</p>
 </div>
-<div class="imageblock">
+<div class="sect2">
+<h3 id="get_persons"><a class="link" href="#get_persons">Get Persons</a></h3>
+<div class="listingblock">
+<div class="title">Get display name and _path of the first 3 items in the <code>/persons</code> folder:</div>
 <div class="content">
-<img src="media/person.png" alt="Person Form" width="1024px">
+<pre class="highlight"><code class="language-GraphQL" data-lang="GraphQL">{
+ guillotine {
+  getChildren(key:"/persons" first:3){
+    displayName
+    _path
+    }
+  }
+}</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>The form comes from the content type definition, which is located inside the app. Here is what it looks like:</p>
 </div>
 <div class="listingblock">
-<div class="title">/src/main/resources/site/content-types/person/person.xml</div>
-<div class="content">
-<pre class="highlight"><code class="language-XML" data-lang="XML">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;content-type xmlns="urn:enonic:xp:model:1.0"&gt;
-  &lt;display-name&gt;Person&lt;/display-name&gt;
-  &lt;description&gt;Historical or living human&lt;/description&gt;
-  &lt;super-type&gt;base:structured&lt;/super-type&gt;
-  &lt;form&gt;
-    &lt;input type="ImageSelector" name="photos"&gt;
-      &lt;label&gt;Photos&lt;/label&gt;
-      &lt;occurrences minimum="0" maximum="0"/&gt;
-    &lt;/input&gt;
-    &lt;input type="HtmlArea" name="bio"&gt;
-      &lt;label&gt;Bio&lt;/label&gt;
-      &lt;occurrences minimum="1" maximum="1"/&gt;
-      &lt;config&gt;
-        &lt;exclude&gt;NumberedList Outdent Indent SpecialChar Anchor Table PasteModeSwitcher&lt;/exclude&gt;
-      &lt;/config&gt;
-    &lt;/input&gt;
-    &lt;input type="Date" name="dateofbirth"&gt;
-      &lt;label&gt;Birth Date&lt;/label&gt;
-       &lt;occurrences minimum="0" maximum="1"/&gt;
-    &lt;/input&gt;
-  &lt;/form&gt;
-&lt;/content-type&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>When used to create content, it is stored like this:</p>
-</div>
-<div class="listingblock">
-<div class="title">Persisted content for Uma Thurman</div>
+<div class="title">Sample response:</div>
 <div class="content">
 <pre class="highlight"><code class="language-JSON" data-lang="JSON">{
-  "valid": true,
-  "displayName": "Uma Thurman",
-  "type": "com.example.myapp:person",
-  "owner": "user:system:su",
-  "language": "en",
-  "modifiedTime": "2018-07-03T05:58:55.025Z",
-  "modifier": "user:system:su",
-  "creator": "user:system:su",
-  "createdTime": "2018-07-03T05:57:35.292Z",
-  "publish": {
-    "first": "2024-01-18T12:08:23.167Z",
-    "from": "2024-01-18T12:08:23.167Z"
-  },
   "data": {
-    "photos": "8d47792f-0ae6-4d74-a6e4-bab0e8d2374b",
-    "bio": "Uma Karuna Thurman was born in Boston, Massachusetts, into a highly unorthodox and Eurocentric family",
-    "dateofbirth": "1970-04-29"
+    "guillotine": {
+      "getChildren": [
+        {
+          "displayName": "Léa Seydoux",
+          "_path": "/persons/lea-seydoux"
+        },
+        {
+          "displayName": "Jeffrey Wright",
+          "_path": "/persons/jeffrey-wright"
+        },
+        {
+          "displayName": "Daniel Craig",
+          "_path": "/persons/daniel-craig"
+        }
+      ]
+    }
   }
 }</code></pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="x_data_social_media"><a class="link" href="#x_data_social_media">X-Data: Social media</a></h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="query_variables"><a class="link" href="#query_variables">Query variables</a></h3>
 <div class="paragraph">
-<p>When editing a Person, you&#8217;ll notice an additional subset of fields inside the Content form with the title <code>Social Media</code>. This is, strictly speaking, a separate form, injected into the Person content type - we call it "eXtended data" (or just "x-data").</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="media/some.gif" alt="Social Media x-data form" width="1024px">
-</div>
+<p>GraphQL also supports the concept of query variables. Similar to parameters in functions, you may pass variables to a query.</p>
 </div>
 <div class="paragraph">
-<p>X-data can be applied across multiple content types. In this app for instance, the <code>Social Media</code> form is also available on the <code>Movie</code> content type. More interestingly, X-data can even be injected from a different application - at runtime.</p>
-</div>
-<div class="paragraph">
-<p>This is what the definition looks like:</p>
+<p>Query variables are defined with JSON. You can add them using the <code>Variables</code> button below the query editor.</p>
 </div>
 <div class="listingblock">
-<div class="title">/src/main/resources/site/x-data/some/some.xml</div>
 <div class="content">
-<pre class="highlight"><code class="language-XML" data-lang="XML">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;x-data&gt;
-  &lt;display-name&gt;Social Media&lt;/display-name&gt;
-  &lt;form&gt;
-    &lt;input type="TextLine" name="imdb"&gt;
-      &lt;help-text&gt;URL to IMDB&lt;/help-text&gt;
-      &lt;label&gt;Internet Movie Database Url&lt;/label&gt;
-      &lt;occurrences minimum="0" maximum="1"/&gt;
-    &lt;/input&gt;
-    &lt;input type="TextLine" name="twitter"&gt;
-      &lt;help-text&gt;Twitter Handle - i.e. @enonicHQ&lt;/help-text&gt;
-      &lt;label&gt;Twitter&lt;/label&gt;
-      &lt;occurrences minimum="0" maximum="1"/&gt;
-      &lt;config&gt;
-        &lt;regexp&gt;^@?(\w){1,15}$&lt;/regexp&gt;
-      &lt;/config&gt;
-    &lt;/input&gt;
-    &lt;input type="TextLine" name="instagram"&gt;
-      &lt;help-text&gt;Instagram Handle - i.e. @username&lt;/help-text&gt;
-      &lt;label&gt;Instagram&lt;/label&gt;
-      &lt;occurrences minimum="0" maximum="1"/&gt;
-      &lt;config&gt;
-        &lt;regexp&gt;^@?(\w){1,28}$&lt;/regexp&gt;
-      &lt;/config&gt;
-    &lt;/input&gt;
-  &lt;/form&gt;
-&lt;/x-data&gt;</code></pre>
+<pre class="highlight"><code class="language-JSON" data-lang="JSON">{
+  "path": "/persons"
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>You can also see what the persisted version looks like in the JSON.</p>
+<p>With the variable set, update your query to use the variable. This query should provide the exact same response as before.</p>
 </div>
 <div class="listingblock">
-<div class="title">Snippet of Uma Thurman including x-data.</div>
+<div class="title">The Person query, this time using path as a variable:</div>
+<div class="content">
+<pre class="highlight"><code class="language-GraphQL" data-lang="GraphQL">query($path:ID!){
+ guillotine {
+  getChildren(key:$path first:3){
+    displayName
+    _path
+    }
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="movies_and_cast"><a class="link" href="#movies_and_cast">Movies and cast</a></h3>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The GraphQL schema is automatically generated from your application and schemas. If you used a different name than <code>com.example.myapp</code> when the app was created, you would have to replace both <code>com.example.myapp:movie</code> and the GraphQL type <code>com_example_myapp_Movie</code> for the query below to work.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Get display name and the cast of the first movie:</div>
+<div class="content">
+<pre class="highlight"><code class="language-GraphQL" data-lang="GraphQL">{
+  guillotine {
+    queryDsl(query: {
+      term: {
+        field: "type",
+        value: {
+          string: "com.example.myapp:movie"
+        }
+      }
+    }, first: 1) {
+      displayName
+      ... on com_example_myapp_Movie {
+        data {
+          cast {
+            actor {
+              displayName
+            }
+            character
+          }
+        }
+      }
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Sample response</div>
 <div class="content">
 <pre class="highlight"><code class="language-JSON" data-lang="JSON">{
   "data": {
-    "photos": "8d47792f-0ae6-4d74-a6e4-bab0e8d2374b",
-    "bio": "Uma Karuna Thurman was born in Boston, Massachusetts, into a highly unorthodox and Eurocentric family",
-    "dateofbirth": "1970-04-29"
-  },
-  "x": {
-    "com-example-myapp": {
-      "SoMe": {
-        "imdb": "https://www.imdb.com/name/nm0000235/"
-      }
+    "guillotine": {
+      "queryDsl": [
+        {
+          "displayName": "The Matrix",
+          "data": {
+            "cast": [
+              {
+                "actor": {
+                  "displayName": "Keanu Reeves"
+                },
+                "character": "Neo"
+              },
+              {
+                "actor": {
+                  "displayName": "Carrie-Anne Moss"
+                },
+                "character": "Trinity"
+              }
+            ]
+          }
+        }
+      ]
     }
   }
 }</code></pre>
@@ -633,41 +645,265 @@ The current project is shown at the top of Content Studio.
 </div>
 </div>
 </div>
+</div>
 <div class="sect1">
-<h2 id="adding_a_new_content_type"><a class="link" href="#adding_a_new_content_type">Adding a new content type</a></h2>
+<h2 id="image_handling"><a class="link" href="#image_handling">Image handling</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Let&#8217;s do a practical exercise by adding a new content type called <code>Review</code> to your app. This will allow you to create reviews of movies.</p>
+<p>In this case, Guillotine plays tag-team with XP&#8217;s image service, which can deliver real-time cropped and optimized versions of images. Here, we are requesting a 400 x 400px version of the image.</p>
+</div>
+<div class="paragraph">
+<p>The query below shows the names of actors containing the term <code>morgan</code>, and provides a link to a cropped image of the actor.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Again, if your app was called something else than <code>com.example.myapp</code>, replace <code>com.example.myapp:person</code> and <code>com_example_myapp_Person</code> for the query below to work.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Name of persons and a link to 400x400 scaled photo</div>
+<div class="content">
+<pre class="highlight"><code class="language-GraphQL" data-lang="GraphQL">{
+  guillotine {
+    queryDsl(query: {
+      boolean: {
+        must: [
+          {
+            ngram: {
+              fields: ["_allText"],
+              query: "morgan"
+            }
+          },
+          {
+            term: {
+              field: "type",
+              value: {
+                string: "com.example.myapp:person"
+              }
+            }
+          }
+        ]
+      }
+    }, first: 1) {
+      ... on com_example_myapp_Person {
+    	  displayName
+        data {
+          photos(first:1){
+            ... on media_Image {
+              imageUrl(type:absolute scale:"block(400,400)")
+            }
+          }
+        }
+      }
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Sample response</div>
+<div class="content">
+<pre class="highlight"><code class="language-JSON" data-lang="JSON">{
+  "data": {
+    "guillotine": {
+      "queryDsl": [
+        {
+          "displayName": "Morgan Freeman",
+          "data": {
+            "photos": [
+              {
+                "imageUrl": "http://localhost:8080/admin/site/preview/intro/draft/_/image/7ab1f76a-69a1-490f-b505-6eb6773c7cec:603726cc4fa712aa1b70c7eb64e1349f664494c3/block-400-400/morgan-freeman.jpg"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When looking at the result in Query Playground, you can see the actual image by hovering over the link:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/morgan-photo.png" alt="Cropped version of Morgan Freemans image" width="1024px">
+</div>
+</div>
+<div class="paragraph">
+<p>The original higher-resolution image is stored as a content item, just like persons and reviews. This is what it looks like from Content Studio:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/morgan-original.png" alt="The original version of Morgan Freemans photo is widescreen, with a red " width="1024px">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The red "autofocus" circle, when set, helps the image service to crop the images optimally, as you can see above.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="api_augmentation"><a class="link" href="#api_augmentation">API augmentation</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Now the real magic begins!</strong> You may programmatically extend and augment the Guillotine API - for a fully customizable back-end.</p>
+</div>
+<div class="paragraph">
+<p>The use-cases are limitless, but rather than babbling about it - let&#8217;s see it in action!</p>
+</div>
+<div class="sect2">
+<h3 id="the_age_field"><a class="link" href="#the_age_field">The age field</a></h3>
+<div class="paragraph">
+<p>We&#8217;ll keep it simple. In a few steps, you&#8217;ll add a new <code>age</code> field to the Person content type and use the <code>dateofbirth</code> to calculate the result.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>From inside the <code>samples/</code> folder of your app, <strong>copy or move</strong> the <code>review/</code> folder to <code>src/main/resources/site/content-types/</code>.</p>
+<p>From the <code>samples/</code> folder of your app, <strong>copy or move</strong> the <code>guillotine/</code> folder to <code>src/main/resources/</code>. You should then have the following TypeScript controller ready:</p>
+<div class="listingblock">
+<div class="title">/src/main/resources/guillotine/guillotine.ts</div>
+<div class="content">
+<pre class="highlight"><code class="language-TypeScript" data-lang="TypeScript">// Using the Person data type
+const personType = "com_example_myapp_Person_Data";
+
+export const extensions = (graphQL) =&gt; {
+  return {
+    creationCallbacks: {
+      [personType]: function (params) {
+        // Add a new field: age
+        params.addFields({
+          age: {
+            type: graphQL.GraphQLInt,
+          },
+        });
+      },
+    },
+    resolvers: {
+      [personType]: {
+        // Implement the age resolver
+        age: (env) =&gt; {
+          if (!env.source.dateofbirth) {
+            return null;
+          }
+
+          // Calculate age
+          let age = 0;
+          const today = new Date();
+          const birthDate = new Date(env.source.dateofbirth);
+          age = today.getFullYear() - birthDate.getFullYear();
+          const m = today.getMonth() - birthDate.getMonth();
+
+          // Tune for month and day
+          if (m &lt; 0 || (m === 0 &amp;&amp; today.getDate() &lt; birthDate.getDate())) {
+            age--;
+          }
+          return age;
+        },
+      },
+    },
+  };
+};</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p><strong>Write a review</strong>. Content Studio should pick up the changes immediately. From the Content navigation view click <b class="button">New</b>, then select content type <code>Review</code> and start filling out the form fields in the new content item.</p>
-<div class="imageblock">
+<p>Guillotine requires the app to be redeployed (or restarted) to pick up changes to schemas and/or controllers. Stop the build (using control-c) and start it again:</p>
+<div class="literalblock">
 <div class="content">
-<img src="media/review.png" alt="Sample Review" width="1024px">
+<pre>^c
+enonic dev</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Back in Query Playground, run the following query:</p>
+<div class="listingblock">
+<div class="title">Query using the new field</div>
+<div class="content">
+<pre class="highlight"><code class="language-GraphQL" data-lang="GraphQL">{
+  guillotine {
+    getChildren(key: "/persons", first: 2) {
+      displayName
+      ... on com_example_myapp_Person {
+        data {
+          age
+          dateofbirth
+        }
+      }
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The response should now contain a new age filed, with a calculated value:</p>
+</div>
+<div class="listingblock">
+<div class="title">Query response</div>
+<div class="content">
+<pre class="highlight"><code class="language-JSON" data-lang="JSON">{
+  "data": {
+    "guillotine": {
+      "getChildren": [
+        {
+          "displayName": "Léa Seydoux",
+          "data": {
+            "age": 38,
+            "dateofbirth": "1985-07-01"
+          }
+        },
+        {
+          "displayName": "Jeffrey Wright",
+          "data": {
+            "age": 58,
+            "dateofbirth": "1965-12-07"
+          }
+        }
+      ]
+    }
+  }
+}</code></pre>
 </div>
 </div>
 </li>
 </ol>
 </div>
+<div class="paragraph">
+<p>As you have now seen, XP lets you run server-side <a href="https://developer.enonic.com/docs/platform/xp7/framework">TypeScript and JavaScript code</a>. API augmentation is just the tip of the iceberg - believe us.</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="next_up"><a class="link" href="#next_up">Next up</a></h2>
+<h2 id="one_last_thing"><a class="link" href="#one_last_thing">One last thing</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You&#8217;re now familiar with the XP Admin, Content Studio, Content type, and x-data schemas. In the following chapter, you&#8217;ll get to play with <a href="api.ahtml">Query Playground, and the Headless Content API, aka Guillotine</a>.</p>
+<p>With GraphQL queries flowing from your fingertips. It&#8217;s time for the big finale where you <a href="deploy.ahtml">deploy your app to the Enonic cloud</a>.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-07-16 12:51:24 UTC
+Last updated 2026-11-12 10:48:29 UTC
 </div>
 </div>
 </body>

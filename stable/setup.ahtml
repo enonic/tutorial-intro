@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
-<title>Deploy your app to the cloud</title>
+<title>Setting up the development environment</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -437,16 +437,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
-<h1>Deploy your app to the cloud</h1>
+<h1>Setting up the development environment</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#public_api">Public API</a></li>
-<li><a href="#sign_up">Sign up</a></li>
-<li><a href="#create_solution">Create solution</a></li>
-<li><a href="#deploy_application">Deploy application</a></li>
-<li><a href="#expose_the_api">Expose the API</a></li>
-<li><a href="#dive_deeper">Dive deeper</a></li>
+<li><a href="#install_cli">Install CLI</a></li>
+<li><a href="#create_a_sandbox">Create a sandbox</a></li>
+<li><a href="#sandbox_admin">Sandbox Admin</a></li>
+<li><a href="#coming_up">Coming up</a></li>
 </ul>
 </div>
 </div>
@@ -454,134 +452,32 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>It&#8217;s time for the final act - sign up for a free account and deploy your app on a live server.</p>
+<p>Installing the CLI and setting up a local Enonic sandbox.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="public_api"><a class="link" href="#public_api">Public API</a></h2>
+<h2 id="install_cli"><a class="link" href="#install_cli">Install CLI</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>So far, you&#8217;ve been playing with the API via Content Studio. If you want to access the API endpoint directly on your sandbox, it&#8217;s available at:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>http://localhost:8080/site/intro/draft (draft items)</p>
-</li>
-<li>
-<p>http://localhost:8080/site/intro/master (published items)</p>
-</li>
-</ul>
+<p>The <a href="https://developer.enonic.com/docs/enonic-cli" target="_blank" rel="noopener">Enonic Command Line Interface</a> is an essential tool for developers working with Enonic.</p>
 </div>
 <div class="paragraph">
-<p>In the following steps, you will deploy the API to a live URL. Remember, the GraphQL API is accessed via <code>HTTP POST</code> method, as such - visiting via a regular browser will give you a 404 error.</p>
+<p>If you have <code>npm</code> on your device, run this command:</p>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-The Chrome extension <a href="https://chrome.google.com/webstore/detail/altair-graphql-client/flnheeellpciglgpaodhkhmapeljopja" target="_blank" rel="noopener">Altair</a> lets you browse any GraphQL API simply by pointing it to the API URL.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="sign_up"><a class="link" href="#sign_up">Sign up</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>To complete this step, you&#8217;ll need Enonic XP running on a server. To get the job done, we&#8217;ll use Enonic&#8217;s free hosting tier:</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>If you are looking for other hosting options, Enonic XP is open source, and <a href="https://developer.enonic.com/docs/hosting" target="_blank" rel="noopener">can be deployed pretty much anywhere</a>.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Visit our <strong><a href="https://enonic.com/sign-up" target="_blank" rel="noopener">sign up</a></strong> to claim your forever-free account.</p>
-</li>
-<li>
-<p>After signing up, complete the verification of your e-mail before you can move to the next step.</p>
-</li>
-<li>
-<p><strong>Log in to the <a href="https://console.enonic.com" target="_blank" rel="noopener">Enonic Console</a></strong> and choose your account name.</p>
-</li>
-</ol>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="media/console-account-create.png" alt="Choose your account name" width="750px">
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="create_solution"><a class="link" href="#create_solution">Create solution</a></h2>
-<div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>then  <strong>create a new solution</strong> from the menu: <code>Solutions &#8594; Essentials &#8594; Create</code>. Complete the solution wizard steps using your personal preferences.</p>
-</li>
-</ol>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="media/console-solution-create.png" alt="Select the 'Essentials' template" width="1440px">
-</div>
-</div>
-<div class="paragraph">
-<p>We will then spin up an Enonic XP environment, similar to your local sandbox, but this time on a real server in the Cloud.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="deploy_application"><a class="link" href="#deploy_application">Deploy application</a></h2>
-<div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Once the solution has started (verify by logging in to the XP admin), you need to <strong>authorize the CLI</strong>. Run this command:</p>
 <div class="literalblock">
 <div class="content">
-<pre>enonic cloud login</pre>
+<pre>npm install -g @enonic/cli</pre>
 </div>
 </div>
-</li>
-<li>
-<p>After successful authentication <strong>install your app</strong> using this command:</p>
-<div class="literalblock">
-<div class="content">
-<pre>enonic cloud app install</pre>
+<div class="paragraph">
+<p>If not, here are some <a href="https://developer.enonic.com/start" target="_blank" rel="noopener">alternative ways to install Enonic CLI</a></p>
 </div>
+<div class="paragraph">
+<p>To verify that the CLI has been installed, run <code>enonic -v</code>. This should output the version of your installed CLI.</p>
 </div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-You must execute this command from your app folder.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>To see all available options, simply run <code>enonic</code>.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -590,68 +486,24 @@ You must execute this command from your app folder.
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Alternatively, upload the app from the Console directly: <code>Solutions &#8594; &lt;Your solution&gt; &#8594; Applications &#8594; Install</code>. The app file can be found in your project folder i.e. <code>build/libs/myapp.jar</code>.
+To upgrade, use <code>enonic latest</code>. If there are new versions you will see instructions on how to upgrade.
 </td>
 </tr>
 </table>
 </div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Once installed, the app should be listed in the Cloud console:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="media/console-application-list.png" alt="List of applications including 'MyApp'" width="1440px">
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="expose_the_api"><a class="link" href="#expose_the_api">Expose the API</a></h2>
+<h2 id="create_a_sandbox"><a class="link" href="#create_a_sandbox">Create a sandbox</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Finally, you may also want to expose the API:</p>
+<p>A <a href="https://developer.enonic.com/docs/xp/stable/development/sandboxes" target="_blank" rel="noopener">sandbox</a> is a local development instance of the platform - Enonic XP. Create and start a sandbox called <code>mysandbox</code> by running this command in your terminal:</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>create an ingress</strong> in the Enonic Cloud console: <code>Solutions &#8594; &lt;Your solution&gt; &#8594; Ingresses &#8594; Create</code>. Give it a suitable name i.e. <code>Intro API</code>, and use the following values:</p>
-<div class="exampleblock">
+<div class="literalblock">
 <div class="content">
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Environment</dt>
-<dd>
-<p>Use the default value</p>
-</dd>
-<dt class="hdlist1">Target</dt>
-<dd>
-<p><code>/site/intro</code></p>
-</dd>
-<dt class="hdlist1">Domain</dt>
-<dd>
-<p>Use the default value</p>
-</dd>
-<dt class="hdlist1">Path</dt>
-<dd>
-<p><code>/api</code></p>
-</dd>
-<dt class="hdlist1">ID provider</dt>
-<dd>
-<p>leave empty</p>
-</dd>
-</dl>
+<pre>enonic sandbox create mysandbox -t essentials -f</pre>
 </div>
 </div>
-</div>
-</li>
-<li>
-<p>Once the ingress is created, <strong>Select it in the list</strong>. This will reveal a link to your API on the right. hand side</p>
-</li>
-<li>
-<p><strong>Visit the URL</strong> to see the <code>Query Playground</code> API browser.</p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -659,55 +511,69 @@ Alternatively, upload the app from the Console directly: <code>Solutions &#8594;
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The API browser can be disabled by changing the configuration of the <code>Guillotine app</code>.
+<code>-f</code> flag will force using the most recent release of Enonic XP and automatically start the sandbox.
 </td>
 </tr>
 </table>
-</div>
-<div class="paragraph">
-<p>To use the published content API directly from a GraphQL client, append <code>/master</code> to the Ingress URL.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Remember, the GraphQL API only accepts <code>POST</code> requests, so the browser will only show a 404 at this point.
-</td>
-</tr>
-</table>
-</div>
-</li>
-</ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="dive_deeper"><a class="link" href="#dive_deeper">Dive deeper</a></h2>
+<h2 id="sandbox_admin"><a class="link" href="#sandbox_admin">Sandbox Admin</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>🎉 Awesome! You made it to the end.</p>
+<p>Sandbox instances have a special web interface. Open <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a> in your browser (or just click the link).</p>
 </div>
 <div class="paragraph">
-<p>In the process, you created an Enonic XP sandbox, built and customized your own app, ran GraphQL queries, got to know the Enonic CLI and our SaaS service.</p>
+<p>You should now see the XP boot page:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/xp-boot.png" alt="The XP boot page" width="1024px">
+</div>
+<div class="title">Figure 1. XP Boot page</div>
 </div>
 <div class="paragraph">
-<p>As you may already imagine, the Platform is capable of so much more. Did you know that Enonic has a <a href="https://developer.enonic.com/docs/xp/stable/framework" target="_blank" rel="noopener">JavaScript framework</a>, complete with <a href="https://www.npmjs.com/org/enonic-types" target="_blank" rel="noopener">TypeScript definitions</a> the entire platform API? You may use it in your apps to extend and customize the Platform as you like.</p>
+<p>The boot page provides an overview of the sandbox, including installed application, as well as the <a href="https://developer.enonic.com/docs/xp/stable/deployment/config" target="_blank" rel="noopener">standard configuration files</a>.</p>
 </div>
 <div class="paragraph">
-<p>To continue the journey, we recommend visiting the <a href="https://developer.enonic.com/docs/tutorials">Enonic tutorials</a> section of the Developer Portal.</p>
+<p>Click <b class="button">Log In as Guest</b> to open the XP admin dashboard. You should now see something like this:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/xp-dashboard.png" alt="The XP admin dashboard" width="1708w">
+</div>
+<div class="title">Figure 2. The XP admin dashboard</div>
 </div>
 <div class="paragraph">
-<p>Bon voyage!</p>
+<p>You are now on the admin dashboard. The right hand menu (aka <code>XP menu</code>) enables navigation between admin tools. Admin tools may be injected as extensions via applications.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If things don&#8217;t look exactly the same, don&#8217;t worry. In every new version of XP the background picture gets updated. Also, admin dashboard is automatically localized - based on your browsers preferred language.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="coming_up"><a class="link" href="#coming_up">Coming up</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You&#8217;re now familiar with the CLI and sandboxes. In the next chapter you&#8217;ll get create an <a href="app.ahtml">Enonic application</a>.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-07-16 12:51:24 UTC
+Last updated 2026-11-12 10:48:11 UTC
 </div>
 </div>
 </body>

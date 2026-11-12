@@ -452,7 +452,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Installing the CLI and setting up a local Enonic sandbox.</p>
+<p>Installing the CLI and creating a development sandbox.</p>
 </div>
 </div>
 </div>
@@ -501,7 +501,7 @@ To upgrade, use <code>enonic latest</code>. If there are new versions you will s
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>enonic sandbox create mysandbox -t essentials -f</pre>
+<pre>enonic sandbox create mysandbox -v 7.16.5 -t essentials -f</pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -522,26 +522,26 @@ To upgrade, use <code>enonic latest</code>. If there are new versions you will s
 <h2 id="sandbox_admin"><a class="link" href="#sandbox_admin">Sandbox Admin</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Sandbox instances have a special web interface. Open <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a> in your browser (or just click the link).</p>
+<p>Let&#8217;s have a look at the Sandbox' web interface - aka XP admin. Open <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a> in your browser (or just click the link).</p>
 </div>
 <div class="paragraph">
 <p>You should now see the XP boot page:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="media/xp-boot.png" alt="The XP boot page" width="1024px">
+<img src="media/xp-boot.png" alt="The XP boot page" width="1085w">
 </div>
 <div class="title">Figure 1. XP Boot page</div>
 </div>
 <div class="paragraph">
-<p>The boot page provides an overview of the sandbox, including installed application, as well as the <a href="https://developer.enonic.com/docs/xp/stable/deployment/config" target="_blank" rel="noopener">standard configuration files</a>.</p>
+<p>The boot page provides an overview of the sandbox, including installed application, as well as the <a href="https://developer.enonic.com/docs/platform/xp7/deployment/config" target="_blank" rel="noopener">standard configuration files</a>.</p>
 </div>
 <div class="paragraph">
 <p>Click <b class="button">Log In as Guest</b> to open the XP admin dashboard. You should now see something like this:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="media/xp-dashboard.png" alt="The XP admin dashboard" width="1708w">
+<img src="media/xp-dashboard.png" alt="The XP admin dashboard" width="1727w">
 </div>
 <div class="title">Figure 2. The XP admin dashboard</div>
 </div>
@@ -573,7 +573,7 @@ If things don&#8217;t look exactly the same, don&#8217;t worry. In every new ver
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-07-16 12:50:58 UTC
+Last updated 2026-11-12 10:48:29 UTC
 </div>
 </div>
 </body>

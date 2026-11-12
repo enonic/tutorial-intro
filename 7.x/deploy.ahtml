@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
-<title>GraphQL API for headless content</title>
+<title>Deploy your app to the cloud</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -437,25 +437,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
-<h1>GraphQL API for headless content</h1>
+<h1>Deploy your app to the cloud</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#guillotine">Guillotine</a></li>
-<li><a href="#sample_queries">Sample queries</a>
-<ul class="sectlevel2">
-<li><a href="#get_persons">Get Persons</a></li>
-<li><a href="#query_variables">Query variables</a></li>
-<li><a href="#movies_and_cast">Movies and cast</a></li>
-</ul>
-</li>
-<li><a href="#image_handling">Image handling</a></li>
-<li><a href="#api_augmentation">API augmentation</a>
-<ul class="sectlevel2">
-<li><a href="#the_age_field">The age field</a></li>
-</ul>
-</li>
-<li><a href="#one_last_thing">One last thing</a></li>
+<li><a href="#public_api">Public API</a></li>
+<li><a href="#sign_up">Sign up</a></li>
+<li><a href="#create_solution">Create solution</a></li>
+<li><a href="#deploy_application">Deploy application</a></li>
+<li><a href="#expose_the_api">Expose the API</a></li>
+<li><a href="#dive_deeper">Dive deeper</a></li>
 </ul>
 </div>
 </div>
@@ -463,197 +454,122 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Get familiar with the Guillotine API - our cutting-edge headless GraphQL content API</p>
+<p>It&#8217;s time for the final act - sign up for a free account and deploy your app on a live server.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="guillotine"><a class="link" href="#guillotine">Guillotine</a></h2>
+<h2 id="public_api"><a class="link" href="#public_api">Public API</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Headless API, aka <a href="https://market.enonic.com/vendors/enonic/guillotine" target="_blank" rel="noopener">Guillotine</a> - yes, we take headlessness seriously around here - provides access to all the content within your project. Clients requesting content will naturally only get access to the content they have read-permissions for. The <code>Intro project</code> is configured with public read access for everything.</p>
+<p>So far, you&#8217;ve been playing with the API via Content Studio. If you want to access the API endpoint directly on your sandbox, it&#8217;s available at:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>http://localhost:8080/site/intro/draft (draft items)</p>
+</li>
+<li>
+<p>http://localhost:8080/site/intro/master (published items)</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>Click the GraphQL icon in the Content Studio&#8217;s left-hand menu to open <code>Query Playground</code>. Here you may test and play with the GraphQL API directly.</p>
+<p>In the following steps, you will deploy the API to a live URL. Remember, the GraphQL API is accessed via <code>HTTP POST</code> method, as such - visiting via a regular browser will give you a 404 error.</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="media/query-playground.png" alt="Query Playground in action" width="1024px">
-</div>
-</div>
-<div class="paragraph">
-<p>The API documentation is available from the Top left <code>file cabinet icon</code>. Use the tabs on the top right to query against the Draft or Master branch, accessing the draft and published items, respectively.</p>
-</div>
-<div class="paragraph">
-<p>Want to know more about GraphQL in general? Visit the <a href="https://graphql.org" target="_blank" rel="noopener">official GraphQL documentation</a>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="sample_queries"><a class="link" href="#sample_queries">Sample queries</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Below are some example queries you can use to fetch the sample content.</p>
-</div>
-<div class="sect2">
-<h3 id="get_persons"><a class="link" href="#get_persons">Get Persons</a></h3>
-<div class="listingblock">
-<div class="title">Get display name and _path of the first 3 items in the <code>/persons</code> folder:</div>
-<div class="content">
-<pre class="highlight"><code class="language-GraphQL" data-lang="GraphQL">{
- guillotine {
-  getChildren(key:"/persons" first:3){
-    displayName
-    _path
-    }
-  }
-}</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Sample response:</div>
-<div class="content">
-<pre class="highlight"><code class="language-JSON" data-lang="JSON">{
-  "data": {
-    "guillotine": {
-      "getChildren": [
-        {
-          "displayName": "Léa Seydoux",
-          "_path": "/persons/lea-seydoux"
-        },
-        {
-          "displayName": "Jeffrey Wright",
-          "_path": "/persons/jeffrey-wright"
-        },
-        {
-          "displayName": "Daniel Craig",
-          "_path": "/persons/daniel-craig"
-        }
-      ]
-    }
-  }
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="query_variables"><a class="link" href="#query_variables">Query variables</a></h3>
-<div class="paragraph">
-<p>GraphQL also supports the concept of query variables. Similar to parameters in functions, you may pass variables to a query.</p>
-</div>
-<div class="paragraph">
-<p>Query variables are defined with JSON. You can add them using the <code>Variables</code> button below the query editor.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-JSON" data-lang="JSON">{
-  "path": "/persons"
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>With the variable set, update your query to use the variable. This query should provide the exact same response as before.</p>
-</div>
-<div class="listingblock">
-<div class="title">The Person query, this time using path as a variable:</div>
-<div class="content">
-<pre class="highlight"><code class="language-GraphQL" data-lang="GraphQL">query($path:ID!){
- guillotine {
-  getChildren(key:$path first:3){
-    displayName
-    _path
-    }
-  }
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="movies_and_cast"><a class="link" href="#movies_and_cast">Movies and cast</a></h3>
-<div class="admonitionblock important">
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-important" title="Important"></i>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-The GraphQL schema is automatically generated from your application and schemas. If you used a different name than <code>com.example.myapp</code> when the app was created, you would have to replace both <code>com.example.myapp:movie</code> and the GraphQL type <code>com_example_myapp_Movie</code> for the query below to work.
+The Chrome extension <a href="https://chrome.google.com/webstore/detail/altair-graphql-client/flnheeellpciglgpaodhkhmapeljopja" target="_blank" rel="noopener">Altair</a> lets you browse any GraphQL API simply by pointing it to the API URL.
 </td>
 </tr>
 </table>
 </div>
-<div class="listingblock">
-<div class="title">Get display name and the cast of the first movie:</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="sign_up"><a class="link" href="#sign_up">Sign up</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To complete this step, you&#8217;ll need Enonic XP running on a server. To get the job done, we&#8217;ll use Enonic&#8217;s free hosting tier:</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you are looking for other hosting options, Enonic XP is open source, and <a href="https://developer.enonic.com/docs/hosting" target="_blank" rel="noopener">can be deployed pretty much anywhere</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Visit our <strong><a href="https://enonic.com/sign-up" target="_blank" rel="noopener">sign up</a></strong> to claim your forever-free account.</p>
+</li>
+<li>
+<p>After signing up, complete the verification of your e-mail before you can move to the next step.</p>
+</li>
+<li>
+<p><strong>Log in to the <a href="https://console.enonic.com" target="_blank" rel="noopener">Enonic Console</a></strong> and choose your account name.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
 <div class="content">
-<pre class="highlight"><code class="language-GraphQL" data-lang="GraphQL">{
-  guillotine {
-    queryDsl(query: {
-      term: {
-        field: "type",
-        value: {
-          string: "com.example.myapp:movie"
-        }
-      }
-    }, first: 1) {
-      displayName
-      ... on com_example_myapp_Movie {
-        data {
-          cast {
-            actor {
-              displayName
-            }
-            character
-          }
-        }
-      }
-    }
-  }
-}</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Sample response</div>
-<div class="content">
-<pre class="highlight"><code class="language-JSON" data-lang="JSON">{
-  "data": {
-    "guillotine": {
-      "queryDsl": [
-        {
-          "displayName": "The Matrix",
-          "data": {
-            "cast": [
-              {
-                "actor": {
-                  "displayName": "Keanu Reeves"
-                },
-                "character": "Neo"
-              },
-              {
-                "actor": {
-                  "displayName": "Carrie-Anne Moss"
-                },
-                "character": "Trinity"
-              }
-            ]
-          }
-        }
-      ]
-    }
-  }
-}</code></pre>
-</div>
+<img src="media/console-account-create.png" alt="Choose your account name" width="750px">
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="image_handling"><a class="link" href="#image_handling">Image handling</a></h2>
+<h2 id="create_solution"><a class="link" href="#create_solution">Create solution</a></h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>In this case, Guillotine plays tag-team with XP&#8217;s image service, which can deliver real-time cropped and optimized versions of images. Here, we are requesting a 400 x 400px version of the image.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>then  <strong>create a new solution</strong> from the menu: <code>Solutions &#8594; Essentials &#8594; Create</code>. Complete the solution wizard steps using your personal preferences.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="media/console-solution-create.png" alt="Select the 'Essentials' template" width="1440px">
+</div>
 </div>
 <div class="paragraph">
-<p>The query below shows the names of actors containing the term <code>morgan</code>, and provides a link to a cropped image of the actor.</p>
+<p>We will then spin up an Enonic XP environment, similar to your local sandbox, but this time on a real server in the Cloud.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="deploy_application"><a class="link" href="#deploy_application">Deploy application</a></h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Once the solution has started (verify by logging in to the XP admin), you need to <strong>authorize the CLI</strong>. Run this command:</p>
+<div class="literalblock">
+<div class="content">
+<pre>enonic cloud login</pre>
+</div>
+</div>
+</li>
+<li>
+<p>After successful authentication <strong>install your app</strong> using this command:</p>
+<div class="literalblock">
+<div class="content">
+<pre>enonic cloud app install</pre>
+</div>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -662,90 +578,80 @@ The GraphQL schema is automatically generated from your application and schemas.
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Again, if your app was called something else than <code>com.example.myapp</code>, replace <code>com.example.myapp:person</code> and <code>com_example_myapp_Person</code> for the query below to work.
+You must execute this command from your app folder.
 </td>
 </tr>
 </table>
 </div>
-<div class="listingblock">
-<div class="title">Name of persons and a link to 400x400 scaled photo</div>
-<div class="content">
-<pre class="highlight"><code class="language-GraphQL" data-lang="GraphQL">{
-  guillotine {
-    queryDsl(query: {
-      boolean: {
-        must: [
-          {
-            ngram: {
-              fields: ["_allText"],
-              query: "morgan"
-            }
-          },
-          {
-            term: {
-              field: "type",
-              value: {
-                string: "com.example.myapp:person"
-              }
-            }
-          }
-        ]
-      }
-    }, first: 1) {
-      ... on com_example_myapp_Person {
-    	  displayName
-        data {
-          photos(first:1){
-            ... on media_Image {
-              imageUrl(type:absolute scale:"block(400,400)")
-            }
-          }
-        }
-      }
-    }
-  }
-}</code></pre>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Alternatively, upload the app from the Console directly: <code>Solutions &#8594; &lt;Your solution&gt; &#8594; Applications &#8594; Install</code>. The app file can be found in your project folder i.e. <code>build/libs/myapp.jar</code>.
+</td>
+</tr>
+</table>
 </div>
-</div>
-<div class="listingblock">
-<div class="title">Sample response</div>
-<div class="content">
-<pre class="highlight"><code class="language-JSON" data-lang="JSON">{
-  "data": {
-    "guillotine": {
-      "queryDsl": [
-        {
-          "displayName": "Morgan Freeman",
-          "data": {
-            "photos": [
-              {
-                "imageUrl": "http://localhost:8080/admin/site/preview/intro/draft/_/image/7ab1f76a-69a1-490f-b505-6eb6773c7cec:603726cc4fa712aa1b70c7eb64e1349f664494c3/block-400-400/morgan-freeman.jpg"
-              }
-            ]
-          }
-        }
-      ]
-    }
-  }
-}</code></pre>
-</div>
+</li>
+</ol>
 </div>
 <div class="paragraph">
-<p>When looking at the result in Query Playground, you can see the actual image by hovering over the link:</p>
+<p>Once installed, the app should be listed in the Cloud console:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="media/morgan-photo.png" alt="Cropped version of Morgan Freemans image" width="1024px">
+<img src="media/console-application-list.png" alt="List of applications including 'MyApp'" width="1440px">
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="expose_the_api"><a class="link" href="#expose_the_api">Expose the API</a></h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>The original higher-resolution image is stored as a content item, just like persons and reviews. This is what it looks like from Content Studio:</p>
+<p>Finally, you may also want to expose the API:</p>
 </div>
-<div class="imageblock">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>create an ingress</strong> in the Enonic Cloud console: <code>Solutions &#8594; &lt;Your solution&gt; &#8594; Ingresses &#8594; Create</code>. Give it a suitable name i.e. <code>Intro API</code>, and use the following values:</p>
+<div class="exampleblock">
 <div class="content">
-<img src="media/morgan-original.png" alt="The original version of Morgan Freemans photo is widescreen, with a red " width="1024px">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Environment</dt>
+<dd>
+<p>Use the default value</p>
+</dd>
+<dt class="hdlist1">Target</dt>
+<dd>
+<p><code>/site/intro</code></p>
+</dd>
+<dt class="hdlist1">Domain</dt>
+<dd>
+<p>Use the default value</p>
+</dd>
+<dt class="hdlist1">Path</dt>
+<dd>
+<p><code>/api</code></p>
+</dd>
+<dt class="hdlist1">ID provider</dt>
+<dd>
+<p>leave empty</p>
+</dd>
+</dl>
 </div>
 </div>
+</div>
+</li>
+<li>
+<p>Once the ingress is created, <strong>Select it in the list</strong>. This will reveal a link to your API on the right. hand side</p>
+</li>
+<li>
+<p><strong>Visit the URL</strong> to see the <code>Query Playground</code> API browser.</p>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -753,157 +659,55 @@ Again, if your app was called something else than <code>com.example.myapp</code>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The red "autofocus" circle, when set, helps the image service to crop the images optimally, as you can see above.
+The API browser can be disabled by changing the configuration of the <code>Guillotine app</code>.
 </td>
 </tr>
 </table>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="api_augmentation"><a class="link" href="#api_augmentation">API augmentation</a></h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p><strong>Now the real magic begins!</strong> You may programmatically extend and augment the Guillotine API - for a fully customizable back-end.</p>
+<p>To use the published content API directly from a GraphQL client, append <code>/master</code> to the Ingress URL.</p>
 </div>
-<div class="paragraph">
-<p>The use-cases are limitless, but rather than babbling about it - let&#8217;s see it in action!</p>
-</div>
-<div class="sect2">
-<h3 id="the_age_field"><a class="link" href="#the_age_field">The age field</a></h3>
-<div class="paragraph">
-<p>We&#8217;ll keep it simple. In a few steps, you&#8217;ll add a new <code>age</code> field to the Person content type and use the <code>dateofbirth</code> to calculate the result.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>From the <code>samples/</code> folder of your app, <strong>copy or move</strong> the <code>guillotine/</code> folder to <code>src/main/resources/</code>. You should then have the following TypeScript controller ready:</p>
-<div class="listingblock">
-<div class="title">/src/main/resources/guillotine/guillotine.ts</div>
-<div class="content">
-<pre class="highlight"><code class="language-TypeScript" data-lang="TypeScript">// Using the Person data type
-const personType = "com_example_myapp_Person_Data";
-
-export const extensions = (graphQL) =&gt; {
-  return {
-    creationCallbacks: {
-      [personType]: function (params) {
-        // Add a new field: age
-        params.addFields({
-          age: {
-            type: graphQL.GraphQLInt,
-          },
-        });
-      },
-    },
-    resolvers: {
-      [personType]: {
-        // Implement the age resolver
-        age: (env) =&gt; {
-          if (!env.source.dateofbirth) {
-            return null;
-          }
-
-          // Calculate age
-          let age = 0;
-          const today = new Date();
-          const birthDate = new Date(env.source.dateofbirth);
-          age = today.getFullYear() - birthDate.getFullYear();
-          const m = today.getMonth() - birthDate.getMonth();
-
-          // Tune for month and day
-          if (m &lt; 0 || (m === 0 &amp;&amp; today.getDate() &lt; birthDate.getDate())) {
-            age--;
-          }
-          return age;
-        },
-      },
-    },
-  };
-};</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Guillotine requires the app to be redeployed (or restarted) to pick up changes to schemas and/or controllers. Stop the build (using control-c) and start it again:</p>
-<div class="literalblock">
-<div class="content">
-<pre>^c
-enonic dev</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Back in Query Playground, run the following query:</p>
-<div class="listingblock">
-<div class="title">Query using the new field</div>
-<div class="content">
-<pre class="highlight"><code class="language-GraphQL" data-lang="GraphQL">{
-  guillotine {
-    getChildren(key: "/persons", first: 2) {
-      displayName
-      ... on com_example_myapp_Person {
-        data {
-          age
-          dateofbirth
-        }
-      }
-    }
-  }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The response should now contain a new age filed, with a calculated value:</p>
-</div>
-<div class="listingblock">
-<div class="title">Query response</div>
-<div class="content">
-<pre class="highlight"><code class="language-JSON" data-lang="JSON">{
-  "data": {
-    "guillotine": {
-      "getChildren": [
-        {
-          "displayName": "Léa Seydoux",
-          "data": {
-            "age": 38,
-            "dateofbirth": "1985-07-01"
-          }
-        },
-        {
-          "displayName": "Jeffrey Wright",
-          "data": {
-            "age": 58,
-            "dateofbirth": "1965-12-07"
-          }
-        }
-      ]
-    }
-  }
-}</code></pre>
-</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Remember, the GraphQL API only accepts <code>POST</code> requests, so the browser will only show a 404 at this point.
+</td>
+</tr>
+</table>
 </div>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p>As you have now seen, XP lets you run server-side <a href="https://developer.enonic.com/docs/platform/xp7/framework">TypeScript and JavaScript code</a>. API augmentation is just the tip of the iceberg - believe us.</p>
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="one_last_thing"><a class="link" href="#one_last_thing">One last thing</a></h2>
+<h2 id="dive_deeper"><a class="link" href="#dive_deeper">Dive deeper</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>With GraphQL queries flowing from your fingertips. It&#8217;s time for the big finale where you <a href="deploy.ahtml">deploy your app to the Enonic cloud</a>.</p>
+<p>🎉 Awesome! You made it to the end.</p>
+</div>
+<div class="paragraph">
+<p>In the process, you created an Enonic XP sandbox, built and customized your own app, ran GraphQL queries, got to know the Enonic CLI and our SaaS service.</p>
+</div>
+<div class="paragraph">
+<p>As you may already imagine, the Platform is capable of so much more. Did you know that Enonic has a <a href="https://developer.enonic.com/docs/xp/stable/framework" target="_blank" rel="noopener">JavaScript framework</a>, complete with <a href="https://www.npmjs.com/org/enonic-types" target="_blank" rel="noopener">TypeScript definitions</a> the entire platform API? You may use it in your apps to extend and customize the Platform as you like.</p>
+</div>
+<div class="paragraph">
+<p>To continue the journey, we recommend visiting the <a href="https://developer.enonic.com/docs/tutorials">Enonic tutorials</a> section of the Developer Portal.</p>
+</div>
+<div class="paragraph">
+<p>Bon voyage!</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-07-16 12:51:24 UTC
+Last updated 2026-11-12 10:48:29 UTC
 </div>
 </div>
 </body>
