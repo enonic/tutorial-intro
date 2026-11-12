@@ -8,7 +8,7 @@
       },
       {
         "label": "7.x",
-        "checkout": "xp7"
+        "checkout": "7.x"
       }
     ]
   }
